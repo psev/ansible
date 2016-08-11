@@ -43,14 +43,16 @@
     state="present"
   with_items:
     "{{ interfaces }}"
+  notify:
+    - restart systemd-resolved
 
 - command: systemctl enable --now systemd-journal-gatewayd.socket
 
 - copy:
     dest="/etc/systemd/system/ansible.{{ item }}"
     src="system/ansible.{{ item }}"
-    with_items:
-      - service
-      - timer
-
-- command: systemctl enable --now ansible.timer
+  with_items:
+    - service
+    - timer
+  notify:
+    - start ansible.timer

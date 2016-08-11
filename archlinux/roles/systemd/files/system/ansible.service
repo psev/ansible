@@ -5,7 +5,6 @@ After=network-online.target environment.service
 
 [Service]
 EnvironmentFile=/etc/environment
-EnvironmentFile=/etc/environment.private
 EnvironmentFile=/etc/environment.network
 
 RemainAfterExit=true
