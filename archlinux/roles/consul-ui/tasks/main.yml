@@ -1,0 +1,10 @@
+---
+
+- name: copy client ui config
+  copy: src=ui.json dest=/etc/consul/consul.d/client/ui.json mode=0740 owner=consul group=root
+
+- name: copy server ui config
+  copy: src=ui.json dest=/etc/consul/consul.d/server/ui.json mode=0740 owner=consul group=root
+
+- name: copy ui static files
+  copy: dest=/etc/consul src=ui

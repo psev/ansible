@@ -1,0 +1,8 @@
+{
+  "check": {
+    "id": "consul-alerts",
+    "name": "Consul Alerts",
+    "script": "systemctl is-active consul-alerts",
+    "interval": "10s"
+  }
+}

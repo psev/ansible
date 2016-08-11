@@ -1,0 +1,37 @@
+---
+
+- name: copy consul package
+  copy: src=consul.pkg.tar.xz dest=/tmp/consul.pkg.tar.xz
+
+- name: install consul
+  shell: pacman --noconfirm -U /tmp/consul.pkg.tar.xz
+
+- name: remove consul package
+  shell: rm /tmp/consul.pkg.tar.xz
+
+- name: create consul user
+  user: name=consul createhome=no shell=/usr/bin/zsh home=/etc/consul
+
+- name: create directory /etc/consul/consul.d
+  file: dest=/etc/consul/consul.d state=directory mode=0770 owner=consul group=consul
+
+- name: create directory /etc/consul/consul.d/client
+  file: dest=/etc/consul/consul.d/client state=directory mode=0770 owner=consul group=consul
+
+- name: create directory /etc/consul/consul.d/server
+  file: dest=/etc/consul/consul.d/server state=directory mode=0770 owner=consul group=consul
+
+- name: create directory /etc/consul/consul.d/bootstrap
+  file: dest=/etc/consul/consul.d/bootstrap state=directory mode=0770 owner=consul group=consul
+
+- name: create directory /etc/consul/ui
+  file: dest=/etc/consul/ui state=directory mode=0770 owner=consul group=consul
+
+- name: create directory /run/consul
+  file: dest=/run/consul state=directory mode=0770 owner=consul group=consul
+
+- name: create directory /var/consul
+  file: dest=/var/consul state=directory mode=0770 owner=consul group=consul
+
+- name: copy consul@.service
+  copy: dest=/etc/systemd/system/consul@.service src=consul@.service

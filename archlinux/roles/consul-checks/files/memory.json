@@ -1,0 +1,8 @@
+{
+  "check": {
+    "id": "memory",
+    "name": "Memory",
+    "script": "/usr/local/bin/check_mem -w 95 -c 98 -W 40 -C 60",
+    "interval": "30s"
+  }
+}

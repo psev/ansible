@@ -1,0 +1,23 @@
+[Unit]
+Description=Consul Alerts
+After=docker.service consul@server.service
+BindsTo=docker.service consul@server.service
+
+[Service]
+EnvironmentFile=/etc/environment
+EnvironmentFile=/etc/environment.network
+
+Restart=on-failure
+
+ExecStartPre=-/usr/bin/docker stop consul-alerts
+ExecStartPre=-/usr/bin/docker rm consul-alerts
+ExecStartPre=/usr/bin/docker pull acaleph/consul-alerts
+
+ExecStart=/usr/bin/docker run --name consul-alerts acaleph/consul-alerts start \
+  --consul-addr=${HOST_IP}:8500 --consul-dc=${REGION} \
+  --watch-events --watch-checks
+
+ExecStop=/usr/bin/docker stop consul-alerts
+
+[Install]
+WantedBy=multi-user.target

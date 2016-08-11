@@ -1,0 +1,5 @@
+---
+
+  - name: reload consul@client
+    command: systemctl reload consul@client
+    ignore_errors: yes

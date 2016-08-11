@@ -1,0 +1,13 @@
+{
+  "bootstrap": false,
+  "server": false,
+  "datacenter": "misc",
+  "data_dir": "/var/consul",
+  "log_level": "INFO",
+  "start_join": [
+    "consul-1", "consul-2", "consul-3"
+  ],
+  "retry_join": [
+    "consul-1", "consul-2", "consul-3"
+  ]
+}

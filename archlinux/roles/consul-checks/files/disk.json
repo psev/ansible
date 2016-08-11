@@ -1,0 +1,8 @@
+{
+  "check": {
+    "id": "disk",
+    "name": "Disk",
+    "script": "/usr/lib/monitoring-plugins/check_disk -w 25% -c 10% -p /",
+    "interval": "30s"
+  }
+}

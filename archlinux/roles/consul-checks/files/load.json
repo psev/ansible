@@ -1,0 +1,8 @@
+{
+  "check": {
+    "id": "load",
+    "name": "Load",
+    "script": "/usr/lib/monitoring-plugins/check_load -r -w 10,8,6 -c 14,12,10",
+    "interval": "30s"
+  }
+}
