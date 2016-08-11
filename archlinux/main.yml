@@ -10,13 +10,14 @@
 
     roles:
 
+      - { role: base, tags: [ "base" ] }
+      - { role: docker, tags: [ "docker" ] }
       - { role: consul, tags: [ "consul" ] }
       - { role: consul-alerts, tags: [ "consul-alerts" ] }
       - { role: consul-checks, tags: [ "consul-checks" ] }
       - { role: consul-client, tags: [ "consul-client" ] }
       - { role: consul-server, tags: [ "consul-server" ] }
       - { role: consul-ui, tags: [ "consul-ui" ] }
-      - { role: docker, tags: [ "docker" ] }
       - { role: ssh, tags: [ "ssh" ] }
       - { role: unbound, tags: [ "unbound" ] }
 
