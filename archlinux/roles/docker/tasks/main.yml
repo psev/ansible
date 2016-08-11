@@ -12,6 +12,9 @@
 - name: install docker
   pacman: name=docker state=present
 
+- name: load overlay module
+  command: modprobe overlay
+
 - name: create docker drop-in folder
   file: dest=/etc/systemd/system/docker.service.d state=directory
 
