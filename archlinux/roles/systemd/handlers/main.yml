@@ -1,5 +1,10 @@
 - name: start ansible.timer
   command: systemctl enable --now ansible.timer
 
+- name: restart environment
+  command: systemctl restart environment.service
+
 - name: restart systemd-networkd
   command: systemctl restart systemd-networkd
+  notify:
+    - environment
