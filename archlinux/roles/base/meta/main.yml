@@ -1,5 +1,5 @@
 dependencies:
 
-  - { role: unbound }
   - { role: consul }
+  - { role: unbound }
   - { role: docker }
