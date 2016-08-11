@@ -8,3 +8,6 @@
   command: systemctl restart systemd-networkd
   notify:
     - restart environment
+
+- name: daemon-reload
+  command: systemctl daemon-reload
