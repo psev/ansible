@@ -1,0 +1,39 @@
+server:
+  username: "unbound"
+  directory: "/etc/unbound"
+  use-syslog: yes
+
+# trust-anchor-file: trusted-key.key
+
+  access-control: 127.0.0.0/8 allow
+  access-control: 10.0.0.0/8 allow
+  access-control: 172.16.0.0/12 allow
+  access-control: 192.168.0.0/16 allow
+
+  private-address: 10.0.0.0/8
+  private-address: 172.16.0.0/12
+  private-address: 192.168.0.0/16
+
+  domain-insecure: {{ lookup('env', 'HOST_DOMAIN_1') }}
+  domain-insecure: consul
+
+  private-domain: amazonaws.com
+  private-domain: longsight.com
+  private-domain: aws.longsight.com
+  private-domain: {{ lookup('env', 'HOST_DOMAIN_1') }}
+  private-domain: consul
+
+  interface: 127.0.0.1
+  interface: {{ lookup('env', 'HOST_IP') }}
+
+forward-zone:
+  name: "."
+  forward-addr: {{ lookup('env', 'HOST_DNS_1') }}
+
+forward-zone:
+  name: {{ lookup('env', 'HOST_DOMAIN_1') }}
+  forward-addr: {{ lookup('env', 'HOST_DNS_1') }}
+
+stub-zone:
+  name: consul
+  stub-addr: {{ lookup('env', 'HOST_IP') }}@8600

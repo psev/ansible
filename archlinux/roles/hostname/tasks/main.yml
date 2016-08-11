@@ -1,0 +1,4 @@
+---
+
+- name: set hostname
+  command: hostnamectl set-hostname "{{ lookup('env', 'HOSTNAME') }}"

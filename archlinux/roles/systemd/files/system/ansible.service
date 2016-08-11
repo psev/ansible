@@ -1,0 +1,18 @@
+[Unit]
+Description=Ansible
+Requires=network-online.target environment.service
+After=network-online.target environment.service
+
+[Service]
+EnvironmentFile=/etc/environment
+EnvironmentFile=/etc/environment.private
+EnvironmentFile=/etc/environment.network
+
+Restart=always
+
+RemainAfterExit=true
+
+ExecStartPre=-/usr/bin/git clone ${ansible_repo} /root/manage
+ExecStartPre=/usr/bin/git -C /root/manage pull
+
+ExecStart=/usr/bin/ansible-playbook -i /root/manage/inventory /root/manage/arch/main.yml -t \$${TAGS} -e "ansible_python_interpreter=/usr/bin/python2"

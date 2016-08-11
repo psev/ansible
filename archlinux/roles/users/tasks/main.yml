@@ -1,0 +1,7 @@
+---
+
+  - name: add user psev
+    user: name=psev group=users groups=wheel
+
+  - name: set psev's authorized key
+    authorized_key: user=psev key=https://github.com/psev.keys

@@ -1,0 +1,16 @@
+---
+
+- name: install zsh
+  pacman: name=zsh state=present
+
+- name: install grml-zsh-config
+  pacman: name=grml-zsh-config state=present
+
+- name: set root shell to zsh
+  user: name=root shell=/bin/zsh
+
+- name: .zshrc skel
+  shell: cp /etc/skel/.zshrc /root/.zshrc
+
+- name: set zsh as default shell
+  command: useradd -D -s /usr/bin/zsh

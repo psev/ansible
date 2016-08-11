@@ -1,0 +1,4 @@
+---
+
+- name: disable ssh client roaming
+  copy: src=ssh_config dest=/etc/ssh/ssh_config mode=0644 owner=root group=root

@@ -1,0 +1,49 @@
+- pacman:
+    name="python2-netifaces"
+    state="present"
+
+- pacman:
+    name="libmicrohttpd"
+    state="present"
+
+- copy:
+    dest="/usr/local/bin/environment.py"
+    src="environment.py"
+    mode="0700"
+
+- copy:
+    dest="/etc/systemd/system/environment.service"
+    src="system/environment.service"
+
+- file:
+    dest="/etc/systemd/journald.conf.d"
+    state="directory"
+
+- copy:
+    dest="/etc/systemd/journald.conf.d/00-persistent.conf"
+    src="journald.conf.d/00-persistent.conf"
+    state="present"
+
+- file:
+    dest="/etc/system/systemd/systemd-journal-gatewayd.socket.d"
+    state="directory"
+
+- copy:
+    dest="/etc/system/systemd/systemd-journal-gatewayd.socket.d/00-socket.conf"
+    src="system/systemd-journal-gatewayd.socket.d/00-socket.conf"
+    state="present"
+
+- file:
+    dest="/etc/systemd/system/network/{{ item }}.network"
+    state="present"
+  with_items:
+    {{ interfaces }}
+
+- lineinfile:
+    dest="/etc/systemd/system/network/{{ item }}.network"
+    line="UseDomains=yes"
+    state="present"
+  with_items:
+    {{ interfaces }}
+
+- shell: systmectl {enable,start} systemd-journal-gatewayd.socket

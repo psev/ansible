@@ -1,0 +1,5 @@
+[Unit]
+Description=tmpwatch
+
+[Service]
+ExecStart=/usr/bin/tmpwatch 168 /tmp

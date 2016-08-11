@@ -1,0 +1,4 @@
+---
+
+- name: install packages
+  command: pacman --noconfirm -Sy gptfdisk arch-install-scripts monitoring-plugins

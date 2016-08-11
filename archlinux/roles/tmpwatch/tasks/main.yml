@@ -1,0 +1,22 @@
+---
+
+  - name: copy tmpwatch package
+    copy: src=tmpwatch-2.11-2-x86_64.pkg.tar.xz dest=/tmp/tmpwatch.pkg.tar.xz
+
+  - name: install tmpwatch
+    pacman: name=/tmp/tmpwatch.pkg.tar.xz state=present
+
+  - name: remove tmpwatch package
+    file: path=/tmp/tmpwatch.pkg.tar.xz state=absent
+
+  - name: copy tmpwatch.service
+    copy: src=tmpwatch.service dest=/etc/systemd/system
+
+  - name: copy tmpwatch.timer
+    copy: src=tmpwatch.timer dest=/etc/systemd/system
+
+  - name: enable tmpwatch.timer
+    command: systemctl enable tmpwatch.timer
+
+  - name: start tmpwatch.timer
+    command: systemctl start tmpwatch.timer

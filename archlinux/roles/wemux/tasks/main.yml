@@ -1,0 +1,13 @@
+---
+
+- name: install tmux
+  pacman: name=tmux state=present
+
+- name: create /etc/skel/.ssh
+  file: dest=/etc/skel/.ssh state=directory
+
+- name: copy sshrc
+  copy: src=sshrc dest=/etc/skel/.ssh/rc
+
+- name: copy tmux.conf
+  copy: src=tmux.conf dest=/etc/skel/.tmux.conf

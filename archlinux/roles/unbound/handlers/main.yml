@@ -1,0 +1,4 @@
+---
+
+  - name: reload unbound
+    command: systemctl reload unbound

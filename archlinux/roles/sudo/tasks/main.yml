@@ -1,0 +1,5 @@
+---
+
+
+- name: add sudoers line
+  lineinfile: 'dest=/etc/sudoers regexp="^.*\%wheel ALL=\(ALL\) NOPASSWD\: ALL$" line="%wheel ALL=(ALL) NOPASSWD: ALL" state=present'

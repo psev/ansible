@@ -1,0 +1,8 @@
+{
+  "check": {
+    "id": "docker",
+    "name": "Docker",
+    "script": "systemctl is-active docker",
+    "interval": "10s"
+  }
+}
