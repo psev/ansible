@@ -22,7 +22,6 @@
 - copy:
     dest="/etc/systemd/journald.conf.d/00-persistent.conf"
     src="journald.conf.d/00-persistent.conf"
-    state="present"
 
 - file:
     dest="/etc/system/systemd/systemd-journal-gatewayd.socket.d"
@@ -31,19 +30,18 @@
 - copy:
     dest="/etc/system/systemd/systemd-journal-gatewayd.socket.d/00-socket.conf"
     src="system/systemd-journal-gatewayd.socket.d/00-socket.conf"
-    state="present"
 
 - file:
-    dest="/etc/systemd/system/network/{{ item }}.network"
-    state="present"
+    dest="/etc/systemd/network/{{ item }}.network"
+    state="touch"
   with_items:
-    {{ interfaces }}
+    "{{ interfaces }}"
 
 - lineinfile:
-    dest="/etc/systemd/system/network/{{ item }}.network"
+    dest="/etc/systemd/network/{{ item }}.network"
     line="UseDomains=yes"
     state="present"
   with_items:
-    {{ interfaces }}
+    "{{ interfaces }}"
 
-- shell: systmectl {enable,start} systemd-journal-gatewayd.socket
+- shell: systemctl enable --now systemd-journal-gatewayd.socket
