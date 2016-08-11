@@ -1,5 +1,5 @@
 - name: start ansible.timer
   command: systemctl enable --now ansible.timer
 
-- name: restart systemd-resolved
-  command: systemctl restart systemd-resolved
+- name: restart systemd-networkd
+  command: systemctl restart systemd-networkd

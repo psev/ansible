@@ -44,7 +44,7 @@
   with_items:
     "{{ interfaces }}"
   notify:
-    - restart systemd-resolved
+    - restart systemd-networkd
 
 - command: systemctl enable --now systemd-journal-gatewayd.socket
 
