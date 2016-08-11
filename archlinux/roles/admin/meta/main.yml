@@ -1,3 +1,4 @@
 dependencies:
 
   - { role: consul-client }
+  - { role: consul-ui }
