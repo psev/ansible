@@ -24,11 +24,11 @@
     src="journald.conf.d/00-persistent.conf"
 
 - file:
-    dest="/etc/system/systemd/systemd-journal-gatewayd.socket.d"
+    dest="/etc/systemd/system/systemd-journal-gatewayd.socket.d"
     state="directory"
 
 - copy:
-    dest="/etc/system/systemd/systemd-journal-gatewayd.socket.d/00-socket.conf"
+    dest="/etc/systemd/system/systemd-journal-gatewayd.socket.d/00-socket.conf"
     src="system/systemd-journal-gatewayd.socket.d/00-socket.conf"
 
 - file:
@@ -44,4 +44,13 @@
   with_items:
     "{{ interfaces }}"
 
-- shell: systemctl enable --now systemd-journal-gatewayd.socket
+- command: systemctl enable --now systemd-journal-gatewayd.socket
+
+- copy:
+    dest="/etc/systemd/system/ansible.{{ item }}"
+    src="system/ansible.{{ item }}"
+    with_items:
+      - service
+      - timer
+
+- command: systemctl enable --now ansible.timer

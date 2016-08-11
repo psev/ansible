@@ -8,11 +8,9 @@ EnvironmentFile=/etc/environment
 EnvironmentFile=/etc/environment.private
 EnvironmentFile=/etc/environment.network
 
-Restart=always
-
 RemainAfterExit=true
 
-ExecStartPre=-/usr/bin/git clone ${ansible_repo} /root/manage
-ExecStartPre=/usr/bin/git -C /root/manage pull
+ExecStartPre=-/usr/bin/git clone ${ansible_repo} /root/ansible
+ExecStartPre=/usr/bin/git -C /root/ansible pull
 
-ExecStart=/usr/bin/ansible-playbook -i /root/manage/inventory /root/manage/arch/main.yml -t \$${TAGS} -e "ansible_python_interpreter=/usr/bin/python2"
+ExecStart=/usr/bin/ansible-playbook -i /root/ansible/inventory /root/ansible/archlinux/main.yml -t \$${TAGS} -e "ansible_python_interpreter=/usr/bin/python2"
