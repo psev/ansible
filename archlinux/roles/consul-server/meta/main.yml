@@ -2,8 +2,6 @@
 
 dependencies:
 
-  - { role: base, meta: "consul-server" }
   - { role: consul, meta: "consul-server" }
   - { role: consul-checks, meta: "consul-checks" }
   - { role: consul-alerts, meta: "consul-server" }
-  - { role: logentries-journal, meta: "consul-server" }
