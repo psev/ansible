@@ -1,0 +1,9 @@
+---
+
+  - name: copy etcd-{{ item }}.service
+    copy:
+      dest="/etc/systemd/system/{{ item }}.service"
+      src="etcd-{{ item }}.service"
+    with_items:
+      - bootstrap
+      - server

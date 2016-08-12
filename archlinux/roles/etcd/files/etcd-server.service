@@ -1,0 +1,25 @@
+[Unit]
+Description=Etcd Bootstrap
+After=environment.service
+Requires=environment.service
+
+[Service]
+Environment=GOMAXPROCS=4
+
+EnvironmentFile=/etc/environment
+EnvironmentFile=/etc/environment.network
+
+ExecStartPre=/usr/bin/docker pull quay.io/coreos/etcd
+
+ExecStart=/usr/bin/docker run -d --name etcd \
+  -p ${HOST_IP}:2379:2379 -p ${HOST_IP}:2380:2380 \
+  --discovery-srv ${HOST_DOMAIN_1} \
+  --initial-advertise-peer-urls http://${HOST_IP}:2380 \
+  --advertise-client-urls http://${HOST_IP}:2379 \
+  --listen-client-urls http://${HOST_IP}:2379 \
+  --listen-peer-urls http://${HOST_IP}:2379 \
+
+ExecStop=/usr/bin/docker stop etcd
+
+[Install]
+WantedBy=multi-user.target

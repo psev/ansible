@@ -22,4 +22,5 @@
       - { role: unbound, tags: [ "unbound" ] }
 
       - { role: admin, tags: [ "admin" ] }
-      - { role: worker, tags: [ "worker" ] }
+      - { role: control, tags: [ "control" ] }
+      - { role: worker, tags: [ "worker"] }
