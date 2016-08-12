@@ -1,6 +1,6 @@
 ---
 
-  - hosts: tag_Name_consul_{{ lookup('env', 'DEPLOY') }}
+  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
 
     tasks:
 
@@ -24,7 +24,7 @@
         pause: seconds=15
 
 
-  - hosts: tag_Name_consul_{{ lookup('env', 'DEPLOY') }}
+  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
 
     serial: 1
 
@@ -43,7 +43,7 @@
         pause: seconds=5
 
 
-  - hosts: tag_Name_consul_{{ lookup('env', 'DEPLOY') }}
+  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
 
     tasks:
 
