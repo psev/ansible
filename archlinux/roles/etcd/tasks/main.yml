@@ -1,8 +1,8 @@
 ---
 
-  - name: copy etcd-{{ item }}.service
+  - name: copy etcd service files
     copy:
-      dest="/etc/systemd/system/{{ item }}.service"
+      dest="/etc/systemd/system/etcd-{{ item }}.service"
       src="etcd-{{ item }}.service"
     with_items:
       - bootstrap
