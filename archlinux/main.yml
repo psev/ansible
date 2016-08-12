@@ -22,3 +22,4 @@
       - { role: unbound, tags: [ "unbound" ] }
 
       - { role: admin, tags: [ "admin" ] }
+      - { role: worker, tags: [ "worker" ] }
