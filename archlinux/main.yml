@@ -18,7 +18,7 @@
       - { role: consul-client, tags: [ "consul-client" ] }
       - { role: consul-server, tags: [ "consul-server" ] }
       - { role: consul-ui, tags: [ "consul-ui" ] }
-      - { role: ssh, tags: [ "ssh" ] }
+      - { role: systemd, tags: [ "systemd" ] } # only used to include the daemon-reload handler
       - { role: unbound, tags: [ "unbound" ] }
 
       - { role: admin, tags: [ "admin" ] }
