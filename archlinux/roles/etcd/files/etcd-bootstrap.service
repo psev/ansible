@@ -11,7 +11,7 @@ EnvironmentFile=/etc/environment.network
 
 ExecStartPre=/usr/bin/docker pull quay.io/coreos/etcd
 
-ExecStart=/usr/bin/docker run -d --name etcd \
+ExecStart=/usr/bin/docker run -d --name etcd quay.io/coreos/etcd \
   -p ${HOST_IP}:2379:2379 -p ${HOST_IP}:2380:2380 \
   --discovery-srv ${HOST_DOMAIN_1} \
   --initial-advertise-peer-urls http://${HOST_IP}:2380 \
