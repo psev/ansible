@@ -6,8 +6,6 @@ Requires=environment.service
 Conflicts=etcd-bootstrap.service
 
 [Service]
-Type=forking
-
 Environment=GOMAXPROCS=4
 
 EnvironmentFile=/etc/environment
@@ -18,7 +16,7 @@ ExecStartPre=-/usr/bin/docker rm etcd
 
 ExecStartPre=/usr/bin/docker pull quay.io/coreos/etcd
 
-ExecStart=/usr/bin/docker run -d --name etcd \
+ExecStart=/usr/bin/docker run --name etcd \
   -p ${HOST_IP}:2379:2379 -p ${HOST_IP}:2380:2380 \
   quay.io/coreos/etcd /usr/local/bin/etcd \
   --name ${HOSTNAME} \
