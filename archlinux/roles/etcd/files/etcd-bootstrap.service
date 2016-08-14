@@ -13,12 +13,11 @@ ExecStartPre=/usr/bin/docker pull quay.io/coreos/etcd
 
 ExecStart=/usr/bin/docker run -d --name etcd \
   -p ${HOST_IP}:2379:2379 -p ${HOST_IP}:2380:2380 \
-  quay.io/coreos/etcd \
+  quay.io/coreos/etcd /usr/local/bin/etcd \
+  --name ${HOSTNAME} \
   --discovery-srv ${HOST_DOMAIN_1} \
   --initial-advertise-peer-urls http://${HOST_IP}:2380 \
   --advertise-client-urls http://${HOST_IP}:2379 \
-  --listen-client-urls http://${HOST_IP}:2379 \
-  --listen-peer-urls http://${HOST_IP}:2379 \
   --initial-cluster-token bootstrap \
   --initial-cluster-state new
 
