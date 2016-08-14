@@ -22,7 +22,9 @@ ExecStart=/usr/bin/docker run --name etcd \
   --name ${HOSTNAME} \
   --discovery-srv ${HOST_DOMAIN_1} \
   --initial-advertise-peer-urls http://${HOST_IP}:2380 \
-  --advertise-client-urls http://${HOST_IP}:2379
+  --advertise-client-urls http://${HOST_IP}:2379 \
+  --listen-client-urls http://0.0.0.0:2379 \
+  --listen-peer-urls http://0.0.0.0:2380
 
 ExecStop=/usr/bin/docker stop etcd
 
