@@ -15,5 +15,5 @@
 
   - name: copy flannel service file
     copy:
-      dest="/etc/systemd/system/flannel.serice"
+      dest="/etc/systemd/system/flannel.service"
       src="flannel.service"
