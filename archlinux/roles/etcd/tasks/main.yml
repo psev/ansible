@@ -1,5 +1,13 @@
 ---
 
+  - name: copy etcd binary
+    copy:
+      dest="/tmp/etcd.pkg.tar.xz"
+      src="etcd-bin-3.0.4-1-x86_64.pkg.tar.xz"
+
+  - name: install etcd binary
+    command: pacman --noconfirm -U /tmp/etcd.pkg.tar.xz
+
   - name: copy etcd service files
     copy:
       dest="/etc/systemd/system/etcd-{{ item }}.service"

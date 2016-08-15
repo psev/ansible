@@ -1,32 +1,27 @@
 [Unit]
-Description=Etcd Bootstrap
+Description=Etcd Server
 After=environment.service
 Requires=environment.service
 
 Conflicts=etcd-bootstrap.service
 
 [Service]
+Type=notify
+User=etcd
+
+LimitNOFILE=40000
+
 Environment=GOMAXPROCS=4
 
 EnvironmentFile=/etc/environment
 EnvironmentFile=/etc/environment.network
 
-ExecStartPre=-/usr/bin/docker stop etcd
-ExecStartPre=-/usr/bin/docker rm etcd
-
-ExecStartPre=/usr/bin/docker pull quay.io/coreos/etcd
-
-ExecStart=/usr/bin/docker run --name etcd \
-  -p ${HOST_IP}:2379:2379 -p ${HOST_IP}:2380:2380 \
-  quay.io/coreos/etcd /usr/local/bin/etcd \
-  --name ${HOSTNAME} \
+ExecStart=/usr/bin/etcd --name ${HOSTNAME} \
   --discovery-srv ${HOST_DOMAIN_1} \
   --initial-advertise-peer-urls http://${HOST_IP}:2380 \
   --advertise-client-urls http://${HOST_IP}:2379 \
-  --listen-client-urls http://0.0.0.0:2379 \
-  --listen-peer-urls http://0.0.0.0:2380
-
-ExecStop=/usr/bin/docker stop etcd
+  --listen-client-urls http://${HOST_IP}:2379 \
+  --listen-peer-urls http://${HOST_IP}:2380
 
 [Install]
 WantedBy=multi-user.target
