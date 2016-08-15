@@ -1,6 +1,6 @@
 [Unit]
-Requires=etcd-server.service
-After=etcd-server.service
+Requires=network-online.target
+After=network-online.target
 
 [Service]
 ExecStart=/usr/bin/flannel \
