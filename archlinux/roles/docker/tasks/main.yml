@@ -39,7 +39,7 @@
     - reload consul@client
     - reload consul@server
 
-- name: touch /run/flannel/subnet.env
+- name: touch /etc/environment.flannel
   file:
-    dest="/run/flannel/subnet.env"
+    dest="/etc/environment.flannel"
     state="touch"
