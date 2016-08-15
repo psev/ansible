@@ -16,7 +16,7 @@
 
   - name: remove etcd config
     file:
-      dest="/etc/etcd/etcd.yml"
+      dest="/etc/etcd/etcd.conf.yml"
       state="absent"
 
   - name: copy etcd service files
