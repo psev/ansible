@@ -27,6 +27,11 @@
 - name: add docker prune timer
   copy: src=docker-prune.timer dest=/etc/systemd/system/docker-prune.timer
 
+- name: touch /etc/environment.flannel
+  file:
+    dest="/etc/environment.flannel"
+    state="touch"
+
 - name: enable and start docker
   service: name=docker enabled=yes state=started
 
@@ -38,8 +43,3 @@
   notify:
     - reload consul@client
     - reload consul@server
-
-- name: touch /etc/environment.flannel
-  file:
-    dest="/etc/environment.flannel"
-    state="touch"
