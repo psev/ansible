@@ -17,7 +17,7 @@
         shell: ln -s /etc/consul/consul.d/client/* /etc/consul/consul.d/server/
         ignore_errors: yes
 
-      - name: bootstrap cluster
+      - name: bootstrap consul cluster
         service: name=consul@bootstrap state=started
 
       - name: settle...

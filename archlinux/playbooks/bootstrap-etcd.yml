@@ -1,0 +1,29 @@
+---
+
+    - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+
+      tasks:
+
+        - name: bootstrap etcd cluster
+          command: systemctl start etcd-bootstrap
+
+        - name: settle...
+          pause: seconds=15
+
+    - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+
+      serial: 1
+
+      tasks:
+
+        - name: stop etcd-bootstrap
+          command: systemctl stop etcd-bootstrap
+
+        - name: settle...
+          pause: seconds=5
+
+        - name: start etcd-server
+          command: systemctl start etcd-server
+
+        - name: settle...
+          pause: seconds=5
