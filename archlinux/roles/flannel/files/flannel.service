@@ -5,7 +5,8 @@ After=network-online.target
 [Service]
 ExecStart=/usr/bin/flannel \
   --etcd-prefix="/flannel/network" \
-  --etcd-endpoints="http://etcd-1:2379,http://etcd-2:2379,http://etcd-3:2379"
+  --etcd-endpoints="http://etcd-1:2379,http://etcd-2:2379,http://etcd-3:2379" \
+  --subnet-file="/etc/environment.flannel"
 
 [Install]
 WantedBy=multi-user.target
