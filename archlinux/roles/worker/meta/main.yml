@@ -1,4 +1,3 @@
 dependencies:
 
   - { role: consul-client, meta: worker }
-  - { role: flannel, meta: worker }
