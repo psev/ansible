@@ -22,6 +22,7 @@
   - name: create data directory
     file:
       dest="/var/lib/etcd"
+      state="directory"
       owner="etcd"
       group="etcd"
       mode="0700"

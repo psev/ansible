@@ -17,6 +17,7 @@ EnvironmentFile=/etc/environment
 EnvironmentFile=/etc/environment.network
 
 ExecStart=/usr/bin/etcd --name ${HOSTNAME} \
+  --data-dir /var/lib/etcd \
   --discovery-srv ${HOST_DOMAIN_1} \
   --initial-advertise-peer-urls http://${HOST_IP}:2380 \
   --advertise-client-urls http://${HOST_IP}:2379 \
