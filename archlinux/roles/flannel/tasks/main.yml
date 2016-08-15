@@ -1,0 +1,19 @@
+---
+
+  - name: copy flannel binary package
+    copy:
+      dest="/tmp/flannel.tar.pkg.xz"
+      src="flannel-0.5.5-1-x86_64.pkg.tar.xz"
+
+  - name: install flannel
+    command: pacman --noconfirm -U /tmp/flannel.tar.pkg.xz
+
+  - name: remove flannel binary package
+    file:
+      dest="/tmp/flannel.tar.pkg.xz"
+      state="absent"
+
+  - name: copy flannel service file
+    copy:
+      dest="/etc/systemd/system/flannel.serice"
+      src="flannel.service"

@@ -1,0 +1,11 @@
+[Unit]
+Requires=etcd-server.service
+After=etcd-server.service
+
+[Service]
+ExecStart=/usr/bin/flannel \
+  --etcd-prefix="/flannel/network" \
+  --etcd-endpoints="http://etcd-1:2379,http://etcd-2:2379,http://etcd-3:2379"
+
+[Install]
+WantedBy=multi-user.target
