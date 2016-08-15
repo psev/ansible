@@ -17,3 +17,10 @@
     copy:
       dest="/etc/systemd/system/flannel.service"
       src="flannel.service"
+    notify:
+      - daemon-reload
+
+  - name: start flannel
+    command: systemctl enable --now flannel.service
+    notify:
+      - restart docker
