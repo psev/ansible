@@ -8,6 +8,12 @@
   - name: install etcd binary
     command: pacman --noconfirm -U /tmp/etcd.pkg.tar.xz
 
+  - name: add etcd user
+    user:
+      name="etcd"
+      system="yes"
+      createhome="no"
+
   - name: copy etcd service files
     copy:
       dest="/etc/systemd/system/etcd-{{ item }}.service"
