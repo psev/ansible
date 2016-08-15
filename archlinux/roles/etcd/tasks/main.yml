@@ -19,6 +19,13 @@
       dest="/etc/etcd/etcd.conf.yml"
       state="absent"
 
+  - name: create data directory
+    file:
+      dest="/var/lib/etcd"
+      owner="etcd"
+      group="etcd"
+      mode="0700"
+
   - name: copy etcd service files
     copy:
       dest="/etc/systemd/system/etcd-{{ item }}.service"
