@@ -38,3 +38,8 @@
   notify:
     - reload consul@client
     - reload consul@server
+
+- name: touch /run/flannel/subnet.env
+  file:
+    dest="/run/flannel/subnet.env"
+    state="touch"
