@@ -1,0 +1,6 @@
+---
+
+  - name: copy swarm-agent service file
+    copy:
+      dest="/etc/systemd/system/swarm-agent.service"
+      src="swarm-agent.service"

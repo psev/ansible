@@ -2,3 +2,4 @@ dependencies:
 
   - { role: consul-server }
   - { role: etcd }
+  - { role: swarm-manager }

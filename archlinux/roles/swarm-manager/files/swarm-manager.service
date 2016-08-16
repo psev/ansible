@@ -1,0 +1,25 @@
+[Unit]
+Description=Swarm Manager
+Requires=docker.service
+After=docker.service
+
+[Service]
+EnvironmentFile=/etc/environment.network
+
+ExecStartPre=-/usr/bin/docker stop swarm-manager
+ExecStartPre=-/usr/bin/docker rm swarm-manager
+
+ExecStartPre=/usr/bin/docker pull swarm
+
+ExecStart=/usr/bin/docker run --name swarm-manager \
+  -p 4000:4000 \
+  swarm manage \
+  -H :4000 \
+  --replication \
+  --advertise ${HOST_IP}:4000 \
+  consul://${HOST_IP}:8500
+
+ExecStop=/usr/bin/docker stop swarm-manager
+
+[Install]
+WantedBy=multi-user.target

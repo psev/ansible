@@ -18,6 +18,8 @@
       - { role: consul-client, tags: [ "consul-client" ] }
       - { role: consul-server, tags: [ "consul-server" ] }
       - { role: consul-ui, tags: [ "consul-ui" ] }
+      - { role: swarm-agent, tags: [ "swarm-agent" ] }
+      - { role: swarm-manager, tags: [ "swarm-manager" ] }
       - { role: systemd, tags: [ "systemd" ] } # only used to include the daemon-reload handler
       - { role: unbound, tags: [ "unbound" ] }
 

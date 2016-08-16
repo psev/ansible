@@ -1,0 +1,6 @@
+---
+
+  - name: copy swarm-manager service file
+    copy:
+      dest="/etc/systemd/system/swarm-manager.service"
+      src="swarm-manager.service"

@@ -1,0 +1,22 @@
+[Unit]
+Description=Swarm Agent
+Requires=docker.service
+After=docker.service
+
+[Service]
+EnvironmentFile=/etc/environment.network
+
+ExecStartPre=-/usr/bin/docker stop swarm-agent
+ExecStartPre=-/usr/bin/docker rm swarm-agent
+
+ExecStartPre=/usr/bin/docker pull swarm
+
+ExecStart=/usr/bin/docker run --name swarm-agent \
+  swarm join \
+  --advertise ${HOST_IP}:2379 \
+  consul://${HOST_IP}:8500
+
+ExecStop=/usr/bin/docker stop swarm-agent
+
+[Install]
+WantedBy=multi-user.target
