@@ -1,16 +1,34 @@
 ---
 
-#- name: copy docker package
-#  copy: src=docker-1:1.8.2-1-x86_64.pkg.tar.xz dest=/tmp/docker.pkg.tar.xz
+- name: copy runc package
+  copy: src=runc-git-v0.0.5.r780.g12c3d17-1-x86_64.pkg.tar.xz dest=/tmp/runc.pkg.tar.xz
 
-#- name: install docker
-#  pacman: name=/tmp/docker.pkg.tar.xz state=present
+- name: copy containerd package
+  copy: src=containerd-git-v0.2.3.r2.g95d78ca-1-x86_64.pkg.tar.xz dest=/tmp/containerd.pkg.tar.xz
 
-#- name: remove docker package
-#  command: rm /tmp/docker.pkg.tar.xz
+- name: copy docker package
+  copy: src=docker-git-1:1.13.0.dev.26649.88a6a77-1-x86_64.pkg.tar.xz dest=/tmp/docker.pkg.tar.xz
+
+- name: install runc
+  pacman: name=/tmp/runc.pkg.tar.xz state=present
+
+- name: install containerd
+  pacman: name=/tmp/containerd.pkg.tar.xz state=present
 
 - name: install docker
-  pacman: name=docker state=present
+  pacman: name=/tmp/docker.pkg.tar.xz state=present
+
+- name: remove runc package
+  command: rm /tmp/runc.pkg.tar.xz
+
+- name: remove containerd
+  command: rm /tmp/containerd.pkg.tar.xz
+
+- name: remove docker package
+  command: rm /tmp/docker.pkg.tar.xz
+
+#- name: install docker
+#  pacman: name=docker state=present
 
 - name: load overlay module
   command: modprobe overlay
