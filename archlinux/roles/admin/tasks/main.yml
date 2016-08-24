@@ -1,2 +1,4 @@
-- name: placeholder
-  debug: msg="do nothing"
+- name: install aws-cli
+  pacman:
+    name="aws-cli"
+    state="present"
