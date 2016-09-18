@@ -20,4 +20,5 @@
   - name: touch /opt/build/.zshrc
     file:
       path="/opt/build/.zshrc"
-      state="present"
+      owner="build"
+      state="touch"
