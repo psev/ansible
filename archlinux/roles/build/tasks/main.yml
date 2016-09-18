@@ -1,0 +1,19 @@
+---
+
+  - name: install abs
+    command: pacman --noconfirm -Sy abs
+
+  - name: run abs
+    command: abs
+
+  - name: create build user
+    user:
+      name="build"
+      createhome="no"
+      home="/opt/build"
+
+  - name: create /opt/build
+    file:
+      path="/opt/build"
+      mode="0755"
+      state="directory"

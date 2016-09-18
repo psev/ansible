@@ -11,6 +11,7 @@
     roles:
 
       - { role: base, tags: [ "base" ] }
+      - { role: build, tags: [ "build" ] }
       - { role: docker, tags: [ "docker" ] }
       - { role: consul, tags: [ "consul" ] }
       - { role: consul-alerts, tags: [ "consul-alerts" ] }
