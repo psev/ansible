@@ -13,4 +13,5 @@
     file:
       path="/opt/build"
       mode="0755"
+      owner="build"
       state="directory"
