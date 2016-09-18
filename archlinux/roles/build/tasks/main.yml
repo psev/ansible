@@ -3,9 +3,6 @@
   - name: install abs
     command: pacman --noconfirm -Sy abs
 
-  - name: run abs
-    command: abs
-
   - name: create build user
     user:
       name="build"
