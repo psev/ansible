@@ -30,7 +30,7 @@ DEPLOY=development
 
 #### Bootstrap Service
 
-Also upon instantiation, **Terraform** adds an [SSH Key](https://github.com/psev/terraform/blob/master/scripts/github.key) to each node for access to GitHub. It then creates a **systemd** unit file called `/etc/systemd/system/bootstrap.service` which is started at the end of [userdata.sh](https://github.com/psev/terraform/blob/master/scripts/userdata.sh).
+Also upon instantiation, **Terraform** adds an [SSH Key](https://github.com/psev/terraform/blob/master/scripts/github.key) to each node for access to GitHub. It then creates a **systemd** unit file called `/etc/systemd/system/bootstrap.service` which is started at the end of [userdata.sh](https://github.com/psev/terraform/blob/master/scripts/userdata.sh). Keep in mind that changes to this file require a redeployment of the node.
 
 ```
 # /etc/systemd/system/bootstrap.service
@@ -53,11 +53,11 @@ ExecStart=/usr/bin/ansible-playbook -i /root/ansible/inventory \
 
 ### Bootstrap
 
-The primary function of the [bootstrap role](https://github.com/psev/ansible/tree/master/archlinux/roles/bootstrap) is to run the [systemd](https://github.com/psev/ansible/tree/master/archlinux/roles/systemd) role which handles the configuration of the node's initilization system. It configures network interfaces, enables [systmed-journal-gaytewayd]() which can be used for centralized logging and provides environment variables for network details.
+The primary function of the [bootstrap role](https://github.com/psev/ansible/tree/master/archlinux/roles/bootstrap) is to run the [systemd](https://github.com/psev/ansible/tree/master/archlinux/roles/systemd) role which handles the configuration of the node's initilization system. It configures network interfaces, enables [systmed-journal-gaytewayd](https://github.com/psev/ansible/tree/master/archlinux/roles/systemd/files/system/systemd-journal-gatewayd.socket.d) which can be used for centralized logging and provides environment variables for network details.
 
 #### Environment Service
 
-Configuration of services such as [docker]() and [unbound]() require the information about the node's network interfaces. This data is made available by [environment.py](https://github.com/psev/ansible/blob/master/archlinux/roles/systemd/files/environment.py) and [environment.service](https://github.com/psev/ansible/blob/master/archlinux/roles/systemd/files/system/environment.service).
+Configuration of services such as [docker](https://github.com/psev/ansible/tree/master/archlinux/roles/docker) and [unbound](https://github.com/psev/ansible/tree/master/archlinux/roles/unbound) require the information about the node's network interfaces. This data is made available by [environment.py](https://github.com/psev/ansible/blob/master/archlinux/roles/systemd/files/environment.py) and [environment.service](https://github.com/psev/ansible/blob/master/archlinux/roles/systemd/files/system/environment.service).
 
 When run, `environment.service` invokes `environment.py` which uses the [netifaces](https://pypi.python.org/pypi/netifaces) Python module to garner network interface addresses and also parses `/etc/resolv.conf` for domain name details write that data to `/etc/environment.network`.
 
@@ -77,4 +77,4 @@ The bootstrap process also handles a variety of other system level configuration
 
 ### Ansible Service
 
-The [ansible service]() is enabled at the end of the bootstrap process via the [ansible timer](). This service calls the primary playbook [main.yml](https://github.com/psev/ansible/blob/master/archlinux/main.yml) that uses the `TAGS` environment variable, which is a comma separated list, to apply various roles to a node. See the **Pre Bootstrap** section for an example.
+The [ansible service](https://github.com/psev/ansible/blob/master/archlinux/main.yml) is enabled at the end of the bootstrap process via the [ansible timer](https://github.com/psev/ansible/blob/master/archlinux/roles/systemd/files/system/ansible.timer). This service calls the primary playbook [main.yml](https://github.com/psev/ansible/blob/master/archlinux/main.yml) that uses the `TAGS` environment variable, which is a comma separated list, to apply various roles to a node. See the **Pre Bootstrap** section for an example.
