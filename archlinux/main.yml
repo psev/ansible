@@ -12,6 +12,7 @@
 
       - { role: base, tags: [ "base" ] }
       - { role: build, tags: [ "build" ] }
+      - { role: database, tags: [ "database" ] }
       - { role: docker, tags: [ "docker" ] }
       - { role: consul, tags: [ "consul" ] }
       - { role: consul-alerts, tags: [ "consul-alerts" ] }
