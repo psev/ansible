@@ -1,0 +1,6 @@
+- name: template iptables.rules
+  template:
+    dest="/etc/iptables/iptables.rules"
+    src="iptables.rules"
+  notify:
+    - reload iptables

@@ -1,0 +1,4 @@
+-t nat -A POSTROUTING -o {{ ansible_interfaces[1] }} -j SNAT --to-source {{ env('HOST_IP') }}
+
+-A FORWARD -i {{ ansible_interfaces[1] }} -o {{ ansible_interfaces[1] }} -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i {{ ansible_interfaces[1] }} -o {{ ansible_interfaces[1] }} -s {{ env('HOST_IP') }}/24 -j ACCEPT

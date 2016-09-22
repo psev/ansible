@@ -3,3 +3,4 @@
   dependencies:
 
     - { role: mongodb, meta: database }
+    - { role: consul-client, meta: consul-client }
