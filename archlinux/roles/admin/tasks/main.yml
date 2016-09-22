@@ -4,6 +4,7 @@
     state="present"
 
 - name: add consul members command to .zshrc
-  create="yes"
-  dest="{{ lookup('env', 'HOME') }}/.zshrc"
-  line="alias consul members=\"consul members --rpc-addr $HOSTNAME:8400 | grep -V Node | sort -h\""
+  lineinfile:
+    create="yes"
+    dest="{{ lookup('env', 'HOME') }}/.zshrc"
+    line="alias consul members=\"consul members --rpc-addr $HOSTNAME:8400 | grep -V Node | sort -h\""
