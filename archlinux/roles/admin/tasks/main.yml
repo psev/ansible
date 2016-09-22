@@ -7,4 +7,6 @@
   lineinfile:
     create="yes"
     dest="{{ lookup('env', 'HOME') }}/.zshrc"
-    line="alias consul members=\"consul members --rpc-addr $HOSTNAME:8400 | grep -V Node | sort -h\""
+    regexp="^alias members=.*"
+    line="alias members=\"consul members --rpc-addr $HOSTNAME:8400 | grep -V Node | sort -h\""
+    state="present"
