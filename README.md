@@ -53,7 +53,7 @@ ExecStart=/usr/bin/ansible-playbook -i /root/ansible/inventory \
 
 ### Bootstrap
 
-The primary function of the [bootstrap role](https://github.com/psev/ansible/tree/master/archlinux/roles/bootstrap) is to run the [systemd](https://github.com/psev/ansible/tree/master/archlinux/roles/systemd) role which handles the configuration of the node's initilization system. It configures network interfaces, enables [systmed-journal-gaytewayd](https://github.com/psev/ansible/tree/master/archlinux/roles/systemd/files/system/systemd-journal-gatewayd.socket.d) which can be used for centralized logging and provides environment variables for network details.
+The primary function of the [bootstrap role](https://github.com/psev/ansible/tree/master/archlinux/roles/bootstrap) is to run the [systemd](https://github.com/psev/ansible/tree/master/archlinux/roles/systemd) role which handles the configuration of the node's initilization system. It configures network interfaces, enables [systmed-journal-gatewayd](https://github.com/psev/ansible/tree/master/archlinux/roles/systemd/files/system/systemd-journal-gatewayd.socket.d) which can be used for centralized logging and provides environment variables for network details.
 
 #### Environment Service
 
