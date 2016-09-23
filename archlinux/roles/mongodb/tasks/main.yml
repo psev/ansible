@@ -8,4 +8,4 @@
       object="/mongodb-3.2.9-2-x86_64.pkg.tar.xz"
 
   - name: install mongodb
-    command: pacman --noconfirm -Su /tmp/mongodb.pkg.tar.xz
+    command: pacman --noconfirm -U /tmp/mongodb.pkg.tar.xz
