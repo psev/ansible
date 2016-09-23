@@ -6,3 +6,6 @@
       mode="get"
       dest="/tmp/mongodb.pkg.tar.xz"
       object="/mongodb-3.2.9-2-x86_64.pkg.tar.xz"
+
+  - name: install mongodb
+    command: pacman --noconfirm -Sy /tmp/mongodb.pkg.tar.xz
