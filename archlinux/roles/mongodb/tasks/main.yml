@@ -4,5 +4,5 @@
     s3:
       bucket="us-west-2-development-archlinux-repository"
       mode="get"
-      dest="/tmp"
+      dest="/tmp/mongodb.pkg.tar.xz"
       object="/mongodb-3.2.9-2-x86_64.pkg.tar.xz"
