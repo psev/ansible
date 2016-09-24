@@ -3,10 +3,8 @@
     name="aws-cli"
     state="present"
 
-- name: add consul members command to .zshrc
-  lineinfile:
-    create="yes"
-    dest="{{ lookup('env', 'HOME') }}/.zshrc"
-    regexp="^alias members=.*"
-    line="alias members=\"consul members --rpc-addr $HOSTNAME:8400 | grep -V Node | sort -h\""
-    state="present"
+- name: copy .zshrc
+  copy:
+    src="zshrc"
+    dest="/root/.zshrc"
+    mode=0600
