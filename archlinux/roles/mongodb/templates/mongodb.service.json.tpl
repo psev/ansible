@@ -1,6 +1,7 @@
 {
   "service": {
-    "name": "database",
+    "id": "database",
+    "name": "MongoDB",
     "tags": [
       {{ lookup('env', 'DEPLOY') }}
     ],
