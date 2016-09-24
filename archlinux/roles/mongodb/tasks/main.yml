@@ -14,3 +14,10 @@
     template:
       src="mongodb.conf.tpl"
       dest="/etc/mongodb.conf"
+
+  - name: copy mongodb consul service definition
+    template:
+      src="mongodb.service.json.tpl"
+      dest="/etc/consul/consul.d/client/mongodb.service.json"
+    notify:
+      - reload consul@client
