@@ -1,1 +1,1 @@
-alias members="consul members --rpc-addr $HOSTNAME:8400 | grep -V Node | sort -h"
+alias members="consul members --rpc-addr $HOSTNAME:8400 | grep -v Node | sort -h"
