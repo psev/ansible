@@ -17,7 +17,7 @@ Group=consul
 ExecStartPre=/usr/bin/touch /etc/consul/consul.pid
 ExecStartPre=/usr/bin/chown consul:consul /etc/consul/consul.pid
 
-ExecStart=/usr/bin/consul agent -data-dir /var/consul/ -pid-file /run/consul/consul.pid -config-dir /etc/consul/consul.d/%i -client ${HOST_IP} -datacenter ${REGION}
+ExecStart=/usr/bin/consul agent -data-dir /var/consul/ -pid-file /run/consul/consul.pid -config-dir /etc/consul/consul.d/%i -advertise ${HOST_IP} -client ${HOST_IP} -datacenter ${REGION}
 
 ExecReload=/usr/bin/kill -HUP $MAINPID
 
