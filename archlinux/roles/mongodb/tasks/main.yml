@@ -9,3 +9,8 @@
 
   - name: install mongodb
     command: pacman --noconfirm -U /tmp/mongodb.pkg.tar.xz
+
+  - name: template mongodb.conf
+    template:
+      src="mongodb.conf.tpl"
+      dest="/etc/mongodb.conf"
