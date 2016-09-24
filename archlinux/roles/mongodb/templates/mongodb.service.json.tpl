@@ -11,7 +11,6 @@
       {
         "script": "systemctl is-active mongodb",
         "interval": "20s",
-        "timeout": ""
       },
       {
         "tcp": "{{ lookup('env', 'HOST_IP') }}:27017",
