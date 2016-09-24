@@ -280,13 +280,11 @@ pre {
 
 .topbar .btn.icon {
   min-width: 50px;
-  font-size: 30px;
   height: 33px;
-  padding: 0; }
-  .topbar .btn.icon .wrap {
-    position: absolute;
-    top: -8px;
-    left: 14px; }
+  padding: 6px 0; }
+  .topbar .btn.icon svg {
+    height: 20px;
+    fill: currentColor; }
 
 .list-group-item {
   padding: 0;
@@ -306,8 +304,7 @@ pre {
   .list-group-item .list-inline {
     padding-left: 0px;
     color: #777;
-    font-size: 13px;
-    height: 20px; }
+    font-size: 13px; }
   .list-group-item .list-group-item-heading {
     border-bottom: 2px solid #eee;
     color: #555; }
@@ -1002,5 +999,35 @@ a button:active {
 .do-logo {
   opacity: 0.6;
   margin-top: -3px; }
+
+.tomography .background {
+  fill: #E6E6E6; }
+
+.tomography .axis {
+  fill: none;
+  stroke: #939393;
+  stroke-dasharray: 4 4; }
+
+.tomography .border {
+  fill: none;
+  stroke: #555; }
+
+.tomography .point {
+  stroke: #555;
+  fill: #BBF085; }
+
+.tomography .lines line {
+  stroke: #dd4e58; }
+
+.tomography .lines line:hover {
+  stroke: #555;
+  stroke-width: 2px; }
+
+.tomography .tick line {
+  stroke: #939393; }
+
+.tomography .tick text {
+  font-size: 14px;
+  text-anchor: start; }
 
 /*# sourceMappingURL=base.css.map */
