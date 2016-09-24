@@ -1,16 +1,16 @@
 {
   "service": {
     "id": "database",
-    "name": "MongoDB",
+    "name": "mongodb",
     "tags": [
-      {{ lookup('env', 'DEPLOY') }}
+      "{{ lookup('env', 'DEPLOY') }}"
     ],
     "address": "{{ lookup('env', 'HOST_IP') }}",
     "port": 27017,
     "checks": [
       {
         "script": "systemctl is-active mongodb",
-        "interval": "20s",
+        "interval": "20s"
       },
       {
         "tcp": "{{ lookup('env', 'HOST_IP') }}:27017",
