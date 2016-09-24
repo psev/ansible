@@ -2,8 +2,6 @@
 
 - name: copy consul package
   copy: src=consul-0.7.0-1-x86_64.pkg.tar.xz dest=/tmp/consul.pkg.tar.xz
-  notify:
-    - restart consul@client
 
 - name: install consul
   shell: pacman --noconfirm -U /tmp/consul.pkg.tar.xz

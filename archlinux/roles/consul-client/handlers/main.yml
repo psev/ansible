@@ -3,7 +3,3 @@
   - name: reload consul@client
     command: systemctl reload consul@client
     ignore_errors: yes
-
-  - name: restart consul@client
-    command: systemctl restart consul@client
-    ignore_errors: yes
