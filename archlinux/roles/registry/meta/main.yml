@@ -3,4 +3,4 @@
 dependencies:
 
   - { role: consul-client, x: 3 }
-  - { role: logentries-journal, x: 3 }
+#  - { role: logentries-journal, x: 3 }
