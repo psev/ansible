@@ -2,6 +2,5 @@
 
 dependencies:
 
-  - { role: consul, meta: registry }
   - { role: consul-client, meta: registry }
 #  - { role: logentries-journal, x: 3 }
