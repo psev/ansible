@@ -2,6 +2,7 @@
 
   dependencies:
 
+    - role: ansible-modules
     - role: hostname
     - role: ssh
     - role: sudo
