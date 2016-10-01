@@ -1,4 +1,7 @@
 ---
 
-- name: install packages
-  command: pacman --noconfirm -Sy gptfdisk arch-install-scripts monitoring-plugins python2-pip
+  - name: install packages
+    command: pacman --noconfirm -Sy gptfdisk arch-install-scripts monitoring-plugins python2-pip
+
+  - name: install python-consul
+    command: pip2 install python-consul
