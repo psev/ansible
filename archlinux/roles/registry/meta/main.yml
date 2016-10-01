@@ -3,4 +3,3 @@
 dependencies:
 
   - { role: consul-client, meta: registry }
-#  - { role: logentries-journal, x: 3 }
