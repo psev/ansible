@@ -20,10 +20,10 @@ ExecStart=/usr/bin/docker run \
   -p 127.0.0.1:80:5000 \
   -e LOG_SERVICE=vericite \
   -e LOG_ENVIRONMENT=production \
-  -e S3_ACCESSKEY={{ accesskey }} \
-  -e S3_SECRETKEY={{ secretkey }} \
-  -e S3_REGION={{ region }} \
-  -e S3_BUCKET={{ bucket }} \
+  -e S3_ACCESSKEY={{ accesskey.data.Value }} \
+  -e S3_SECRETKEY={{ secretkey.data.Value }} \
+  -e S3_REGION={{ region.data.Value }} \
+  -e S3_BUCKET={{ bucket.data.Value }} \
   -e S3_ROOTDIRECTORY=/registry \
   -e LISTEN_ADDRESS=:5000 \
   psev/s3registry
