@@ -1,0 +1,4 @@
+---
+
+  ansible_cfg: /etc/ansible/ansible.cfg
+  library_path: /usr/share/ansible/modules/
