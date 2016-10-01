@@ -1,4 +1,4 @@
 ---
 
 - name: install packages
-  command: pacman --noconfirm -Sy gptfdisk arch-install-scripts monitoring-plugins
+  command: pacman --noconfirm -Sy gptfdisk arch-install-scripts monitoring-plugins python2-pip
