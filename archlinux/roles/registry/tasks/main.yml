@@ -1,0 +1,44 @@
+---
+
+  - name: get key ansible/registry/accesskey
+    consul_get:
+      key="ansible/registry/accesskey"
+      host="{{ lookup('env', 'HOSTNAME') }}"
+    register: accesskey
+
+  - name: get key ansible/registry/secretkey
+    consul_get:
+      key="ansible/registry/secretkey"
+      host="{{ lookup('env', 'HOSTNAME') }}"
+    register: secretkey
+
+  - name: get key ansible/registry/region
+    consul_get:
+      key="ansible/registry/region"
+      host="{{ lookup('env', 'HOSTNAME') }}"
+    register: region
+
+  - name: get key ansible/registry/bucket
+    consul_get:
+      key="ansible/registry/bucket"
+      host="{{ lookup('env', 'HOSTNAME') }}"
+    register: bucket
+
+  - name: template registry service
+    template:
+      src="registry.service.tpl"
+      dest="/etc/systemd/system/registry.service"
+      mode="0600"
+
+  - name: enable registry
+    service:
+      name="registry"
+      enabled="yes"
+      state="started"
+
+  - name: copy consul config
+    copy:
+      src="registry.json"
+      dest="/etc/consul/consul.d/client/registry.json"
+    notify:
+      - reload consul@client

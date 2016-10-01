@@ -1,0 +1,10 @@
+{
+  "service": {
+    "name": "registry",
+    "tags": [ "registry" ],
+    "check": {
+      "script": "systemctl is-active registry",
+      "interval": "10s"
+    }
+  }
+}
