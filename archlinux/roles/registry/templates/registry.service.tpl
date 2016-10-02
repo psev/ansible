@@ -5,7 +5,6 @@ After=docker.service
 
 [Service]
 EnvironmentFile=/etc/environment
-EnvironmentFile=/etc/environment.private
 EnvironmentFile=/etc/environment.network
 
 TimeoutStartSec=0
