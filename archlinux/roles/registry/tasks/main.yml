@@ -1,5 +1,10 @@
 ---
 
+  - name: make sure consul client is available
+    wait_for:
+      host="{{ lookup('env', 'HOSTNAME') }}"
+      port="8400"
+
   - name: get key ansible/registry/accesskey
     consul_get:
       key="ansible/registry/accesskey"
