@@ -37,15 +37,15 @@
     notify:
       - daemon-reload
 
-  - name: enable registry
-    service:
-      name="registry"
-      enabled="yes"
-      state="started"
-
   - name: copy consul config
     copy:
       src="registry.json"
       dest="/etc/consul/consul.d/client/registry.json"
     notify:
       - reload consul@client
+
+  - name: enable registry
+    service:
+      name="registry"
+      enabled="yes"
+      state="started"
