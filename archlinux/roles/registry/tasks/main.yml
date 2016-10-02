@@ -34,6 +34,8 @@
       src="registry.service.tpl"
       dest="/etc/systemd/system/registry.service"
       mode="0600"
+    notify:
+      - daemon-reload
 
   - name: enable registry
     service:
