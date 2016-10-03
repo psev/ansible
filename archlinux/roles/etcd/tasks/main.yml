@@ -38,6 +38,6 @@
   - name: template etcd consul service file
     template:
       src="etcd-server.service.json.tpl"
-      dest="/etd/consul/consul.d/client/etcd-server.service.json"
+      dest="/etc/consul/consul.d/client/etcd-server.service.json"
     notify:
       - reload consul@client
