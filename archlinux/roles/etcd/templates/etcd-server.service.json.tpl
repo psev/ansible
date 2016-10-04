@@ -10,7 +10,7 @@
     "checks": [
       {
         "script": "systemctl is-active etcd-server",
-        "interval": "20s",
+        "interval": "20s"
       },
       {
         "tcp": "{{ lookup('env', 'HOST_IP') }}",
