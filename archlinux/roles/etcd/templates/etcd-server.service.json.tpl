@@ -1,7 +1,7 @@
 {
   "service": {
     "id": "etcd-server",
-    "name": "etcd-server",
+    "name": "etcd",
     "tags": [
       "{{ lookup('env', 'DEPLOY') }}"
     ],
