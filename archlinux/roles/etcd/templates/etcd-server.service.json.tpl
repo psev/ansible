@@ -13,7 +13,7 @@
         "interval": "20s"
       },
       {
-        "tcp": "{{ lookup('env', 'HOST_IP') }}",
+        "tcp": "{{ lookup('env', 'HOST_IP') }}:2379",
         "interval": "20s",
         "timeout": "1s"
       }
