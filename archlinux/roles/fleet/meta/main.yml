@@ -2,4 +2,4 @@
 
 dependencies:
 
-  - { consul-client, meta: fleet }
+  - { role: consul-client, meta: fleet }
