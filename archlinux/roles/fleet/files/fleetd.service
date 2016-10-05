@@ -6,7 +6,7 @@ Requires=network-online.target
 User=nobody
 Group=nobody
 
-Environment=FLEET_ETCD_SERVICE=http://etcd.service.consul:2379
+Environment=FLEET_ETCD_SERVERS=http://etcd.service.consul:2379
 
 ExecStart=/usr/bin/fleetd
 
