@@ -15,8 +15,8 @@
       src="fleet.{{ item }}"
       dest="/etc/systemd/system/fleet.{{ item }}"
     items:
-      - service
       - socket
+      - service
     notify:
       - daemon-reload
-      - restart fleetd
+      - restart fleet
