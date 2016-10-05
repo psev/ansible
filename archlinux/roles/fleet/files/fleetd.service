@@ -6,6 +6,9 @@ Requires=network-online.target
 User=nobody
 Group=nobody
 
+# applies user and group to ExecStart command only
+PermissionsStartOnly=true
+
 Environment=FLEET_ETCD_SERVERS=http://etcd.service.consul:2379
 
 ExecStartPre=/usr/bin/mkdir -p /run/fleet
