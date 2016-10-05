@@ -10,10 +10,13 @@
   - name: install fleet
     command: pacman --noconfirm -U /tmp/fleet.pkg.tar.xz
 
-  - name: copy fleetd service file
+  - name: copy fleet systemd files
     copy:
-      src="fleetd.service"
-      dest="/etc/systemd/system/fleetd.service"
+      src="fleet.service"
+      dest="/etc/systemd/system/fleet.{{ item }}"
+    items:
+      - service
+      - socket
     notify:
       - daemon-reload
       - restart fleetd
