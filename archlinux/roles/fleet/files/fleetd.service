@@ -1,0 +1,14 @@
+[Unit]
+Description=Fleetd Service
+Requires=network-online.target
+
+[Service]
+User=nobody
+Group=nobody
+
+Environment=FLEET_ETCD_SERVICE=http://etcd.service.consul:2379
+
+ExecStart=/usr/bin/fleetd
+
+[Install]
+WantedBy=multi-user.target
