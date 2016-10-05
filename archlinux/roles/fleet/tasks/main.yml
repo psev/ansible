@@ -12,7 +12,7 @@
 
   - name: copy fleet systemd files
     copy:
-      src="fleet.service"
+      src="fleet.{{ item }}"
       dest="/etc/systemd/system/fleet.{{ item }}"
     items:
       - service
