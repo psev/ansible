@@ -8,6 +8,10 @@ Group=nobody
 
 Environment=FLEET_ETCD_SERVERS=http://etcd.service.consul:2379
 
+ExecStartPre=/usr/bin/mkdir -p /run/fleet
+ExecStartPre=/usr/bin/chown nobody:nobody /run/fleet
+ExecStartPre=/usr/bin/chmod 700 /run/fleet
+
 ExecStart=/usr/bin/fleetd
 
 [Install]
