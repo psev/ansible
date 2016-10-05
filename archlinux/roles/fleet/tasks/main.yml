@@ -15,4 +15,5 @@
       src="fleetd.service"
       dest="/etc/systemd/system/fleetd.service"
     notify:
+      - daemon-reload
       - restart fleetd
