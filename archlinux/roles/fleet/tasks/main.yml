@@ -1,0 +1,11 @@
+---
+
+  - name: copy fleet from s3
+    s3:
+      bucket="us-west-2-development-archlinux-repository"
+      mode="get"
+      dest="/tmp/fleet.pkg.tar.xz"
+      object="/fleet-v0.11.8-1-any.pkg.tar.xz"
+
+  - name: install fleet
+    command: pacman --noconfirm -U /tmp/fleet.pkg.tar.xz
