@@ -1,0 +1,4 @@
+---
+
+  - name: restart fleetd
+    command: systemctl restart fleetd
