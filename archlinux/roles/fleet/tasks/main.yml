@@ -32,4 +32,4 @@
       - restart fleet
 
   - name: start fleet service
-    command: systemctl start fleet
+    command: systemctl enable --now fleet
