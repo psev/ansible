@@ -18,9 +18,10 @@
       ssh_key_bits="2048"
 
   - name: authorize fleet user ssh key
-    authorized_key:
-      user="fleet"
-      path=".ssh/id_rsa.pub"
+    shell: >
+      cat /home/fleet/.ssh/id_rsa.pub >> /home/fleet/.ssh/authorized_keys
+      chown fleet:fleet /home/fleet/.ssh/authorized_keys
+      chmod 0660 /home/fleet/.ssh/authorized_keys
 
   - name: create /etc/fleet permissions
     file:
