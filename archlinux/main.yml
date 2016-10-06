@@ -9,6 +9,8 @@
         pacman: update_cache=yes
 
     roles:
+      
+      - { role: systemd, tags: [ "systemd" ] } # only used to include the daemon-reload handler
 
       - { role: base, tags: [ "base" ] }
       - { role: build, tags: [ "build" ] }
@@ -24,7 +26,6 @@
       - { role: registry, tags: [ "registry" ] }
       - { role: swarm-agent, tags: [ "swarm-agent" ] }
       - { role: swarm-manager, tags: [ "swarm-manager" ] }
-      - { role: systemd, tags: [ "systemd" ] } # only used to include the daemon-reload handler
       - { role: unbound, tags: [ "unbound" ] }
 
       - { role: admin, tags: [ "admin" ] }
