@@ -25,7 +25,7 @@ etcd_key_prefix=/fleet/
 
 # IP address that should be published with any socket information. By default,
 # no IP address is published.
-# public_ip=""
+public_ip="{{ lookup('env', 'HOST_IP') }}"
 
 # Comma-delimited key/value pairs that are published to the fleet registry.
 # This data can be referenced in unit files to affect scheduling decisions.
