@@ -30,3 +30,6 @@
     notify:
       - daemon-reload
       - restart fleet
+
+  - name: start fleet service
+    command: systemctl start fleet
