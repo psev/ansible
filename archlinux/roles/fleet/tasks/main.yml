@@ -23,6 +23,11 @@
       chown fleet:fleet /home/fleet/.ssh/authorized_keys
       chmod 0660 /home/fleet/.ssh/authorized_keys
 
+      cat <<EOF > /home/fleet/.ssh/rc
+        Host *
+          IdentityFile ~/.ssh/id_rsa
+      EOF
+
   - name: create /etc/fleet permissions
     file:
       state="directory"
