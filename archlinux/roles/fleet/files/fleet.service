@@ -8,8 +8,8 @@ After=fleet.socket
 
 
 [Service]
-#User=nobody
-#Group=nobody
+User=fleet
+Group=fleet
 
 # applies user and group to ExecStart command only
 PermissionsStartOnly=true
@@ -21,7 +21,7 @@ Environment=GOMAXPROCS=2
 Restart=always
 
 ExecStartPre=/usr/bin/mkdir -p /run/fleet
-ExecStartPre=/usr/bin/chown root:root /run/fleet
+ExecStartPre=/usr/bin/chown fleet:fleet /run/fleet
 ExecStartPre=/usr/bin/chmod 700 /run/fleet
 
 ExecStart=/usr/bin/fleetd

@@ -10,6 +10,14 @@
   - name: install fleet
     command: pacman --noconfirm -U /tmp/fleet.pkg.tar.xz
 
+  - name: create fleet user
+    user:
+      name="fleet"
+      createhome="no"
+      generate_ssh_key="yes"
+      ssh_key_type="rsa"
+      ssh_key_bits="2048"
+
   - name: create /etc/fleet
     file:
       state="directory"
