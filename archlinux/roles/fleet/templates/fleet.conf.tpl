@@ -30,7 +30,7 @@ public_ip="{{ lookup('env', 'HOST_IP') }}"
 # Comma-delimited key/value pairs that are published to the fleet registry.
 # This data can be referenced in unit files to affect scheduling decisions.
 # An example could look like: metadata="region=us-west,az=us-west-1"
-metadata="region={{ lookup('env', 'REGION') }},uuid={{ lookup('env', 'UUID') }}"
+metadata="region={{ lookup('env', 'REGION') }},hostname={{ lookup('env', 'HOSTNAME') }},uuid={{ lookup('env', 'UUID') }}"
 
 # An Agent will be considered dead if it exceeds this amount of time to
 # communicate with the Registry. The agent will attempt a heartbeat at half
