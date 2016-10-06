@@ -13,20 +13,26 @@
   - name: create fleet user
     user:
       name="fleet"
-      createhome="no"
+      home="/etc/fleet"
       generate_ssh_key="yes"
       ssh_key_type="rsa"
       ssh_key_bits="2048"
 
-  - name: create /etc/fleet
+  - name: modify /etc/fleet
     file:
       state="directory"
       dest="/etc/fleet"
+      owner="fleet"
+      group="fleet"
+      mode="0770"
 
   - name: template /etc/fleet/fleet.conf
     template:
       src="fleet.conf.tpl"
       dest="/etc/fleet/fleet.conf"
+      owner="fleet"
+      group="fleet"
+      mode="0660"
     notify:
       - restart fleet
 
