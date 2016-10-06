@@ -17,6 +17,11 @@
       ssh_key_type="rsa"
       ssh_key_bits="2048"
 
+  - name: authorize fleet user ssh key
+    authorized_key:
+      user="fleet"
+      path=".ssh/id_rsa.pub"
+
   - name: create /etc/fleet permissions
     file:
       state="directory"
