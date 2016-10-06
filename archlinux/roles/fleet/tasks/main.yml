@@ -19,6 +19,8 @@
     template:
       src="fleet.conf.tpl"
       dest="/etc/fleet/fleet.conf"
+    notify:
+      - restart fleet
 
   - name: copy fleet systemd files
     copy:
