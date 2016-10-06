@@ -19,14 +19,17 @@
 
   - name: authorize fleet user ssh key
     shell: |
-      cat /home/fleet/.ssh/id_rsa.pub >> /home/fleet/.ssh/authorized_keys
+      cat /home/fleet/.ssh/id_rsa.pub > /home/fleet/.ssh/authorized_keys
       chown fleet:fleet /home/fleet/.ssh/authorized_keys
-      chmod 0660 /home/fleet/.ssh/authorized_keys
+      chmod 0600 /home/fleet/.ssh/authorized_keys
 
-      cat <<EOF > /home/fleet/.ssh/rc
-        Host *
-          IdentityFile ~/.ssh/id_rsa
-      EOF
+  - name: copy ssh.config
+    copy:
+      src="ssh.config"
+      dest="/home/fleet/.ssh/config"
+      owner="fleet"
+      group="fleet"
+      mode="0660"
 
   - name: create /etc/fleet permissions
     file:
