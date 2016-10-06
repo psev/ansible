@@ -14,6 +14,8 @@ After=fleet.socket
 # applies user and group to ExecStart command only
 PermissionsStartOnly=true
 
+EnvironmentFile=/etc/environment
+
 Environment=GOMAXPROCS=2
 
 Environment=FLEET_ETCD_SERVERS=http://etcd.service.consul:2379
