@@ -18,12 +18,6 @@ EnvironmentFile=/etc/environment
 
 Environment=GOMAXPROCS=2
 
-Environment=FLEET_ETCD_SERVERS=http://etcd.service.consul:2379
-Environment=FLEET_ETCD_KEY_PREFIX=/fleet/
-Environment=FLEET_METADATA=UUID=${UUID},REGION=${REGION},TAGS=${TAGS}
-Environment=FLEET_VERBOSITY=1
-
-
 Restart=always
 
 ExecStartPre=/usr/bin/mkdir -p /run/fleet

@@ -10,6 +10,16 @@
   - name: install fleet
     command: pacman --noconfirm -U /tmp/fleet.pkg.tar.xz
 
+  - name: create /etc/fleet
+    file:
+      state="directory"
+      dest="/etc/fleet"
+
+  - name: template /etc/fleet/fleet.conf
+    template:
+      src="fleet.conf.tpl"
+      dest="/etc/fleet/fleet.conf"
+
   - name: copy fleet systemd files
     copy:
       src="fleet.{{ item }}"
