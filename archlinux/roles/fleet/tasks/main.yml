@@ -13,9 +13,17 @@
   - name: create fleet user
     user:
       name="fleet"
-      generate_ssh_key="yes"
-      ssh_key_type="rsa"
-      ssh_key_bits="2048"
+
+  - name: copy id_rsa
+    copy:
+      src="{{ item }}"
+      dest="/home/fleet/.ssh/{{ item }}"
+      owner="fleet"
+      group="fleet"
+      mode="0600"
+    items:
+      - id_rsa
+      - id_rsa.pub
 
   - name: authorize fleet user ssh key
     shell: |
