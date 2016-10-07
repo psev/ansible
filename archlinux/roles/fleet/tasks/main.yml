@@ -31,6 +31,14 @@
       chown fleet:fleet /home/fleet/.ssh/authorized_keys
       chmod 0600 /home/fleet/.ssh/authorized_keys
 
+  - name: copy ssh.rc
+    copy:
+      src="ssh.rc"
+      dest="/home/fleet/.ssh/rc"
+      owner="fleet"
+      group="fleet"
+      mode="0600"
+
   - name: copy ssh.config
     copy:
       src="ssh.config"
