@@ -3,7 +3,7 @@
   - name: install polkit
     shell: |
       pacman --noconfirm -S polkit
-      systemctl enable --new polkit
+      systemctl enable --now polkit
 
   - name: copy fleet from s3
     s3:
