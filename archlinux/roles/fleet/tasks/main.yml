@@ -76,10 +76,12 @@
       dest="/usr/share/polkit-1/rules.d"
 
   - name: copy fleet polkit rules
-    file:
+    copy:
       state="file"
       src="98-fleet-org.freedesktop.systemd1.rules"
       dest="/usr/share/polkit-1/rules.d/98-fleet-org.freedesktop.systemd1.rules"
+    notify:
+      - restart polkit
 
   - name: copy fleet systemd files
     copy:
