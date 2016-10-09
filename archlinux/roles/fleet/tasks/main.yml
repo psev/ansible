@@ -1,5 +1,10 @@
 ---
 
+  - name: install polkit
+    shell: |
+      pacman --noconfirm -S polkit
+      systemctl enable --new polkit
+
   - name: copy fleet from s3
     s3:
       bucket="us-west-2-development-archlinux-repository"
@@ -64,6 +69,17 @@
       mode="0660"
     notify:
       - restart fleet
+
+  - name: create /usr/share/polkit-1/rules.d
+    file:
+      state="directory"
+      dest="/usr/share/polkit-1/rules.d"
+
+  - name: copy fleet polkit rules
+    file:
+      state="file"
+      src="98-fleet-org.freedesktop.systemd1.rules"
+      dest="/usr/share/polkit-1/rules.d/98-fleet-org.freedesktop.systemd1.rules"
 
   - name: copy fleet systemd files
     copy:
