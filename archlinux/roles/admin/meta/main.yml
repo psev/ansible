@@ -1,4 +1,5 @@
 dependencies:
 
-  - { role: consul-client }
-  - { role: consul-ui }
+  - { role: base, meta: admin }
+  - { role: consul-client, meta: admin }
+  - { role: consul-ui, meta: admin }

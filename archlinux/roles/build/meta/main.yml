@@ -2,4 +2,5 @@
 
   dependencies:
 
+    - { role: base, meta: build }
     - { role: consul-client, meta: build }

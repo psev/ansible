@@ -1,5 +1,6 @@
 dependencies:
 
-  - { role: consul-server }
-  - { role: etcd }
-  - { role: swarm-manager }
+  - { role: base, meta: control }
+  - { role: consul-server, meta: control }
+  - { role: etcd, meta: control }
+  - { role: swarm-manager, meta: control }

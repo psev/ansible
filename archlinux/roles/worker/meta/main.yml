@@ -1,4 +1,5 @@
 dependencies:
 
+  - { role: base, meta: worker }
   - { role: consul-client, meta: worker }
-  - { role: swarm-agent, meta: worker }
+  - { role: fleet, meta: worker }
