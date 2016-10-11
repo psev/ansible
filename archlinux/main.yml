@@ -9,12 +9,11 @@
         pacman: update_cache=yes
 
     roles:
-      
+
       - { role: systemd, tags: [ "systemd" ] } # only used to include the daemon-reload handler
 
+      # primary roles
       - { role: base, tags: [ "base" ] }
-      - { role: build, tags: [ "build" ] }
-      - { role: database, tags: [ "database" ] }
       - { role: docker, tags: [ "docker" ] }
       - { role: consul, tags: [ "consul" ] }
       - { role: consul-alerts, tags: [ "consul-alerts" ] }
@@ -23,11 +22,15 @@
       - { role: consul-server, tags: [ "consul-server" ] }
       - { role: consul-ui, tags: [ "consul-ui" ] }
       - { role: fleet, tags: [ "fleet" ] }
-      - { role: registry, tags: [ "registry" ] }
       - { role: swarm-agent, tags: [ "swarm-agent" ] }
       - { role: swarm-manager, tags: [ "swarm-manager" ] }
       - { role: unbound, tags: [ "unbound" ] }
 
+      # meta roles
       - { role: admin, tags: [ "admin" ] }
+      - { role: build, tags: [ "build" ] }
       - { role: control, tags: [ "control" ] }
+      - { role: database, tags: [ "database" ] }
+      - { role: registry, tags: [ "registry" ] }
+      - { role: swarm, tags: [ "swarm" ] }
       - { role: worker, tags: [ "worker"] }
