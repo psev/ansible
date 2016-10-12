@@ -31,6 +31,10 @@
     dest="/etc/systemd/system/systemd-journal-gatewayd.socket.d/00-socket.conf"
     src="system/systemd-journal-gatewayd.socket.d/00-socket.conf"
 
+- command: systemctl enable --now systemd-journal-gatewayd.socket
+
+- command: systemctl restart systemd-journald.service
+
 - file:
     dest="/etc/systemd/network/{{ item }}.network"
     state="touch"
@@ -45,8 +49,6 @@
     "{{ interfaces }}"
   notify:
     - restart systemd-networkd
-
-- command: systemctl enable --now systemd-journal-gatewayd.socket
 
 - copy:
     dest="/etc/systemd/system/ansible.{{ item }}"
