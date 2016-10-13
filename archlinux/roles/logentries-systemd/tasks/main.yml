@@ -1,0 +1,32 @@
+---
+
+- name: make sure consul client is available
+  wait_for:
+    host="{{ lookup('env', 'HOSTNAME') }}"
+    port="8400"
+
+- name: get role's logentries-token
+  consul_get:
+    key="ansible/{{ lookup('env', 'ROLE') }}/logentries-systemd"
+    host="{{ lookup('env', 'HOSTNAME') }}"
+  register: logentries_systemd
+
+- name: copy logentries for systemd
+  template:
+    src="logentries-systemd.service.tpl" dest="/etc/systemd/system/logentries-systemd.service"
+  notify:
+    - daemon-reload
+    - restart logentries-systemd
+
+- name: start and enable logentries systemd
+  service:
+    name="logentries-systemd"
+    enabled="yes"
+    state="started"
+
+- name: copy consul config
+  copy:
+    src="logentries-systemd.json" dest="/etc/consul/consul.d/client/logentries-systemd.json"
+  notify:
+    - reload consul@client
+    - reload consul@server

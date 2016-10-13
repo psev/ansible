@@ -1,0 +1,4 @@
+---
+
+  - name: restart logentries-systemd
+    command: systemctl restart logentries-systemd

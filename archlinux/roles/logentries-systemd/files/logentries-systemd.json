@@ -1,0 +1,8 @@
+{
+  "check": {
+    "id": "logentries-systemd",
+    "name": "Logentries systemd",
+    "script": "systemctl is-active logentries-systemd",
+    "interval": "10s"
+  }
+}
