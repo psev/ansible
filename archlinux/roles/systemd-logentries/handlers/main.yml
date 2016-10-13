@@ -1,0 +1,4 @@
+---
+
+  - name: restart systemd-logentries
+    command: systemctl restart systemd-logentries
