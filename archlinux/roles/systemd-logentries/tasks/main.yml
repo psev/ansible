@@ -12,6 +12,7 @@
     key="ansible/{{ lookup('env', 'ROLE') }}/systemd-logentries-token"
     host="{{ lookup('env', 'HOSTNAME') }}"
   register: systemd_logentries_token
+  ignore_errors: "yes"
 
 - name: copy logentries for systemd
   template:
