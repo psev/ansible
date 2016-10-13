@@ -4,3 +4,4 @@
 
     - { role: base, meta: build }
     - { role: consul-client, meta: build }
+    - { role: systemd-logentries, meta: build }
