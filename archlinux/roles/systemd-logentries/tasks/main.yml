@@ -5,11 +5,11 @@
     host="{{ lookup('env', 'HOSTNAME') }}"
     port="8400"
 
-- name: get role's logentries-token
+- name: get role's systemd logentries token
   consul_get:
     key="ansible/{{ lookup('env', 'ROLE') }}/systemd-logentries-token"
     host="{{ lookup('env', 'HOSTNAME') }}"
-  register: logentries_systemd_token
+  register: systemd_logentries_token
 
 - name: copy logentries for systemd
   template:
