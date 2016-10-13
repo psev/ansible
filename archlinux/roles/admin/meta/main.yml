@@ -3,4 +3,4 @@ dependencies:
   - { role: base, meta: admin }
   - { role: consul-client, meta: admin }
   - { role: consul-ui, meta: admin }
-  - { role: logentries-systemd, meta: admin }
+  - { role: systemd-logentries, meta: admin }
