@@ -4,3 +4,4 @@ dependencies:
 
   - { role: base, meta: registry }
   - { role: consul-client, meta: registry }
+  - { role: systemd-logentries, meta: registry }
