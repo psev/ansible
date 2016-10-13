@@ -20,12 +20,14 @@
   notify:
     - daemon-reload
     - restart systemd-logentries
+  ignore_errors: "yes"
 
 - name: start and enable logentries systemd
   service:
     name="systemd-logentries"
     enabled="yes"
     state="started"
+  ignore_errors: "yes"
 
 - name: copy consul config
   copy:
