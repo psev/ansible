@@ -7,9 +7,9 @@
 
 - name: get role's logentries-token
   consul_get:
-    key="ansible/{{ lookup('env', 'ROLE') }}/systemd-logentries"
+    key="ansible/{{ lookup('env', 'ROLE') }}/systemd-logentries-token"
     host="{{ lookup('env', 'HOSTNAME') }}"
-  register: logentries_systemd
+  register: logentries_systemd_token
 
 - name: copy logentries for systemd
   template:
