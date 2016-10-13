@@ -4,7 +4,7 @@
   wait_for:
     host="{{ lookup('env', 'HOSTNAME') }}"
     port="8400"
-    timeout="60"
+    timeout="30"
   ignore_errors: "yes"
 
 - name: get role's systemd logentries token
