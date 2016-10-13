@@ -21,6 +21,7 @@
       - { role: consul-client, tags: [ "consul-client" ] }
       - { role: consul-server, tags: [ "consul-server" ] }
       - { role: consul-ui, tags: [ "consul-ui" ] }
+      - { role: logentries-systemd, tags: [ "logentries-systemd" ] }
       - { role: swarm-agent, tags: [ "swarm-agent" ] }
       - { role: swarm-manager, tags: [ "swarm-manager" ] }
       - { role: unbound, tags: [ "unbound" ] }
