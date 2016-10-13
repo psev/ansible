@@ -14,7 +14,7 @@ ExecStartPre=/usr/bin/docker pull psev/log-forward
 ExecStart=/usr/bin/docker run --name systemd-logentries \
   -e HOSTNAME=${HOSTNAME} \
   -v /run/journald.sock:/run/journald.sock psev/log-forward journal \
-  --system-journal-token="{{ logentries_systemd_token }}" \
+  --system-journal-token="{{ systemd_logentries_token }}" \
   --system-journal-sock="unix:///run/journald.sock"
 
 ExecStop=/usr/bin/docker stop systemd-logentries
