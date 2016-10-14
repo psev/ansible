@@ -4,30 +4,36 @@
     wait_for:
       host="{{ lookup('env', 'HOSTNAME') }}"
       port="8400"
+      timeout="30"
+    ignore_errors: yes
 
-  - name: get key ansible/registry/accesskey
+  - name: get consul kv accesskey
     consul_get:
-      key="ansible/registry/accesskey"
+      key="ansible/{{ lookup('env', 'ROLE') }}/access-key"
       host="{{ lookup('env', 'HOSTNAME') }}"
-    register: accesskey
+    register: access_key
+    ignore_errors: yes
 
-  - name: get key ansible/registry/secretkey
+  - name: get consul kv secretkey
     consul_get:
-      key="ansible/registry/secretkey"
+      key="ansible/{{ lookup('env', 'ROLE') }}/secret-key"
       host="{{ lookup('env', 'HOSTNAME') }}"
-    register: secretkey
+    register: secret_key
+    ignore_errors: yes
 
-  - name: get key ansible/registry/region
+  - name: get consul kv region
     consul_get:
-      key="ansible/registry/region"
+      key="ansible/{{ lookup('env', 'ROLE') }}/region"
       host="{{ lookup('env', 'HOSTNAME') }}"
     register: region
+    ignore_errors: yes
 
-  - name: get key ansible/registry/bucket
+  - name: get consul kv bucket
     consul_get:
-      key="ansible/registry/bucket"
+      key="ansible/{{ lookup('env', 'ROLE') }}/bucket"
       host="{{ lookup('env', 'HOSTNAME') }}"
     register: bucket
+    ignore_errors: yes
 
   - name: template registry service
     template:
@@ -36,6 +42,7 @@
       mode="0600"
     notify:
       - daemon-reload
+    ignore_errors: yes
 
   - name: copy consul config
     copy:
