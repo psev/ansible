@@ -3,3 +3,4 @@ dependencies:
   - { role: base, meta: swarm }
   - { role: consul-client, meta: swarm }
   - { role: swarm-agent, meta: swarm }
+  - { role: systemd-logentries, meta: swarm }
