@@ -7,14 +7,14 @@
       timeout="30"
     ignore_errors: yes
 
-  - name: get consul kv accesskey
+  - name: get consul kv access-key
     consul_get:
       key="ansible/{{ lookup('env', 'ROLE') }}/access-key"
       host="{{ lookup('env', 'HOSTNAME') }}"
     register: access_key
     ignore_errors: yes
 
-  - name: get consul kv secretkey
+  - name: get consul kv secret-key
     consul_get:
       key="ansible/{{ lookup('env', 'ROLE') }}/secret-key"
       host="{{ lookup('env', 'HOSTNAME') }}"
