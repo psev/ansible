@@ -2,7 +2,7 @@
   "check": {
     "id": "consul-backup",
     "name": "Consul Backup",
-    "script": "systemctl is-active consul-backup",
+    "script": "systemctl is-active consul-backup.timer",
     "interval": "30s"
   }
 }
