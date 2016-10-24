@@ -2,10 +2,17 @@
 
   - name: template consul-backup service
     template:
-      src="consul-backup.service"
+      src="consul-backup.service.tpl"
       dest="/etc/systemd/system/consul-backup.service"
     notify:
       - daemon-reload
+
+  - name: template consul-restore service
+    template:
+      src="consul-restore.service.tpl"
+      dest="/etc/systemd/system/consul-backup.service"
+    notify:
+      - dameon-reload
 
   - name: copy consul-backup timer
     copy:
