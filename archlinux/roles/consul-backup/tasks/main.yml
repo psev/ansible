@@ -12,7 +12,7 @@
       src="consul-restore.service.tpl"
       dest="/etc/systemd/system/consul-backup.service"
     notify:
-      - dameon-reload
+      - daemon-reload
 
   - name: copy consul-backup timer
     copy:
