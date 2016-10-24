@@ -10,7 +10,7 @@
   - name: template consul-restore service
     template:
       src="consul-restore.service.tpl"
-      dest="/etc/systemd/system/consul-backup.service"
+      dest="/etc/systemd/system/consul-restore.service"
     notify:
       - daemon-reload
 
