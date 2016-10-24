@@ -1,0 +1,4 @@
+---
+
+  - name: restart consul-backup.timer
+    command: systemctl restart consul-backup.timer

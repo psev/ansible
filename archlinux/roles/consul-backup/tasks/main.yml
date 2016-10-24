@@ -1,0 +1,27 @@
+---
+
+  - name: template consul-backup service
+    template:
+      src="consul-backup.service"
+      dest="/etc/systemd/system/consul-backup.service"
+    notify:
+      - daemon-reload
+
+  - name: copy consul-backup timer
+    copy:
+      src="consul-backup.timer"
+      dest="/etc/systemd/system/consul-backup.timer"
+    notify:
+      - daemon-reload
+      - restart consul-backup.timer
+
+  - name: copy consul-backup consul check
+    copy:
+      src="consul-backup.check.json"
+      dest="/etc/consul/consul.d/client/consul-backup.check.json"
+    notify:
+      - reload consul@client
+      - reload consul@server
+
+  - name: enable consul-backup
+    command: systemctl enable consul-backup.timer
