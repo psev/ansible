@@ -49,3 +49,6 @@
 
       - name: start consul alerts
         service: name=consul-alerts state=started enabled=yes
+
+      - name: restore consul kv
+        service: name=consul-restore state=started
