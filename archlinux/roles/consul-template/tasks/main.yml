@@ -5,7 +5,7 @@
       bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
       mode="get"
       dest="/tmp/consul-template.pkg.tar.xz"
-      object="/fconsul-template-0.16.0-1-x86_64.pkg.tar.xz"
+      object="/consul-template-0.16.0-1-x86_64.pkg.tar.xz"
 
   - name: install consul-template
     command: pacman --noconfirm -U /tmp/consul-template.pkg.tar.xz
