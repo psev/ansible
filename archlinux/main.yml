@@ -35,4 +35,5 @@
       - { role: database, tags: [ "database" ] }
       - { role: fleet, tags: [ "fleet" ] }
       - { role: hub, tags: [ "hub" ] }
+      - { role: monitor, tags: [ "monitor" ] }
       - { role: swarm, tags: [ "swarm" ] }
