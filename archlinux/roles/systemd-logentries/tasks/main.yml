@@ -16,7 +16,8 @@
 
 - name: copy logentries for systemd
   template:
-    src="systemd-logentries.service.tpl" dest="/etc/systemd/system/systemd-logentries.service"
+    src="systemd-logentries.service.tpl"
+    dest="/etc/systemd/system/systemd-logentries.service"
   notify:
     - daemon-reload
     - restart systemd-logentries
@@ -31,7 +32,8 @@
 
 - name: copy consul config
   copy:
-    src="systemd-logentries.json" dest="/etc/consul/consul.d/client/systemd-logentries.json"
+    src="systemd-logentries.json"
+    dest="/etc/consul/consul.d/client/systemd-logentries.json"
   notify:
     - reload consul@client
     - reload consul@server
