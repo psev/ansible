@@ -1,0 +1,10 @@
+{
+  "service": {
+    "name": "docker-registry",
+    "tags": [ "docker-registry" ],
+    "check": {
+      "script": "systemctl is-active docker-registry",
+      "interval": "30s"
+    }
+  }
+}
