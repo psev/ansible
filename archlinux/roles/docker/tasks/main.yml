@@ -60,7 +60,7 @@
     - daemon-reload
 
 - name: copy consul config
-  copy: src=docker.json dest=/etc/consul/consul.d/client/docker.json
+  copy: src=docker.check.json dest=/etc/consul/consul.d/client/docker.check.json
   notify:
     - reload consul@client
     - reload consul@server
