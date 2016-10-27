@@ -1,11 +1,20 @@
 ---
 
-  - name: copy consul-template from s3
+  - name: copy influxdb from s3
     s3:
       bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
       mode="get"
       dest="/tmp/influxdb.pkg.tar.xz"
       object="/influxdb-1.0.2-2-x86_64.pkg.tar.xz"
 
-  - name: install consul-template
+  - name: install influxdb
     command: pacman --noconfirm -U /tmp/influxdb.pkg.tar.xz
+
+  - name: template influxdb consul service
+    template:
+      src="influxdb.service.json.tpl"
+      dest="/etc/consul/consul.d/client/influxdb.serice.json"
+    notify:
+      - daemon-reload
+      - reload consul@client
+      - reload consul@server
