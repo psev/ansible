@@ -3,7 +3,4 @@ template {
 
   source = "/etc/consul-template/template/influxdb-relay.toml"
   destination = "/etc/influxdb-relay/influxdb-relay.toml"
-
-  left_delimiter  = "<<"
-  right_delimiter = ">>"
 }
