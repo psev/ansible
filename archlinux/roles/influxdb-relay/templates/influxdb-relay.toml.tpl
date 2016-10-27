@@ -16,7 +16,7 @@ output = [
     # skip-tls-verification: skip verification for HTTPS location. WARNING: it's insecure. Don't use in production.
     {% raw %}
     {{ range service "influxdb" }}
-    { name="{{{ .Name }}", location="http://{{ .Address }}:{{ .Port }}/write", timeout="10s" },
+    { name="{{ .Name }}", location="http://{{ .Address }}:{{ .Port }}/write", timeout="10s" },
     {{ end }}
     {% endraw %}
 ]
