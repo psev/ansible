@@ -16,6 +16,7 @@
       mode="0660"
       owner="consul"
       group="consul"
+      state="directory"
 
   - name: template consul-template systemd service
     template:
