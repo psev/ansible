@@ -1,0 +1,4 @@
+---
+
+  - name: install go and godep
+    command: pacman --noconfirm -S go godep
