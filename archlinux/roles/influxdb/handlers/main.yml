@@ -1,0 +1,4 @@
+---
+
+  - name: reload influxdb
+    command: systemctl reload influxdb

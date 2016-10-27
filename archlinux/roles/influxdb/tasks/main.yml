@@ -10,6 +10,17 @@
   - name: install influxdb
     command: pacman --noconfirm -U /tmp/influxdb.pkg.tar.xz
 
+  - name: template influxdb config
+    tomplate:
+      src="influxdb.conf.tpl"
+      dest="/etc/influxdb/influxdb.conf.tpl"
+    notify:
+      - daemon-reload
+      - reload influxdb
+
+  - name: enable and start influxdb
+    command: systemctl enable --now influxdb
+
   - name: template influxdb consul service
     template:
       src="influxdb.service.json.tpl"
