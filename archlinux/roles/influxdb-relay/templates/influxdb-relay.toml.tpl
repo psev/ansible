@@ -14,9 +14,11 @@ output = [
     # location: full URL of the /write endpoint of the backend
     # timeout: Go-parseable time duration. Fail writes if incomplete in this time.
     # skip-tls-verification: skip verification for HTTPS location. WARNING: it's insecure. Don't use in production.
-    {{{{service "influxdb"}}}}
-    { name="{{{{{ .Name }}}}", location="http://{{{{ .Address }}}}:{{{{ .Port }}}}/write", timeout="10s" },
-    {{{{end}}}}
+    {% raw %}
+    {{ service "influxdb" }}
+    { name="{{{ .Name }}", location="http://{{ .Address }}:{{ .Port }}/write", timeout="10s" },
+    {{ end }}
+    {% endraw %}
 ]
 
 [[udp]]
@@ -37,7 +39,9 @@ output = [
     # name: name of the backend, used for display purposes only.
     # location: host and port of backend.
     # mtu: maximum output payload size
-    {{{{service "influxdb"}}}}
-    { name="{{{{{ .Name }}}}", location="{{{{ .Address }}}}:{{{{ .Port }}}}", mtu=512 },
-    {{{{end}}}}
+    {% raw %}
+    {{ service "influxdb" }}
+    { name="{{ .Name }}", location="{{ .Address }}:{{ .Port }}", mtu=512 },
+    {{ end }}
+    {% endraw %}
 ]
