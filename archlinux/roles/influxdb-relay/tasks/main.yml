@@ -1,0 +1,20 @@
+---
+
+  - name: copy influxdb-relay from s3
+    s3:
+      bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
+      mode="get"
+      dest="/tmp/influxdb-relay.pkg.tar.xz"
+      object="/influxdb-relay-0.0.1-1-x86_64.pkg.tar.xz"
+
+  - name: install influxdb-relay
+    command: pacman --noconfirm -U /tmp/influxdb-relay.pkg.tar.xz
+
+  - name: template influxdb-relay consul service
+    template:
+      src="influxdb-relay.service.json.tpl"
+      dest="/etc/consul/consul.d/client/influxdb-relay.service.json"
+    notify:
+      - daemon-reload
+      - reload consul@client
+      - reload consul@server
