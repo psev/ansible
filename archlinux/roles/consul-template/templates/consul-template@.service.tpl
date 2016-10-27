@@ -10,7 +10,7 @@ Group=consul
 ExecStartPre=-/usr/bin/mkdir /run/consul-template
 ExecStartPre=-/usr/bin/touch /run/consul-template/consul-template.%i.pid
 ExecStartPre=-/usr/bin/chown -R consul:consul /run/consul-template
-ExecStartPre=-/usr/bin/chmod -R 0660 /run/consul-template
+ExecStartPre=-/usr/bin/chmod -R 0770 /run/consul-template
 
 ExecStart=/usr/bin/consul-template \
   --pid-file /run/consul-template/consul-template.%i.pid \

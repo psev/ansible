@@ -13,7 +13,7 @@
   - name: mkdir /run/consul-template
     file:
       dest="/run/consul-template"
-      mode="0660"
+      mode="0770"
       owner="consul"
       group="consul"
       state="directory"
