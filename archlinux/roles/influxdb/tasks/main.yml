@@ -16,7 +16,7 @@
       dest="/etc/influxdb/influxdb.conf.tpl"
     notify:
       - daemon-reload
-      - reload influxdb
+      - restart influxdb
 
   - name: enable and start influxdb
     command: systemctl enable --now influxdb
