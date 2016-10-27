@@ -3,7 +3,7 @@
 name = "{{ lookup('env', 'HOSTNAME') }}"
 
 # TCP address to bind to, for HTTP server.
-bind-addr = "{{ lookup('env', 'HOST_IP') }}:9096"
+bind-addr = "{{ lookup('env', 'HOST_IP') }}:8086"
 
 # Enable HTTPS requests.
 #ssl-combined-pem = "/etc/ssl/influxdb-relay.pem"
