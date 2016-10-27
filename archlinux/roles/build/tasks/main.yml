@@ -7,7 +7,7 @@
     user:
       name="build"
       createhome="no"
-      groups="wheel"
+      groups="wheel,docker"
       home="/opt/build"
 
   - name: create /opt/build
