@@ -23,8 +23,12 @@
 
   - name: template influxdb consul service
     template:
-      src="influxdb.service.json.tpl"
-      dest="/etc/consul/consul.d/client/influxdb.service.json"
+      src="influxdb-{{ item }}.service.json.tpl"
+      dest="/etc/consul/consul.d/client/influxdb-{{ item }}.service.json"
+    items:
+      - admin
+      - http
+      - udp
     notify:
       - daemon-reload
       - reload consul@client

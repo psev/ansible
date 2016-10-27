@@ -148,7 +148,7 @@ reporting-disabled = false
 
 [admin]
   enabled = true
-  bind-address = ":8083"
+  bind-address = "{{ lookup('env', 'HOST_IP') }}:8083"
   https-enabled = false
   https-certificate = "/etc/ssl/influxdb.pem"
 
@@ -161,7 +161,7 @@ reporting-disabled = false
 
 [http]
   enabled = true
-  bind-address = "{{ lookup('env', 'HOST_IP') }}:8086"
+  bind-address = "{{ lookup('env', 'HOST_IP') }}:8085"
   auth-enabled = false
   log-enabled = true
   write-tracing = false
@@ -278,9 +278,9 @@ reporting-disabled = false
 ###
 
 [[udp]]
-  enabled = false
-  # bind-address = ""
-  # database = "udp"
+  enabled = true
+  bind-address  "{{ lookup('env', 'HOST_IP') }}:9095"
+  database = "udp"
   # retention-policy = ""
 
   # These next lines control how batching works. You should have this enabled
