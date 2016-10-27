@@ -9,3 +9,17 @@
 
   - name: install consul-template
     command: pacman --noconfirm -U /tmp/consul-template.pkg.tar.xz
+
+  - name: mkdir /run/consul-template
+    file:
+      dest="/run/consul-template"
+      mode="0660"
+      owner="consul"
+      group="consul"
+
+  - name: template consul-template systemd service
+    template:
+      src="consul-template@.serivce.tpl"
+      dest="/etc/systmed/system/consul-template@.service"
+    notify:
+      - daemon-reload
