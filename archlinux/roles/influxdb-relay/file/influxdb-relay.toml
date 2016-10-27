@@ -1,0 +1,9 @@
+template {
+  command = "systemctl restart influxdb-relay"
+
+  source = "/etc/consul-template/template/influxdb-relay.toml"
+  dest= "/etc/influxdb-relay/influxdb-relay.toml"
+
+  left_delimiter  = "<<"
+  right_delimiter = ">>"
+}

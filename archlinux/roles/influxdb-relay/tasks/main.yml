@@ -10,6 +10,33 @@
   - name: install influxdb-relay
     command: pacman --noconfirm -U /tmp/influxdb-relay.pkg.tar.xz
 
+  - name: copy influxdb-relay consul-template config
+    copy:
+      src="influxdb-relay.toml"
+      dest="/etc/consul-template/config/influxdb-relay.toml"
+    notify:
+      - reload consul-template@influxdb-relay
+
+  - name: template influxdb-relay consul-template template
+    copy:
+      src="influxdb-relay.toml.tpl"
+      dest="/etc/consul-template/template/influxdb-relay.toml"
+    notify:
+      - reload consul-template@influxdb-relay
+
+  - name: copy influxdb-relay systemd service
+    copy:
+      src="influxdb-relay.service"
+      dest="/etc/systemd/system/influxdb-relay.service"
+    notify:
+      - daemon-reload
+
+  - name: start and enable @influxdb-relay
+    command: systemctl enable --now influxdb-relay
+
+  - name: start and enable consul-template@influxdb-relay
+    command: systemctl enable --now consul-template@influxdb-relay
+
   - name: template influxdb-relay consul service
     template:
       src="influxdb-relay.service.json.tpl"

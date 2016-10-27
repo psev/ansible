@@ -1,0 +1,4 @@
+---
+
+  - name: reload consul-template@influxdb-relay
+    command: systemctl reload consul-template@influxdb-relay
