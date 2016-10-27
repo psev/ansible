@@ -161,7 +161,7 @@ reporting-disabled = false
 
 [http]
   enabled = true
-  bind-address = ":8086"
+  bind-address = "{{ lookup('env', 'HOST_IP') }}:8086"
   auth-enabled = false
   log-enabled = true
   write-tracing = false
