@@ -9,7 +9,7 @@
 
   - name: create /usr/local/go
     file:
-      path="/usr/local/go"
+      dest="/usr/local/go"
       state="directory"
       group="golang"
       mode="0775"
