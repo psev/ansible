@@ -7,7 +7,7 @@
     user:
       name="build"
       createhome="no"
-      groups="wheel,docker"
+      groups="wheel,docker,golang"
       home="/opt/build"
 
   - name: create /opt/build
