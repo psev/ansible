@@ -18,7 +18,7 @@
       - reload consul-template@influxdb-relay
 
   - name: template influxdb-relay consul-template template
-    copy:
+    template:
       src="influxdb-relay.toml.tpl"
       dest="/etc/consul-template/template/influxdb-relay.toml"
     notify:
