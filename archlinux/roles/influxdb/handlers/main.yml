@@ -1,4 +1,4 @@
 ---
 
-  - name: reestart influxdb
+  - name: restart influxdb
     command: systemctl restart influxdb
