@@ -21,6 +21,6 @@
   - name: template consul-template systemd service
     template:
       src="consul-template@.service.tpl"
-      dest="/etc/systmed/system/consul-template@.service"
+      dest="/etc/systemd/system/consul-template@.service"
     notify:
       - daemon-reload
