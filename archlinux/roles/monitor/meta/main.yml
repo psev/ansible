@@ -5,5 +5,6 @@
     - { role: base, meta: monitor }
     - { role: consul-client, meta: monitor }
     - { role: consul-template, meta: monitor }
-    - { role: influxdb, meta: monitory }
+    - { role: influxdb, meta: monitor }
+    - { role: influxdb-relay, meta: monitor }
     - { role: systemd-logentries, meta: monitor }
