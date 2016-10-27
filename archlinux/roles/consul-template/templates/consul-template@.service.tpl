@@ -2,6 +2,7 @@
 Description=Consul Template %i
 
 [Service]
+PermissionsStartOnly=true
 PIDFile=/run/consul-template/consul-template.%i.pid
 
 User=consul
