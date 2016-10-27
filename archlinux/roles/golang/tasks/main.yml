@@ -16,5 +16,6 @@
 
   - name: add GOPATH to /etc/environment
     lineinfile:
+      dest="/etc/environment"
       regexp="^GOPATH="
       line="GOPATH=/usr/local/go"
