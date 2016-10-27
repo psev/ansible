@@ -31,7 +31,7 @@
     notify:
       - daemon-reload
 
-  - name: start and enable @influxdb-relay
+  - name: start and enable influxdb-relay
     command: systemctl enable --now influxdb-relay
 
   - name: start and enable consul-template@influxdb-relay
