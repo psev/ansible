@@ -6,7 +6,7 @@
       "{{ lookup('env', 'DEPLOY') }}"
     ],
     "address": "{{ lookup('env', 'HOST_IP') }}",
-    "port": 8086,
+    "port": 9096,
     "checks": [
       {
         "script": "systemctl is-active influxdb-relay",
