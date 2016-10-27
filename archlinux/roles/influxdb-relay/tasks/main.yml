@@ -10,6 +10,17 @@
   - name: install influxdb-relay
     command: pacman --noconfirm -U /tmp/influxdb-relay.pkg.tar.xz
 
+  - name: add user consul to group influxdb
+    user:
+      append="yes"
+      name="consul"
+      groups="influxdb"
+
+  - name: set permissions on /etc/influxdb-relay
+    file:
+      state="directory"
+      mode="0770"
+
   - name: copy influxdb-relay systemd service
     copy:
       src="influxdb-relay.service"
