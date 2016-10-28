@@ -57,7 +57,7 @@
       dest="/etc/consul/consul.d/client/influxdb-relay-{{ item }}.service.json"
     items:
       - http
-      - admin
+      - udp
     notify:
       - reload consul@client
       - reload consul@server
