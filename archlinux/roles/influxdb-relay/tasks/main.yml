@@ -51,11 +51,18 @@
     notify:
       - reload consul-template@influxdb-relay
 
-  - name: template influxdb-relay consul service
+  - name: template influxdb-relay-http consul service
     template:
-      src="influxdb-relay.service.json.tpl"
-      dest="/etc/consul/consul.d/client/influxdb-relay.service.json"
+      src="influxdb-relay-http.service.json.tpl"
+      dest="/etc/consul/consul.d/client/influxdb-relay-http.service.json"
     notify:
-      - daemon-reload
+      - reload consul@client
+      - reload consul@server
+
+  - name: template influxdb-relay-udp consul service
+    template:
+      src="influxdb-relay-udp.service.json.tpl"
+      dest="/etc/consul/consul.d/client/influxdb-relay-udp.service.json"
+    notify:
       - reload consul@client
       - reload consul@server
