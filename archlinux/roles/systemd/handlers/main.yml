@@ -1,5 +1,5 @@
-- name: start ansible.timer
-  command: systemctl enable --now ansible.timer
+- name: start configure.timer
+  command: systemctl enable --now configure.timer
 
 - name: restart environment
   command: systemctl restart environment.service
