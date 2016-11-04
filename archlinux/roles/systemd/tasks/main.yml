@@ -51,10 +51,10 @@
     - restart systemd-networkd
 
 - copy:
-    dest="/etc/systemd/system/ansible.{{ item }}"
-    src="system/ansible.{{ item }}"
+    dest="/etc/systemd/system/configure.{{ item }}"
+    src="system/configure.{{ item }}"
   with_items:
     - service
     - timer
   notify:
-    - start ansible.timer
+    - start configure.timer
