@@ -1,7 +1,7 @@
 {
   "service": {
     "id": "influxdb-http",
-    "name": "influxdb",
+    "name": "influxdb-http",
     "tags": [
       "{{ lookup('env', 'DEPLOY') }}"
     ],
