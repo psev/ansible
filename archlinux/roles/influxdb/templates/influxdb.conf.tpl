@@ -287,13 +287,13 @@ reporting-disabled = false
   # otherwise you could get dropped metrics or poor performance. Batching
   # will buffer points in memory if you have many coming in.
 
-  # batch-size = 1000 # will flush if this many points get buffered
-  # batch-pending = 5 # number of batches that may be pending in memory
-  # batch-timeout = "1s" # will flush at least this often even if we haven't hit buffer limit
-  # read-buffer = 0 # UDP Read buffer size, 0 means OS default. UDP listener will fail if set above OS max.
+  batch-size = 1000 # will flush if this many points get buffered
+  batch-pending = 5 # number of batches that may be pending in memory
+  batch-timeout = "1s" # will flush at least this often even if we haven't hit buffer limit
+  read-buffer = 0 # UDP Read buffer size, 0 means OS default. UDP listener will fail if set above OS max.
 
   # set the expected UDP payload size; lower values tend to yield better performance, default is max UDP size 65536
-  # udp-payload-size = 65536
+  udp-payload-size = 65536
 
 ###
 ### [continuous_queries]
