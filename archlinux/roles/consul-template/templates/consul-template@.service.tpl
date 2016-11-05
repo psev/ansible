@@ -5,8 +5,8 @@ Description=Consul Template %i
 PermissionsStartOnly=true
 PIDFile=/run/consul-template/consul-template.%i.pid
 
-User=consul
-Group=consul
+#User=consul
+#Group=consul
 
 ExecStartPre=-/usr/bin/mkdir /run/consul-template
 ExecStartPre=-/usr/bin/touch /run/consul-template/consul-template.%i.pid
