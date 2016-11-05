@@ -23,7 +23,7 @@ output = [
 
 [[udp]]
 # Name of the UDP server, used for display purposes only.
-name = "{{ lookup('env', 'HOSTNAME') }}-http"
+name = "{{ lookup('env', 'HOSTNAME') }}-udp"
 
 # UDP address to bind to.
 bind-addr = "{{ lookup('env', 'HOST_IP') }}:9096"
