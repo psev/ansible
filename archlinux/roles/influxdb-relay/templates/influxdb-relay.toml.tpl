@@ -15,7 +15,7 @@ output = [
     # timeout: Go-parseable time duration. Fail writes if incomplete in this time.
     # skip-tls-verification: skip verification for HTTPS location. WARNING: it's insecure. Don't use in production.
     {% raw %}
-    {{ range service "influxdb" }}
+    {{ range service "influxdb-http" }}
     { name="{{ .Name }}", location="http://{{ .Address }}:{{ .Port }}/write", timeout="10s" },
     {{ end }}
     {% endraw %}
@@ -40,7 +40,7 @@ output = [
     # location: host and port of backend.
     # mtu: maximum output payload size
     {% raw %}
-    {{ range service "influxdb" }}
+    {{ range service "influxdb-udp" }}
     { name="{{ .Name }}", location="{{ .Address }}:{{ .Port }}", mtu=512 },
     {{ end }}
     {% endraw %}
