@@ -1,7 +1,7 @@
 [Unit]
 Description=InfluxDB Relay
-Requires=network-online.target
-After=network-online.target
+Requires=network-online.target consul-template@influxdb-relay
+After=network-online.target consul-template@influxdb-relay
 
 [Service]
 ExecStart=/usr/bin/influxdb-relay \
