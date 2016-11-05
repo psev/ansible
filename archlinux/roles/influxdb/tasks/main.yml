@@ -13,7 +13,7 @@
   - name: template influxdb config
     template:
       src="influxdb.conf.tpl"
-      dest="/etc/influxdb/influxdb.conf.tpl"
+      dest="/etc/influxdb/influxdb.conf"
     notify:
       - daemon-reload
       - restart influxdb
