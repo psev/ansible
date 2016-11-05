@@ -279,7 +279,7 @@ reporting-disabled = false
 
 [[udp]]
   enabled = true
-  bind-address  "{{ lookup('env', 'HOST_IP') }}:9095"
+  bind-address = "{{ lookup('env', 'HOST_IP') }}:9095"
   database = "udp"
   # retention-policy = ""
 
