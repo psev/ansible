@@ -7,4 +7,5 @@
     - { role: consul-template, meta: monitor }
     - { role: influxdb, meta: monitor }
     - { role: influxdb-relay, meta: monitor }
+    - { role: influxdb-telegraf, meta: monitor }
     - { role: systemd-logentries, meta: monitor }
