@@ -29,7 +29,7 @@
   - name: copy influxdb-telegraf systemd service file
     copy:
       src="influxdb-telegraf.service"
-      dest="/etc/systmed/system/influxdb-telegraf.service"
+      dest="/etc/systemd/system/influxdb-telegraf.service"
 
   - name: start and enable influxdb-telegraf
     command: systemctl enable --now influxdb-telegraf
