@@ -8,11 +8,11 @@
       object="/telegraf-1.0.1-1-x86_64.pkg.tar.xz"
 
   - name: install telegraf
-    command: pacman --noconfirm -U /tmp/influxdb-telegraf.pkg.tar.xz
+    command: pacman --noconfirm -U /tmp/telegraf.pkg.tar.xz
 
-  - name: template influxdb-telegraf.conf to /etc/influxdb-telegraf
+  - name: template telegraf.conf to /etc/telegraf
     template:
-      src="influxdb-telegraf.conf.tpl"
+      src="telegraf.conf.tpl"
       dest="/etc/telegraf/telegraf.conf"
       owner="telegraf"
       group="telegraf"
