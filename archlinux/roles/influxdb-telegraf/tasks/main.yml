@@ -1,0 +1,11 @@
+---
+
+  - name: copy influxdb from s3
+    s3:
+      bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
+      mode="get"
+      dest="/tmp/telegraf.pkg.tar.xz"
+      object="/influxdb-1.0.1-1-x86_64.pkg.tar.xz"
+
+  - name: install influxdb
+    command: pacman --noconfirm -U /tmp/telegraf.pkg.tar.xz
