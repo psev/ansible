@@ -1,11 +1,35 @@
 ---
 
-  - name: copy influxdb from s3
+  - name: copy influxdb-telegraf from s3
     s3:
       bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
       mode="get"
-      dest="/tmp/telegraf.pkg.tar.xz"
-      object="/telegraf-1.0.1-1-x86_64.pkg.tar.xz"
+      dest="/tmp/influxdb-telegraf.pkg.tar.xz"
+      object="/influxdb-telegraf-1.0.1-1-x86_64.pkg.tar.xz"
 
-  - name: install influxdb
-    command: pacman --noconfirm -U /tmp/telegraf.pkg.tar.xz
+  - name: install influxdb-telegraf
+    command: pacman --noconfirm -U /tmp/influxdb-telegraf.pkg.tar.xz
+
+  - name: create and set permissions on /etc/influxdb-telegraf
+    file:
+      path="/etc/influxdb-telegraf"
+      state="directory"
+      owner="influxdb"
+      group="influxdb"
+      mode="0770"
+
+  - name: template influxdb-telegraf.conf to /etc/influxdb-telegraf
+    template:
+      src="influxdb-telegraf.conf.tpl"
+      dest="/etc/influxdb-telegraf/influxdb-telegraf.conf"
+      owner="telegraf"
+      group="telegraf"
+      mode="0770"
+
+  - name: copy influxdb-telegraf systemd service file
+    copy:
+      src="influxdb-telegraf.service"
+      dest="/etc/systmed/system/influxdb-telegraf.service"
+
+  - name: start and enable influxdb-telegraf
+    command: systemctl enable --now influxdb-telegraf
