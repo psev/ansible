@@ -1,0 +1,22 @@
+---
+
+  - name: copy chronograf from s3
+    s3:
+      bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
+      mode="get"
+      dest="/tmp/chronograf.pkg.tar.xz"
+      object="/chronograf-1.0.1-1-x86_64.pkg.tar.xz"
+
+  - name: install chronograf
+    command: pacman --noconfirm -U /tmp/chronograf.pkg.tar.xz
+
+  - name: template chronograf.conf to /etc/chronograf
+    template:
+      src="chronograf.conf.tpl"
+      dest="/etc/chronograf/chronograf.conf"
+      owner="chronograf"
+      group="chronograf"
+      mode="0770"
+
+  - name: start and enable chronograf
+    command: systemctl enable --now chronograf
