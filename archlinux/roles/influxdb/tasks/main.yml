@@ -28,7 +28,7 @@
     items:
       - admin
       - http
-      - udp
+      # - udp
     notify:
       - daemon-reload
       - reload consul@client
