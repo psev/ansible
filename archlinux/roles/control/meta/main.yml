@@ -4,5 +4,8 @@ dependencies:
   - { role: consul-server, meta: control }
   - { role: consul-backup, meta: control }
   - { role: etcd, meta: control }
-  - { role: monitor, meta: control }
+  - { role: influxdb, meta: monitor }
+  - { role: influxdb-chronograf, meta: monitor }
+  - { role: influxdb-relay, meta: monitor }
+  - { role: influxdb-telegraf, meta: monitor }
   - { role: swarm-manager, meta: control }
