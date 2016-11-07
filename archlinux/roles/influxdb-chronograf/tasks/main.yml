@@ -10,7 +10,6 @@
   - name: install chronograf
     command: pacman --noconfirm -U /tmp/chronograf.pkg.tar.xz
 
-
   - name: set permissions on /etc/chronograf
     file:
       path="/etc/chronograf"
@@ -26,6 +25,21 @@
       owner="chronograf"
       group="chronograf"
       mode="0770"
+
+  - name: copy chronograf systemd service file
+    copy:
+      src="chronograf.service"
+      dest="/etc/systemd/system/chronograf.service"
+    notify:
+      - daemon-reload
+
+  - name: template influxdb-chronograf consul service definition
+    template:
+      src="influxdb-chronograf.service.json.tpl"
+      dest="/etc/consul/consul.d/client/influxdb-chronograf.service.json.tpl"
+    notify:
+      - reload consul@client
+      - reload consul@server
 
   - name: start and enable chronograf
     command: systemctl enable --now chronograf
