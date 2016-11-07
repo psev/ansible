@@ -20,8 +20,8 @@
 
   - name: template chronograf.conf to /etc/chronograf
     template:
-      src="chronograf.conf.tpl"
-      dest="/etc/chronograf/chronograf.conf"
+      src="chronograf.toml.tpl"
+      dest="/etc/chronograf/chronograf.toml"
       owner="chronograf"
       group="chronograf"
       mode="0770"
