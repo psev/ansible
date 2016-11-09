@@ -3,5 +3,5 @@ dependencies:
   - { role: consul }
   - { role: unbound }
   - { role: docker }
-  - { role: influxdb-telegraf }  
+  - { role: influxdb-telegraf }
   - { role: tmpwatch }
