@@ -25,6 +25,7 @@
     wait_for:
       delay="5"
       port="8085"
+      host={{ lookup('env', 'HOST_IP') }}
 
   - name: create influxdb telegraf database
     command: influx -host {{ lookup('env', 'HOST_IP') }} -port 8085 -execute "create database telegraf"
