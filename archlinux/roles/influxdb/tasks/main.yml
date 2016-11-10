@@ -21,6 +21,11 @@
   - name: enable and start influxdb
     command: systemctl enable --now influxdb
 
+  - name: wait until influxdb has started
+    wait_for:
+      delay="5"
+      port="8085"
+
   - name: create influxdb telegraf database
     command: influx -host {{ lookup('env', 'HOST_IP') }} -port 8085 -execute "create database telegraf"
 
