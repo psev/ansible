@@ -18,11 +18,18 @@
 
   - name: set permissions on /etc/influxdb-relay
     file:
-      path="/etc/influxdb-relay"
+      path="/etc/influxdb-relay/config"
       state="directory"
       owner="influxdb"
       group="influxdb"
       mode="0770"
+
+  - name: copy influxdb-relay consul-template config
+    copy:
+      src="influxdb-relay.toml"
+      dest="/etc/consul-template/config/influxdb-relay.toml"
+    notify:
+      - reload consul-template@influxdb-relay
 
   - name: copy influxdb-relay systemd service
     copy:
@@ -31,13 +38,6 @@
     notify:
       - daemon-reload
 
-  - name: copy influxdb-relay consul-template config
-    copy:
-      src="influxdb-relay.toml"
-      dest="/etc/consul-template/config/influxdb-relay.toml"
-    notify:
-      - reload consul-template@influxdb-relay
-      
   - name: start and enable consul-template@influxdb-relay
     command: systemctl enable --now consul-template@influxdb-relay
 
