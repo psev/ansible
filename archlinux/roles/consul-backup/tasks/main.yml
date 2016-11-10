@@ -31,4 +31,4 @@
       - reload consul@server
 
   - name: enable consul-backup
-    command: systemctl enable consul-backup.timer
+    command: systemctl enable --now consul-backup.timer
