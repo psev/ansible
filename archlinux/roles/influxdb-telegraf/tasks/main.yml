@@ -20,3 +20,11 @@
 
   - name: start and enable telegraf
     command: systemctl enable --now telegraf
+
+  - name: copy influxdb-telegraf consul check
+    copy:
+      src="influxdb-telegraf.check.json"
+      dest="/etc/consul/consul.d/client/influxdb-telegraf.check.json"
+    notify:
+      - reload consul@client
+      - reload consul@server
