@@ -1,0 +1,4 @@
+---
+
+  - include: bootstrap-consul.yml
+  - include: bootstrap-etcd.yml
