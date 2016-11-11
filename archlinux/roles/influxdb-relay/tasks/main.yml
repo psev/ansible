@@ -38,18 +38,18 @@
     notify:
       - daemon-reload
 
-  - name: start and enable consul-template@influxdb-relay
-    command: systemctl enable --now consul-template@influxdb-relay
-
-  - name: start and enable influxdb-relay
-    command: systemctl enable --now influxdb-relay
-
   - name: template influxdb-relay consul-template template
     template:
       src="influxdb-relay.toml.tpl"
       dest="/etc/consul-template/template/influxdb-relay.toml"
     notify:
       - reload consul-template@influxdb-relay
+
+  - name: start and enable consul-template@influxdb-relay
+    command: systemctl enable --now consul-template@influxdb-relay
+
+  - name: start and enable influxdb-relay
+    command: systemctl enable --now influxdb-relay
 
   - name: template influxdb-relay http and udp consul service files
     template:
