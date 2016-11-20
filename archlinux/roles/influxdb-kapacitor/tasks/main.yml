@@ -26,7 +26,7 @@
       group="kapacitor"
       mode="0770"
     notify:
-      - reload kapacitor
+      - restart kapacitor
 
   - name: start and enable kapacitor
     command: systemctl enable --now kapacitor
