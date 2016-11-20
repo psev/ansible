@@ -4,11 +4,14 @@
 
     tasks:
 
-      - name: start consul alerts
-        service: name=consul-alerts state=started enabled=yes
+      - name: stop consul alerts
+        service: name=consul-alerts state=stopped enabled=yes
 
       - name: save consul kv
         service: name=consul-backup state=started
+
+      - name: settle...
+        pause: seconds=5
 
       - name: stop consul@bootstrap
         service: name=consul@bootstrap state=stopped
