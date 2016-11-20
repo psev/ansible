@@ -18,6 +18,13 @@
       group="kapacitor"
       mode="0770"
 
+  - name: get consul kv victorops api-key
+    consul_get:
+      key="ansible/{{ lookup('env', 'ROLE') }}/victorops/api-key"
+      host="{{ lookup('env', 'HOSTNAME') }}"
+    register: api_key
+    ignore_errors: yes
+
   - name: template kapacitor.conf to /etc/kapacitor
     template:
       src="kapacitor.conf.tpl"

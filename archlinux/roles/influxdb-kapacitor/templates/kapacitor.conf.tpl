@@ -234,9 +234,9 @@ default-retention-policy = ""
 
 [victorops]
   # Configure VictorOps with your API key and default routing key.
-  enabled = false
+  enabled = true
   # Your VictorOps API Key.
-  api-key = ""
+  api-key = "{{ api_key.data.Value }}"
   # Default VictorOps routing key, can be overridden per alert.
   routing-key = ""
   # The VictorOps API URL should not need to be changed.
