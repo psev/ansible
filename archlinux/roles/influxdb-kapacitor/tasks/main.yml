@@ -1,0 +1,30 @@
+---
+
+  - name: copy kapacitor from s3
+    s3:
+      bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
+      mode="get"
+      dest="/tmp/kapacitor.pkg.tar.xz"
+      object="/kapacitor-1.1.0-1-x86_64.pkg.tar.xz"
+
+  - name: install kapacitor
+    command: pacman --noconfirm -U /tmp/kapacitor.pkg.tar.xz
+
+  - name: set permissions on /etc/kapacitor
+    file:
+      path="/etc/kapacitor"
+      state="directory"
+      owner="kapacitor"
+      group="kapacitor"
+      mode="0770"
+
+  - name: template kapacitor.conf to /etc/kapacitor
+    template:
+      src="kapacitor.conf.tpl"
+      dest="/etc/kapacitor/kapacitor.conf"
+      owner="kapacitor"
+      group="kapacitor"
+      mode="0770"
+
+  - name: start and enable kapacitor
+    command: systemctl enable --now kapacitor
