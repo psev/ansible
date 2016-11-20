@@ -1,13 +1,17 @@
 ---
 
   - name: copy consul-alerts service file
-    copy: src=consul-alerts.service dest=/etc/systemd/system/consul-alerts.service
+    copy:
+      dest="/etc/systemd/system/consul-alerts.service"
+      src="consul-alerts.service"
     notify:
       - daemon-reload
       - restart consul-alerts
 
   - name: copy consul config
-    copy: src=consul-alerts.json dest=/etc/consul/consul.d/client/consul-alerts.json
+    copy:
+      dest="/etc/consul/consul.d/client/consul-alerts.check.json"
+      src="consul-alerts.check.json"
     notify:
       - reload consul@client
       - reload consul@server

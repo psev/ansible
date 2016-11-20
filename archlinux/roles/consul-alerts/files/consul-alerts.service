@@ -11,9 +11,9 @@ Restart=on-failure
 
 ExecStartPre=-/usr/bin/docker stop consul-alerts
 ExecStartPre=-/usr/bin/docker rm consul-alerts
-ExecStartPre=/usr/bin/docker pull acaleph/consul-alerts
+ExecStartPre=/usr/bin/docker pull sugarush/consul-alerts
 
-ExecStart=/usr/bin/docker run --name consul-alerts acaleph/consul-alerts start \
+ExecStart=/usr/bin/docker run --name consul-alerts sugarush/consul-alerts start \
   --consul-addr=${HOST_IP}:8500 --consul-dc=${REGION} \
   --watch-events --watch-checks
 
