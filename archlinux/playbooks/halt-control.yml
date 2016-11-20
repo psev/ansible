@@ -1,0 +1,20 @@
+---
+
+  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+
+    tasks:
+
+      - name: start consul alerts
+        service: name=consul-alerts state=started enabled=yes
+
+      - name: save consul kv
+        service: name=consul-backup state=started
+
+      - name: stop consul@bootstrap
+        service: name=consul@bootstrap state=stopped
+
+      - name: stop consul@server
+        service: name=consul@server state=stopped
+
+      - name: clear raft data
+        shell: rm -rf /var/consul/raft/*
