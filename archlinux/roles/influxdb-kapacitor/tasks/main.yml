@@ -25,6 +25,8 @@
       owner="kapacitor"
       group="kapacitor"
       mode="0770"
+    notify:
+      - reload kapacitor
 
   - name: start and enable kapacitor
     command: systemctl enable --now kapacitor

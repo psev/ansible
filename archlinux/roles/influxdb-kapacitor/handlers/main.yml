@@ -1,0 +1,4 @@
+---
+
+  - name: reload kapacitor
+    command: systemctl reload kapacitor
