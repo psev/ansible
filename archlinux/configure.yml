@@ -10,23 +10,8 @@
 
     roles:
 
-      - { role: systemd, tags: [ "systemd" ] } # only used to include the daemon-reload handler
-
-      # primary roles
-      - { role: base, tags: [ "base" ] }
-      - { role: docker, tags: [ "docker" ] }
-      - { role: docker-registry, tags: [ "docker-registry" ] }
-      - { role: consul, tags: [ "consul" ] }
-      - { role: consul-alerts, tags: [ "consul-alerts" ] }
-      - { role: consul-backup, tags: [ "consul-backup" ] }
-      - { role: consul-checks, tags: [ "consul-checks" ] }
-      - { role: consul-client, tags: [ "consul-client" ] }
-      - { role: consul-server, tags: [ "consul-server" ] }
-      - { role: consul-ui, tags: [ "consul-ui" ] }
-      - { role: swarm-agent, tags: [ "swarm-agent" ] }
-      - { role: swarm-manager, tags: [ "swarm-manager" ] }
-      - { role: systemd-logentries, tags: [ "systemd-logentries" ] }
-      - { role: unbound, tags: [ "unbound" ] }
+      # include the daemon-reload handler first
+      - { role: systemd, tags: [ "systemd" ] }
 
       # meta roles
       - { role: admin, tags: [ "admin" ] }
