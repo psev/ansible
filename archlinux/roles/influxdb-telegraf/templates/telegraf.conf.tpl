@@ -678,11 +678,11 @@
 
 
 # # Read metrics about docker containers
-# [[inputs.docker]]
+[[inputs.docker]]
 #   ## Docker Endpoint
 #   ##   To use TCP, set endpoint = "tcp://[ip]:[port]"
 #   ##   To use environment variables (ie, docker-machine), set endpoint = "ENV"
-#   endpoint = "unix:///var/run/docker.sock"
+ endpoint = "unix:///run/docker.sock"
 #   ## Only collect metrics for these containers, collect all if empty
 #   container_names = []
 #   ## Timeout for docker list, info, and stats commands
@@ -900,16 +900,16 @@
 
 
 # # Read InfluxDB-formatted JSON metrics from one or more HTTP endpoints
-# [[inputs.influxdb]]
+[[inputs.influxdb]]
 #   ## Works with InfluxDB debug endpoints out of the box,
 #   ## but other services can use this format too.
 #   ## See the influxdb plugin's README for more details.
 #
 #   ## Multiple URLs from which to read InfluxDB-formatted JSON
 #   ## Default is "http://localhost:8086/debug/vars".
-#   urls = [
-#     "http://localhost:8086/debug/vars"
-#   ]
+ urls = [
+   "http://{{ lookup('env', 'HOST_IP') }}:8085/debug/vars"
+ ]
 #
 #   ## http request & header timeout
 #   timeout = "5s"
@@ -1146,7 +1146,7 @@
 
 
 # # Read TCP metrics such as established, time wait and sockets counts.
-# [[inputs.netstat]]
+[[inputs.netstat]]
 #   # no configuration
 
 
@@ -1163,13 +1163,13 @@
 
 
 # # Collect kernel snmp counters and network interface statistics
-# [[inputs.nstat]]
+[[inputs.nstat]]
 #   ## file paths for proc files. If empty default paths will be used:
 #   ##    /proc/net/netstat, /proc/net/snmp, /proc/net/snmp6
 #   ## These can also be overridden with env variables, see README.
-#   proc_net_netstat = "/proc/net/netstat"
-#   proc_net_snmp = "/proc/net/snmp"
-#   proc_net_snmp6 = "/proc/net/snmp6"
+ proc_net_netstat = "/proc/net/netstat"
+ proc_net_snmp = "/proc/net/snmp"
+ proc_net_snmp6 = "/proc/net/snmp6"
 #   ## dump metrics with 0 values too
 #   dump_zeros       = true
 
