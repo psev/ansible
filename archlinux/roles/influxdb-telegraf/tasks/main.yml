@@ -17,6 +17,8 @@
       owner="telegraf"
       group="telegraf"
       mode="0770"
+    notify:
+      - restart influxdb-telegraf
 
   - name: start and enable telegraf
     command: systemctl enable --now telegraf
