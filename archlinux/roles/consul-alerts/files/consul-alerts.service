@@ -15,7 +15,7 @@ ExecStartPre=/usr/bin/docker pull sugarush/consul-alerts
 
 ExecStart=/usr/bin/docker run --name consul-alerts sugarush/consul-alerts start \
   --consul-addr=${HOST_IP}:8500 --consul-dc=${REGION} \
-  --watch-events --watch-checks
+  --watch-events --watch-checks --log-level info
 
 ExecStop=/usr/bin/docker stop consul-alerts
 
