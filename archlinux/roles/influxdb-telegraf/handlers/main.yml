@@ -1,4 +1,4 @@
 ---
 
   - name: restart influxdb-telegraf
-    command: systemctl restart influxdb-telegraf
+    command: systemctl restart telegraf
