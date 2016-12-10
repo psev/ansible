@@ -9,7 +9,7 @@
     "port": 64210,
     "checks": [
       {
-        "script": "systemctl is-active chronograf",
+        "script": "systemctl is-active mongodb-cayley",
         "interval": "30s"
       },
       {
