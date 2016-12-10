@@ -7,8 +7,22 @@
       dest="/tmp/mongodb.pkg.tar.xz"
       object="/mongodb-3.2.9-2-x86_64.pkg.tar.xz"
 
+  - name: copy boost from s3
+    s3:
+      bucket="sugarush-us-west-2-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
+      mode="get"
+      dest="/tmp/boost.pkg.tar.xz"
+      object="/boost-1.61.0-4-x86_64.pkg.tar.xz"
+
+  - name: copy boost libs from s3
+    s3:
+      bucket="sugarush-us-west-2-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
+      mode="get"
+      dest="/tmp/boost-libs.pkg.tar.xz"
+      object="/boost-libs-1.61.0-4-x86_64.pkg.tar.xz"
+
   - name: install mongodb
-    command: pacman --noconfirm -U /tmp/mongodb.pkg.tar.xz
+    command: pacman --noconfirm -U /tmp/mongodb.pkg.tar.xz /tmp/boost.pkg.tar.xz /tmp/boost-libs.pkg.tar.xz
 
   - name: template mongodb.conf
     template:
