@@ -1,0 +1,16 @@
+---
+
+  - name: template mongodb-cayley systemd service file
+    template:
+      src="mongodb-cayley.service.tpl"
+      dest="/etc/systemd/system/mongodb-cayley.service"
+    notify:
+      - daemon-reload
+      - restart mongodb-cayley
+
+  - name: template mongodb-cayley consul service file
+    template:
+      src="mongodb-cayley.service.json.tpl"
+      dest="/etc/consul/consul.d/client/mongodb-cayley.service.json"
+    notify:
+      - reload consul@client

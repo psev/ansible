@@ -1,0 +1,4 @@
+---
+
+  - name: restart mongodb-cayley
+    command: systemctl restart mongodb-cayley
