@@ -25,3 +25,6 @@
   template:
     src="consul-ui.service.json.tpl"
     dest="/etc/consul/consul.d/client/consul-ui.service.json"
+  notify:
+    - reload consul@server
+    - reload consul@client
