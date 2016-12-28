@@ -34,6 +34,11 @@
       src="00-limits.conf"
       dest="/etc/systemd/system/mongodb.service.d/00-limits.conf"
 
+  - name: copy 00-hugepage.conf to tmpfiles.d
+    copy:
+      src="00-hugepage.conf"
+      dest="/etc/tmpfiles.d/00-hugepage.conf"
+
   - name: template mongodb.conf
     template:
       src="mongodb.conf.tpl"
