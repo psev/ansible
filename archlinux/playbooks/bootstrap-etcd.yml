@@ -4,6 +4,15 @@
 
       tasks:
 
+        - name: stop etcd bootstrap
+          command: systemctl stop etcd-bootstrap
+
+        - name: stop etcd server
+          command: systemctl stop etcd-server
+
+        - name: settle...
+          pause: seconds=5
+
         - name: bootstrap etcd cluster
           command: systemctl start etcd-bootstrap
 
@@ -22,8 +31,8 @@
         - name: settle...
           pause: seconds=5
 
-        - name: start etcd-server
-          command: systemctl start etcd-server
+        - name: enable and start etcd-server
+          command: systemctl enable --now etcd-server
 
         - name: settle...
           pause: seconds=5
