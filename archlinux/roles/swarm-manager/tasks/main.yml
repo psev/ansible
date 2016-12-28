@@ -2,5 +2,13 @@
 
   - name: copy swarm-manager service file
     copy:
-      dest="/etc/systemd/system/swarm-manager.service"
       src="swarm-manager.service"
+      dest="/etc/systemd/system/swarm-manager.service"
+
+  - name: template swarm-manager consul service definition
+    template:
+      src="swarm-manager.service.json.tpl"
+      dest="/etc/consul/conusl.d/client/swarm-manager.service.json"
+    notify:
+      - reload consul@client
+      - reload consul@server
