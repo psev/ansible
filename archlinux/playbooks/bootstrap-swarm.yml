@@ -1,0 +1,8 @@
+---
+
+  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+
+    tasks:
+
+      - name: enable and start swarm-manager
+        command: systemctl enable --now swarm-manager
