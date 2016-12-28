@@ -5,16 +5,22 @@
       tasks:
 
         - name: stop etcd bootstrap
-          command: systemctl stop etcd-bootstrap
+          service:
+            name="etcd-bootstrap"
+            state="stopped"
 
         - name: stop etcd server
-          command: systemctl stop etcd-server
+          service:
+            name="etcd-server"
+            state="stopped"
 
         - name: settle...
           pause: seconds=5
 
         - name: bootstrap etcd cluster
-          command: systemctl start etcd-bootstrap
+          service:
+            name="etcd-bootstrap"
+            state="started"
 
         - name: settle...
           pause: seconds=15
@@ -26,13 +32,18 @@
       tasks:
 
         - name: stop etcd-bootstrap
-          command: systemctl stop etcd-bootstrap
+          service:
+            name="etcd-bootstrap"
+            state="stopped"
 
         - name: settle...
           pause: seconds=5
 
         - name: enable and start etcd-server
-          command: systemctl enable --now etcd-server
+          service:
+            name="etcd-server"
+            state="started"
+            enabled="yes"
 
         - name: settle...
           pause: seconds=5
