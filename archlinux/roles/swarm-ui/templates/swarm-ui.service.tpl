@@ -1,7 +1,7 @@
 [Unit]
 Description=Docker Swarm UI (Portainer)
-Requires=swarm-manager.service
-After=swarm-manager.service
+Requires=docker.service
+After=docker.service
 
 [Service]
 EnvironmentFile=/etc/environment.network
