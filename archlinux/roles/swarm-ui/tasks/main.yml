@@ -10,3 +10,11 @@
 
   - name: enable and start swarm-ui
     command: systemctl enable --now swarm-ui
+
+  - name: template swarm-ui consul service definition
+    template:
+      src="swarm-ui.service.json.tpl"
+      dest="/etc/consul/consul.d/client/swarm-ui.service.json"
+    notify:
+      - reload consul@client
+      - reload consul@server
