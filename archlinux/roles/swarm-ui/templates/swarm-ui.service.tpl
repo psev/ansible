@@ -11,8 +11,9 @@ ExecStartPre=-/usr/bin/docker rm swarm-ui
 
 ExecStartPre=/usr/bin/docker pull portainer/portainer
 
-ExecStart=/usr/bin/docker run --name swarm-ui portainer/portainer \
+ExecStart=/usr/bin/docker run --name swarm-ui \
   -p 9000:9000 \
+  portainer/portainer \
   -H tpc://{{ lookup('env', 'HOST_IP') }}:4000
 
 ExecStop=/usr/bin/docker stop swarm-ui
