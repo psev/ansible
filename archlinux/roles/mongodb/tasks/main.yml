@@ -24,6 +24,16 @@
   - name: install mongodb
     command: pacman --noconfirm -U /tmp/mongodb.pkg.tar.xz /tmp/boost.pkg.tar.xz /tmp/boost-libs.pkg.tar.xz
 
+  - name: create mongodb.service.d
+    file:
+      state="directory"
+      path="/etc/systemd/system/mongodb.service.d"
+
+  - name: copy 00-limits.conf to mongodb.service.d
+    copy:
+      src="00-limits.conf"
+      dest="/etc/systemd/system/mongodb.service.d/00-limits.conf"
+
   - name: template mongodb.conf
     template:
       src="mongodb.conf.tpl"
