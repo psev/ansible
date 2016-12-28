@@ -1,10 +1,20 @@
-- name: install aws-cli
-  pacman:
-    name="aws-cli"
-    state="present"
+---
 
-- name: copy .zshrc
-  copy:
-    src="zshrc"
-    dest="/root/.zshrc"
-    mode=0600
+  - name: install aws-cli
+    pacman:
+      name="aws-cli"
+      state="present"
+
+  - name: copy .zshrc
+    copy:
+      src="zshrc"
+      dest="/root/.zshrc"
+      mode=0600
+
+  - name: template admin consul service definition
+    template:
+      src="admin.service.json.tpl"
+      dest="/etc/consul/consul.d/client/admin.service.json"
+    notify:
+      - reload consul@client
+      - reload consul@server
