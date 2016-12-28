@@ -9,7 +9,7 @@ EnvironmentFile=/etc/environment.network
 ExecStartPre=-/usr/bin/docker stop swarm-ui
 ExecStartPre=-/usr/bin/docker rm swarm-ui
 
-ExecStartPre=/usr/bin/docker pull protainer/portainer
+ExecStartPre=/usr/bin/docker pull portainer/portainer
 
 ExecStart=/usr/bin/docker run --name swarm-ui \
   -p 9000:9000 \
