@@ -5,10 +5,10 @@
     tasks:
 
       - name: stop consul@bootstrap
-        service: name=consul@bootstrap state=stopped
+        command: systemctl stop consul@bootstrap
 
       - name: stop consul@server
-        service: name=consul@server state=stopped
+        command: systemctl stop consul@server
 
       - name: clear raft data
         shell: rm -rf /var/consul/raft/*
@@ -18,7 +18,7 @@
         ignore_errors: yes
 
       - name: bootstrap consul cluster
-        service: name=consul@bootstrap state=started
+        command: systemctl start consul@bootstrap
 
       - name: settle...
         pause: seconds=15
@@ -31,13 +31,13 @@
     tasks:
 
       - name: stop consul@bootstrap
-        service: name=consul@bootstrap state=stopped
+        command: systemctl stop consul@bootstrap
 
       - name: settle...
         pause: seconds=5
 
       - name: start consul@server
-        service: name=consul@server state=started enabled=yes
+        command: systemctl enable --now consul@server
 
       - name: settle...
         pause: seconds=5
@@ -48,7 +48,7 @@
     tasks:
 
       - name: restore consul kv
-        service: name=consul-restore state=started
-        
+        command: systemctl enable --now consul-restore
+
       - name: start consul alerts
-        service: name=consul-alerts state=started enabled=yes
+        command: systemctl enable --now consul-alerts
