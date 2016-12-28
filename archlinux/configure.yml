@@ -21,4 +21,5 @@
       - { role: fleet, tags: [ "fleet" ] }
       - { role: hub, tags: [ "hub" ] }
       - { role: monitor, tags: [ "monitor" ] }
+      - { role: proxy, tags: [ "proxy" ] }
       - { role: swarm, tags: [ "swarm" ] }
