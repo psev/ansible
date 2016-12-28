@@ -3,7 +3,7 @@
   - name: copy swarm-ui systemd service file
     template:
       src="swarm-ui.service.tpl"
-      dest="/etc/systmed/system/swarm-ui.service"
+      dest="/etc/systemd/system/swarm-ui.service"
     notify:
       - daemon-reload
       - restart swarm-ui
