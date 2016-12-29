@@ -1,0 +1,9 @@
+---
+
+  - name: template control consul service definition
+    template:
+      src="control.service.json.tpl"
+      dest="/etc/consul/consul.d/client/control.service.json"
+    notify:
+      - reload consul@client
+      - reload consul@server
