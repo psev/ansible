@@ -8,4 +8,4 @@
         command: systemctl enable --now swarm-manager
 
       - name: set flannel config
-        command: etcdctl --peers http://control.service.consul:2379 set /flannel/network/config  '{ "Network": "192.168.0.0/16", "Backend": { "Type": "vxlan" } }'
+        command: 'etcdctl --peers http://control.service.consul:2379 set /flannel/network/config  \'{ "Network": "192.168.0.0/16", "Backend": { "Type": "vxlan" } }\''
