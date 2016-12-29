@@ -5,6 +5,10 @@ ansible-cmd() {
   ansible -i /root/ansible/inventory.py "tag_${1}_${2}_${DEPLOY}" -m command -a "${3}"
 }
 
-reconfigure() {
+ansible-configure() {
   ansible-cmd "Name" "${1}" "systemctl restart configure"
+}
+
+ansible-configure-all() {
+  ansible-cmd "Managed" "terraform" "systemctl restart configure"
 }
