@@ -1,1 +1,2 @@
 alias members="consul members --rpc-addr $HOSTNAME:8400 | grep -v Node | sort -h"
+alias swarm="docker -H tcp://swarm-manager.service.consul:4000"
