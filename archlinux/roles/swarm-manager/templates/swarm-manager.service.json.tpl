@@ -1,7 +1,7 @@
 {
   "service": {
     "id": "swarm-manager",
-    "name": "swarm",
+    "name": "swarm-manager",
     "tags": [
       "{{ lookup('env', 'DEPLOY') }}"
     ],
