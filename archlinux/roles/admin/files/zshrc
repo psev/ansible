@@ -14,7 +14,7 @@ RESTART_CONFIGURE_COMMAND="systemctl restart configure"
 
 # restart the configure systemd service on a subset of nodes
 ansible-configure() {
-  ansible-cmd "Name" "${1}" "${RESTART_CONFIGURE_COMMAND}"
+  ansible-cmd "Name" "${1}" "${RESTART_CONFIGURE_COMMAND}" | ansible-journal-configure
 }
 
 # restart the configure systemd service on all nodes
@@ -31,4 +31,8 @@ ansible-ssh() {
 # tail the journal of a service on a remote node using ansible-cmd results
 ansible-journal() {
   ansible-ssh "journalctl -fu ${1}"
+}
+
+ansible-journal-configure() {
+  ansible-journal "configure"
 }
