@@ -22,5 +22,21 @@
 
   - name: start flannel
     command: systemctl enable --now flannel.service
-    notify:
-      - restart docker
+
+  - name: wait for flannel environment file
+    wait_for:
+      path="/etc/environment.flannel"
+      state="present"
+
+  - name: copy docker flannel config
+    copy:
+      src="10-flannel.conf"
+      dest="/etc/systemd/systemd/docker.service.d/10-flannel.conf"
+
+  - name: systemd daemon-reload
+    command: systemd daemon-reload
+
+  - name: restart docker
+    service:
+      name="docker"
+      state="restarted"
