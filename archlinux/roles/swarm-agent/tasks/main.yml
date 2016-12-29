@@ -4,3 +4,9 @@
     copy:
       dest="/etc/systemd/system/swarm-agent.service"
       src="swarm-agent.service"
+
+  - name: enable and start swarm-agent
+    service:
+      name="swarm-agent"
+      state="started"
+      enabled="yes"
