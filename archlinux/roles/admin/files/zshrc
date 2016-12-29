@@ -1,2 +1,10 @@
 alias members="consul members --rpc-addr $HOSTNAME:8400 | grep -v Node | sort -h"
 alias swarm="docker -H tcp://swarm-manager.service.consul:4000"
+
+ansible-cmd() {
+  ansible -i /root/ansible/inventory.py "tag_${0}_${1}_${DEPLOY}" -m command -a "${2}"
+}
+
+reconfigure() {
+  ansible-cmd "Name" "${0}" "systemctl restart configure"
+}
