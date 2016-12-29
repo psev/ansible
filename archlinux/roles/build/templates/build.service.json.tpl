@@ -1,7 +1,7 @@
 {
   "service": {
-    "id": "admin",
-    "name": "admin",
+    "id": "build",
+    "name": "build",
     "tags": [
       "{{ lookup('env', 'DEPLOY') }}"
     ],
