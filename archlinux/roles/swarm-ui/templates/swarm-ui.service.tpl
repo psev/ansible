@@ -14,7 +14,7 @@ ExecStartPre=/usr/bin/docker pull portainer/portainer
 ExecStart=/usr/bin/docker run --name swarm-ui \
   -p 9000:9000 \
   portainer/portainer \
-  -H tcp://swarm.service.consul:4000
+  -H tcp://swarm-manager.service.consul:4000
 
 ExecStop=/usr/bin/docker stop swarm-ui
 
