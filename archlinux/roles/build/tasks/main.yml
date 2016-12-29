@@ -22,3 +22,11 @@
       path="/opt/build/.zshrc"
       owner="build"
       state="touch"
+
+  - name: template build consul service definition
+    template:
+      src="build.service.json.tpl"
+      dest="/etc/consul/consul.d/client/build.service.json"
+    notify:
+      - reload consul@client
+      - reload consul@server
