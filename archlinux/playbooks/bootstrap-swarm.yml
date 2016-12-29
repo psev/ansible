@@ -4,8 +4,19 @@
 
     tasks:
 
+      - name: stop swarm-manager
+        service:
+          name="swarm-manager"
+          state="stopped"
+
+      - name: systemctl daemon-reload
+        command: systemctl daemon-reload
+
       - name: enable and start swarm-manager
-        command: systemctl enable --now swarm-manager
+        service:
+          name="swarm-manager"
+          state="started"
+          enabled="yes"
 
       - name: set flannel config
         command: 'etcdctl --peers http://etcd.service.consul:2379 set /flannel/network/config  "{ \"Network\": \"192.168.0.0/16\", \"Backend\": { \"Type\": \"vxlan\" } }"'
