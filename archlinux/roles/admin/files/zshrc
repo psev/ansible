@@ -22,7 +22,13 @@ ansible-configure-all() {
   ansible-cmd "Managed" "terraform" "${RESTART_CONFIGURE_COMMAND}"
 }
 
-# tail the journal for a service on a remote node using the ip from ansible-cmd results
-ansible-journal() {
+# run a command on a remote node using ansible-cmd results
+ansible-ssh() {
+  IP_ADDR=$(grep -oE "^([0-9]{1,3}\.){3}[0-9]{1,3}" | sed -n "1p")
+  ssh ${IP_ADDR} "${1}"
+}
 
+# tail the journal of a service on a remote node using ansible-cmd results
+ansible-journal() {
+  ansible-ssh "journalctl -fu ${1}"
 }
