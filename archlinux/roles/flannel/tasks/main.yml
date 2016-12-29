@@ -31,7 +31,7 @@
   - name: copy docker flannel config
     copy:
       src="10-flannel.conf"
-      dest="/etc/systemd/systemd/docker.service.d/10-flannel.conf"
+      dest="/etc/systemd/system/docker.service.d/10-flannel.conf"
 
   - name: systemd daemon-reload
     command: systemd daemon-reload
