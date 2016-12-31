@@ -22,8 +22,8 @@
     consul_get:
       key="ansible/{{ lookup('env', 'ROLE') }}/victorops/api-key"
       host="{{ lookup('env', 'HOSTNAME') }}"
-    register: api_key
-    ignore_errors: yes
+    register: "api_key"
+    ignore_errors: "yes"
 
   - name: template kapacitor.conf to /etc/kapacitor
     template:
@@ -34,6 +34,7 @@
       mode="0770"
     notify:
       - restart kapacitor
+    ignore_errors: "yes"
 
   - name: start and enable kapacitor
     command: systemctl enable --now kapacitor
