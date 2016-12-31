@@ -13,7 +13,7 @@ ExecStart=/usr/bin/docker run \
   --env AWS_REGION={{ lookup('env', 'REGION') }} \
   sugarush/consul-backup restore \
   --host {{ lookup('env', 'HOST_IP') }}:8500 \
-  --bucket sugarush-us-west-2-{{ lookup('env', 'DEPLOY') }}-consul-backup \
+  --bucket sugarush-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-consul-backup \
   --kv
 
 ExecStop=/usr/bin/docker stop consul-backup
