@@ -10,14 +10,6 @@
   - name: install consul
     command: pacman --noconfirm -U /tmp/consul.pkg.tar.xz
 
-  - name: template consul config
-    template:
-      src="consul.conf.tpl"
-      dest="/etc/consul/consul.conf"
-    notify:
-      - daemon-reload
-      - restart consul
-
   - name: create consul user
     user:
       name="consul"
