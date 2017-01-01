@@ -27,7 +27,7 @@ ansible-shell() {
 
 # ping a set of nodes
 ansible-ping() {
-  ansible-exec "${1}" "${2}" "ping"
+  ansible-exec "Name" "${1}" "ping"
 }
 
 # the command to restart the ansible configure systemd service
@@ -44,11 +44,11 @@ ansible-configure-all() {
 }
 
 # tail the journal of a service on a remote node using ansible-cmd results
-ansible-journal() {
+ansible-tail() {
   ansible-ssh "journalctl -fu ${1}"
 }
 
 # restart configure on a subset of nodes and tail the configure service journal
-ansible-configure-journal() {
-  ansible-configure "${1}" | ansible-journal "configure"
+ansible-configure-tail() {
+  ansible-configure "${1}" | ansible-tail "configure"
 }
