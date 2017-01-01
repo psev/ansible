@@ -2,3 +2,6 @@
 
   - name: reload unbound
     command: systemctl reload unbound
+
+  - name: restart unbound
+    command: systemctl restart unbound
