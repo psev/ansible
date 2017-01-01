@@ -4,9 +4,17 @@ alias members="consul members --rpc-addr $HOSTNAME:8400 | grep -v Node | sort -h
 # run docker commands agains swarm managers
 alias swarm="docker -H tcp://swarm-manager.service.consul:4000"
 
+ansible-exec() {
+  ansible -i /root/ansible/inventory.py "tag_${1}_${2}_${DEPLOY}" -m "${3}" -a "${4}"
+}
+
 # run commands on remote nodes
 ansible-cmd() {
-  ansible -i /root/ansible/inventory.py "tag_${1}_${2}_${DEPLOY}" -m command -a "${3}"
+  ansible-exec "${1}" "${2}" "command" "${3}"
+}
+
+ansible-shell() {
+  ansible-exec "${1}" "${2}" "shell" "${3}"
 }
 
 # the command to restart the ansible configure systemd service
