@@ -1,37 +1,47 @@
 ---
 
-- name: copy consul package
-  copy: src=consul-0.7.0-1-x86_64.pkg.tar.xz dest=/tmp/consul.pkg.tar.xz
+  - name: copy consul from s3
+    s3:
+      bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
+      mode="get"
+      dest="/tmp/consul.pkg.tar.xz"
+      object="/consul-0.7.2-1-x86_64.pkg.tar.xz"
 
-- name: install consul
-  shell: pacman --noconfirm -U /tmp/consul.pkg.tar.xz
+  - name: install consul
+    command: pacman --noconfirm -U /tmp/consul.pkg.tar.xz
 
-- name: remove consul package
-  shell: rm /tmp/consul.pkg.tar.xz
+  - name: template consul config
+    template:
+      src="consul.conf.tpl"
+      dest="/etc/consul/consul.conf"
+    notify:
+      - daemon-reload
+      - restart consul
 
-- name: create consul user
-  user: name=consul createhome=no shell=/usr/bin/zsh home=/etc/consul
+  - name: create consul user
+    user:
+      name="consul"
+      createhome="no"
+      shell="/usr/bin/zsh"
+      home="/etc/consul"
 
-- name: create directory /etc/consul/consul.d
-  file: dest=/etc/consul/consul.d state=directory mode=0770 owner=consul group=consul
+  - name: create consul directories
+    file:
+      dest="{{ item }}"
+      state="directory"
+      mode="0770"
+      owner="consul"
+      group="consul"
+    with_items:
+      - /etc/consul/consul.d
+      - /etc/consul/consul.d/client
+      - /etc/consul/consul.d/server
+      - /etc/consul/consul.d/bootstrap
+      - /etc/consul/ui
+      - /run/consul
+      - /var/consul
 
-- name: create directory /etc/consul/consul.d/client
-  file: dest=/etc/consul/consul.d/client state=directory mode=0770 owner=consul group=consul
-
-- name: create directory /etc/consul/consul.d/server
-  file: dest=/etc/consul/consul.d/server state=directory mode=0770 owner=consul group=consul
-
-- name: create directory /etc/consul/consul.d/bootstrap
-  file: dest=/etc/consul/consul.d/bootstrap state=directory mode=0770 owner=consul group=consul
-
-- name: create directory /etc/consul/ui
-  file: dest=/etc/consul/ui state=directory mode=0770 owner=consul group=consul
-
-- name: create directory /run/consul
-  file: dest=/run/consul state=directory mode=0770 owner=consul group=consul
-
-- name: create directory /var/consul
-  file: dest=/var/consul state=directory mode=0770 owner=consul group=consul
-
-- name: copy consul@.service
-  copy: dest=/etc/systemd/system/consul@.service src=consul@.service
+  - name: copy consul@.service
+    copy:
+      dest="/etc/systemd/system/consul@.service"
+      src="consul@.service"
