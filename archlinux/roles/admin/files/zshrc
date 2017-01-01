@@ -4,8 +4,15 @@ alias members="consul members --rpc-addr $HOSTNAME:8400 | grep -v Node | sort -h
 # run docker commands agains swarm managers
 alias swarm="docker -H tcp://swarm-manager.service.consul:4000"
 
+# run an ansible module across the current deployment
 ansible-exec() {
   ansible -i /root/ansible/inventory.py "tag_${1}_${2}_${DEPLOY}" -m "${3}" -a "${4}"
+}
+
+# run a command on the first remote node in ansible-exec results
+ansible-ssh() {
+  IP_ADDR=$(grep -oE "^([0-9]{1,3}\.){3}[0-9]{1,3}" | sed -n "1p")
+  ssh ${IP_ADDR} "${1}"
 }
 
 # run commands on remote nodes
@@ -13,8 +20,14 @@ ansible-cmd() {
   ansible-exec "${1}" "${2}" "command" "${3}"
 }
 
+# run a shell script on a remote node
 ansible-shell() {
   ansible-exec "${1}" "${2}" "shell" "${3}"
+}
+
+# ping a set of nodes
+ansible-ping() {
+  ansible-exec "${1}" "${2}" "ping"
 }
 
 # the command to restart the ansible configure systemd service
@@ -28,12 +41,6 @@ ansible-configure() {
 # restart the configure systemd service on all nodes
 ansible-configure-all() {
   ansible-cmd "Managed" "terraform" "${RESTART_CONFIGURE_COMMAND}"
-}
-
-# run a command on a remote node using ansible-cmd results
-ansible-ssh() {
-  IP_ADDR=$(grep -oE "^([0-9]{1,3}\.){3}[0-9]{1,3}" | sed -n "1p")
-  ssh ${IP_ADDR} "${1}"
 }
 
 # tail the journal of a service on a remote node using ansible-cmd results
