@@ -8,11 +8,24 @@
     notify:
       - reload unbound
 
+  - name: create /etc/systemd/system/unbound.service.d
+    file:
+      path="/etc/systemd/system/unbound.service.d"
+      state="directory"
+
+  - name: copy 00-after-network-online.conf
+    copy:
+      src="00-after-network-online.conf"
+      dest="/etc/systemd/system/unbound.service.d/00-after-network-online.conf"
+    notify:
+      - daemon-reload
+      - restart unbound
+
   - name: enable and start unbound
     service: name=unbound enabled=yes state=started
 
   - name: copy consul config
-    copy: src=unbound.json dest=/etc/consul/consul.d/client/unbound.json
+    copy: src=unbound.check.json dest=/etc/consul/consul.d/client/unbound.check.json
     notify:
       - reload consul@client
       - reload consul@server
