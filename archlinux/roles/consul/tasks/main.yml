@@ -5,7 +5,7 @@
       bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
       mode="get"
       dest="/tmp/consul.pkg.tar.xz"
-      object="/consul-0.7.0.1-x86_64.pkg.tar.xz"
+      object="/consul-0.7.0-1-x86_64.pkg.tar.xz"
 
   - name: install consul
     command: pacman --noconfirm -U /tmp/consul.pkg.tar.xz
