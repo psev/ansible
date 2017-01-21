@@ -2,7 +2,7 @@
 
 dependencies:
 
-  - { role: consul, meta: "consul-server" }
-  - { role: consul-checks, meta: "consul-checks" }
-  - { role: consul-alerts, meta: "consul-server" }
-  - { role: systemd-logentries, meta: consul-server }
+  - { role: "base", meta: "consul-server" }
+#  - { role: consul-checks, meta: "consul-checks" }
+#  - { role: consul-alerts, meta: "consul-server" }
+#  - { role: systemd-logentries, meta: consul-server }

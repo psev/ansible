@@ -2,6 +2,5 @@
 
   dependencies:
 
-    - { role: base, meta: proxy }
-    - { role: consul-client, meta: proxy }
-    - { role: systemd-logentries, meta: proxy }
+    - { role: "consul-client", meta: "proxy" }
+#    - { role: systemd-logentries, meta: proxy }

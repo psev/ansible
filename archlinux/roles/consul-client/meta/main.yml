@@ -1,5 +1,5 @@
 ---
 
 dependencies:
-
-  - { role: consul-checks, meta: "consul-checks" }
+  - { role: "base", meta "consul-client" }
+#  - { role: consul-checks, meta: "consul-checks" }

@@ -18,8 +18,6 @@ server:
   domain-insecure: consul
 
   private-domain: amazonaws.com
-  private-domain: longsight.com
-  private-domain: aws.longsight.com
   private-domain: {{ lookup('env', 'HOST_DOMAIN_1') }}
   private-domain: consul
 
@@ -31,9 +29,9 @@ forward-zone:
   forward-addr: {{ lookup('env', 'HOST_DNS_1') }}
 
 forward-zone:
-  name: {{ lookup('env', 'HOST_DOMAIN_1') }}
+  name: "{{ lookup('env', 'HOST_DOMAIN_1') }}"
   forward-addr: {{ lookup('env', 'HOST_DNS_1') }}
 
 stub-zone:
-  name: consul
+  name: "consul"
   stub-addr: {{ lookup('env', 'HOST_IP') }}@8600
