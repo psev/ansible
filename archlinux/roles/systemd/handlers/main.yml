@@ -9,5 +9,11 @@
   notify:
     - restart environment
 
+- name: restart systemd-journal-gatewayd.socket
+  command: systemctl restart systemd-journal-gatewayd
+
+- name: restart systemd-journald
+  command: systemctl restart systemd-journald
+
 - name: daemon-reload
   command: systemctl daemon-reload
