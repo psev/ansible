@@ -36,7 +36,7 @@
     src="system/systemd-journal-gatewayd.socket.d/00-socket.conf"
   notify:
     - daemon-reload
-    - restart systemd-journal-gatewayd
+    - restart systemd-journal-gatewayd.socket
 
 - copy:
     dest="/etc/systemd/system/systemd-networkd.service.d/00-unbound.conf"
