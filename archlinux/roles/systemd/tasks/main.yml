@@ -19,16 +19,20 @@
     dest="/etc/systemd/journald.conf.d"
     state="directory"
 
+- file:
+    dest="/etc/systemd/system/systemd-networkd.service.d"
+    state="directory"
+
+- file:
+    dest="/etc/systemd/system/systemd-journal-gatewayd.socket.d"
+    state="directory"
+
 - copy:
     dest="/etc/systemd/journald.conf.d/00-persistent.conf"
     src="journald.conf.d/00-persistent.conf"
   notify:
     - daemon-reload
     - restart systemd-journald
-
-- file:
-    dest="/etc/systemd/system/systemd-journal-gatewayd.socket.d"
-    state="directory"
 
 - copy:
     dest="/etc/systemd/system/systemd-journal-gatewayd.socket.d/00-socket.conf"
