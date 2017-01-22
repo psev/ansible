@@ -13,6 +13,15 @@
       path="/etc/systemd/system/unbound.service.d"
       state="directory"
 
+  - name: copy 00-before-systemd-networkd.conf
+    copy:
+      src="00-before-systemd-networkd.conf"
+      dest="/etc/systemd/system/unbound.service.d/00-before-systemd-networkd.conf"
+    notify:
+      - daemon-reload
+      - restart unbound
+      - restart systemd-networkd
+
   - name: systemctl daemon-reload
     command: systemctl daemon-reload
 
