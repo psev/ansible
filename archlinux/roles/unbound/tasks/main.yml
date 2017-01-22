@@ -21,6 +21,9 @@
       - daemon-reload
       - restart unbound
 
+  - name: systemctl daemon-reload
+    command: systemctl daemon-reload
+
   - name: enable and start unbound
     service: name=unbound enabled=yes state=started
 
