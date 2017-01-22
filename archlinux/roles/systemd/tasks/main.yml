@@ -30,9 +30,6 @@
 - copy:
     dest="/etc/systemd/journald.conf.d/00-persistent.conf"
     src="journald.conf.d/00-persistent.conf"
-  notify:
-    - daemon-reload
-    - restart systemd-journald
 
 - copy:
     dest="/etc/systemd/system/systemd-journal-gatewayd.socket.d/00-socket.conf"
@@ -49,6 +46,10 @@
     - restart systemd-networkd
 
 - command: systemctl enable --now systemd-journal-gatewayd.socket
+
+- command: systemctl daemon-reload
+
+- command: systemctl restart systemd-journald
 
 - file:
     dest="/etc/systemd/network/{{ item }}.network"
