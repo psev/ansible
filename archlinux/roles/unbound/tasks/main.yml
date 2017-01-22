@@ -13,14 +13,6 @@
       path="/etc/systemd/system/unbound.service.d"
       state="directory"
 
-  - name: copy 00-after-network-online.conf
-    copy:
-      src="00-after-network-online.conf"
-      dest="/etc/systemd/system/unbound.service.d/00-after-network-online.conf"
-    notify:
-      - daemon-reload
-      - restart unbound
-
   - name: systemctl daemon-reload
     command: systemctl daemon-reload
 
