@@ -47,9 +47,9 @@
 
 - command: systemctl enable --now systemd-journal-gatewayd.socket
 
-- command: systemctl daemon-reload
+#- command: systemctl daemon-reload
 
-- command: systemctl restart systemd-journald
+#- command: systemctl restart systemd-journald
 
 - file:
     dest="/etc/systemd/network/{{ item }}.network"
