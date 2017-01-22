@@ -1,6 +1,9 @@
 - name: start configure.timer
   command: systemctl enable --now configure.timer
 
+- name: enable systemd-journal-gatewayd.socket
+  command: systemctl enable --now systemd-journal-gatewayd.socket
+
 - name: restart environment
   command: systemctl restart environment.service
 
