@@ -28,7 +28,7 @@
     state="directory"
 
 - file:
-    dest="/etc/systemd/system/systemd-networkd.d"
+    dest="/etc/systemd/system/systemd-networkd.service.d"
     state="directory"
 
 - copy:
@@ -47,8 +47,8 @@
     - restart systemd-journal-gatewayd.socket
 
 - copy:
-    dest="/etc/systemd/system/systemd-networkd.d/00-after-unbound.conf"
-    src="system/systemd-networkd.d/00-after-unbound.conf"
+    dest="/etc/systemd/system/systemd-networkd.service.d/00-after-unbound.conf"
+    src="system/systemd-networkd.service.d/00-after-unbound.conf"
   notify:
     - daemon-reload
     - restart systemd-networkd
