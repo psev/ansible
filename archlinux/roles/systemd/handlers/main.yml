@@ -6,8 +6,6 @@
 
 - name: restart systemd-networkd
   command: systemctl restart systemd-networkd
-  notify:
-    - restart environment
 
 - name: restart systemd-resolved
   command: systemctl restart systemd-resolved
