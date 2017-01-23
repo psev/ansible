@@ -1,7 +1,7 @@
 [Unit]
 Description=Ansible Configure
-Requires=network-online.target environment.service
-After=network-online.target environment.service
+Requires=environment.service
+After=environment.service
 
 [Service]
 RemainAfterExit=true
