@@ -18,10 +18,10 @@
       dest="/etc/systemd/system/systemd-resolved.service.d"
       state="directory"
 
-  - name: copy 00-before-systemd-resolved.conf
+  - name: copy 00-partof-systemd-resolved.conf
     copy:
-      dest="/etc/systemd/system/unbound.service.d/00-before-systemd-resolved.conf"
-      src="unbound.service.d/00-before-systemd-resolved.conf"
+      dest="/etc/systemd/system/unbound.service.d/00-partof-systemd-resolved.conf"
+      src="unbound.service.d/00-partof-systemd-resolved.conf"
     notify:
       - daemon-reload
       - restart unbound
