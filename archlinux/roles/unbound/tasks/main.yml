@@ -13,13 +13,26 @@
       path="/etc/systemd/system/unbound.service.d"
       state="directory"
 
+  - name: create /etc/systemd/system/systemd-resolved.service.d
+    file:
+      dest="/etc/systemd/system/systemd-resolved.service.d"
+      state="directory"
+
   - name: copy 00-before-systemd-resolved.conf
     copy:
-      src="00-before-systemd-resolved.conf"
       dest="/etc/systemd/system/unbound.service.d/00-before-systemd-resolved.conf"
+      src="unbound.service.d/00-before-systemd-resolved.conf"
     notify:
       - daemon-reload
       - restart unbound
+
+  - name: copy 00-partof-unbound.conf
+    copy:
+      dest="/etc/systemd/system/systemd-resolved.service.d/00-partof-unbound.conf"
+      src="systemd-resolved.service.d/00-partof-unbound.conf"
+    notify:
+      - daemon-reload
+      - restart systemd-resolved
 
   - name: systemctl daemon-reload
     command: systemctl daemon-reload
