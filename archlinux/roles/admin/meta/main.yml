@@ -1,6 +1,7 @@
 dependencies:
 
-  - { role: consul-client, meta: admin }
+  - { role: "base", meta: "admin" }
+  - { role: "consul-client", meta: "admin" }
 #  - { role: influxdb-chronograf, meta: admin }
 #  - { role: influxdb-kapacitor, meta: admin }
 #  - { role: swarm-ui, meta: admin }

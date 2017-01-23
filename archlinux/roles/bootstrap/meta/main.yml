@@ -2,11 +2,11 @@
 
   dependencies:
 
+    - role: systemd
     - role: ansible-modules
     - role: hostname
     - role: ssh
     - role: sudo
-    - role: systemd
     - role: tmpwatch
     - role: wemux
     - role: zsh
