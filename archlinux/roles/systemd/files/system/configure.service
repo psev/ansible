@@ -4,7 +4,6 @@ Requires=network-online.target environment.service
 After=network-online.target environment.service
 
 [Service]
-Type=oneshot
 RemainAfterExit=true
 
 EnvironmentFile=/etc/environment

@@ -1,5 +1,5 @@
 - name: start configure
-  command: systemctl enable --now configure
+  command: systemctl restart configure
 
 - name: enable systemd-journal-gatewayd.socket
   command: systemctl enable --now systemd-journal-gatewayd.socket
