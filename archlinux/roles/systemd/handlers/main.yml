@@ -22,4 +22,4 @@
   command: systemctl daemon-reload
 
 - name: start configure
-  command: systemctl restart configure
+  command: systemctl start configure
