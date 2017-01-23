@@ -7,8 +7,6 @@ After=network-online.target environment.service
 EnvironmentFile=/etc/environment
 EnvironmentFile=/etc/environment.network
 
-RemainAfterExit=true
-
 ExecStartPre=-/usr/bin/git clone ${ANSIBLE_REPO} /root/ansible
 ExecStartPre=/usr/bin/git -C /root/ansible pull
 
