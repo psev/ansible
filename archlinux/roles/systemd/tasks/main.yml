@@ -27,10 +27,6 @@
     dest="/etc/systemd/system/systemd-journal-gatewayd.socket.d"
     state="directory"
 
-- file:
-    dest="/etc/systemd/system/systemd-resolved.service.d"
-    state="directory"
-
 - copy:
     dest="/etc/systemd/journald.conf.d/00-persistent.conf"
     src="journald.conf.d/00-persistent.conf"
@@ -45,13 +41,6 @@
   notify:
     - daemon-reload
     - restart systemd-journal-gatewayd.socket
-
-- copy:
-    dest="/etc/systemd/system/systemd-resolved.service.d/00-partof-unbound.conf"
-    src="system/systemd-resolved.service.d/00-partof-unbound.conf"
-  notify:
-    - daemon-reload
-    - restart systemd-resolved
 
 - file:
     dest="/etc/systemd/network/{{ item }}.network"
