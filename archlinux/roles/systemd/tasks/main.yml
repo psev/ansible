@@ -62,5 +62,3 @@
     src="system/configure.{{ item }}"
   with_items:
     - service
-  notify:
-    - start configure
