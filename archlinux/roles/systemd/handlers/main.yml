@@ -12,6 +12,9 @@
   notify:
     - restart environment
 
+- name: restart systemd-resolved
+  command: systemctl restart systemd-resolved
+
 - name: restart systemd-journal-gatewayd.socket
   command: systemctl restart systemd-journal-gatewayd
 
