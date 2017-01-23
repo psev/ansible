@@ -1,6 +1,3 @@
-- name: start configure
-  command: systemctl restart configure
-
 - name: enable systemd-journal-gatewayd.socket
   command: systemctl enable --now systemd-journal-gatewayd.socket
 
@@ -23,3 +20,6 @@
 
 - name: daemon-reload
   command: systemctl daemon-reload
+
+- name: start configure
+  command: systemctl restart configure
