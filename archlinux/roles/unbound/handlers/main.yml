@@ -1,5 +1,8 @@
 ---
 
+  - name: start unbound
+    command: systemctl enable --now unbound
+
   - name: reload unbound
     command: systemctl reload unbound
 
