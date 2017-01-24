@@ -1,14 +1,8 @@
+- name: daemon-reload
+  command: systemctl daemon-reload
+
 - name: enable systemd-journal-gatewayd.socket
   command: systemctl enable --now systemd-journal-gatewayd.socket
-
-- name: restart environment
-  command: systemctl restart environment.service
-
-- name: restart systemd-networkd
-  command: systemctl restart systemd-networkd
-
-- name: restart systemd-resolved
-  command: systemctl restart systemd-resolved
 
 - name: restart systemd-journal-gatewayd.socket
   command: systemctl restart systemd-journal-gatewayd
@@ -16,8 +10,8 @@
 - name: restart systemd-journald
   command: systemctl restart systemd-journald
 
-- name: daemon-reload
-  command: systemctl daemon-reload
+- name: restart systemd-networkd
+  command: systemctl restart systemd-networkd
 
-- name: start configure
-  command: systemctl start configure
+- name: restart systemd-resolved
+  command: systemctl restart systemd-resolved
