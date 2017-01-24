@@ -1,6 +1,5 @@
 dependencies:
 
-  - { role: "unbound", meta: "base" }
 #  - { role: "docker", meta: "base" }
 #  - { role: "influxdb-telegraf", meta: "base" }
   - { role: "tmpwatch", meta: "base" }
