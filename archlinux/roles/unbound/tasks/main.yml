@@ -10,38 +10,34 @@
     notify:
       - reload unbound
 
-#  - name: create /etc/systemd/system/unbound.service.d
-#    file:
-#      path="/etc/systemd/system/unbound.service.d"
-#      state="directory"
-#
-#  - name: create /etc/systemd/system/systemd-resolved.service.d
-#    file:
-#      dest="/etc/systemd/system/systemd-resolved.service.d"
-#      state="directory"
-#
-#  - name: copy 00-partof-systemd-resolved.conf
-#    copy:
-#      dest="/etc/systemd/system/unbound.service.d/00-partof-systemd-resolved.conf"
-#      src="unbound.service.d/00-partof-systemd-resolved.conf"
-#    notify:
-#      - daemon-reload
-#      - restart unbound
-#
-#  - name: copy 00-partof-unbound.conf
-#    copy:
-#      dest="/etc/systemd/system/systemd-resolved.service.d/00-partof-unbound.conf"
-#      src="systemd-resolved.service.d/00-partof-unbound.conf"
-#    notify:
-#      - daemon-reload
-#      - restart systemd-resolved
-#
-#  - name: systemctl daemon-reload
-#    command: systemctl daemon-reload
-#
-  
+  - name: create /etc/systemd/system/unbound.service.d
+    file:
+      path="/etc/systemd/system/unbound.service.d"
+      state="directory"
+
+  - name: create /etc/systemd/system/systemd-resolved.service.d
+    file:
+      dest="/etc/systemd/system/systemd-resolved.service.d"
+      state="directory"
+
+  - name: copy 00-partof-systemd-resolved.conf
+    copy:
+      dest="/etc/systemd/system/unbound.service.d/00-partof-systemd-resolved.conf"
+      src="unbound.service.d/00-partof-systemd-resolved.conf"
+    notify:
+      - daemon-reload
+      - restart unbound
+
+  - name: copy 00-partof-unbound.conf
+    copy:
+      dest="/etc/systemd/system/systemd-resolved.service.d/00-partof-unbound.conf"
+      src="systemd-resolved.service.d/00-partof-unbound.conf"
+    notify:
+      - daemon-reload
+      - restart systemd-resolved
+
   - name: copy consul config
-    copy: src=unbound.check.json dest=/etc/consul/consul.d/client/unbound.check.json
+    copy: src=unbound.check.json dest=/etc/consul/consul.d/{{ meta | replace('consul-', '') }}/unbound.check.json
     notify:
       - reload consul@client
       - reload consul@server
