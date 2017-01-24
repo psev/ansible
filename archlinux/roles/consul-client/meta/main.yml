@@ -3,4 +3,5 @@
 dependencies:
 
   - { role: "consul", meta: "consul-client"}
+  - { role: "unbound", meta: "consul-client" }
 #  - { role: consul-checks, meta: "consul-checks" }
