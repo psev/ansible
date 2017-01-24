@@ -1,6 +1,5 @@
 dependencies:
 
-  - { role: "consul", meta: "base" }
 #  - { role: "unbound", meta: "base" }
 #  - { role: "docker", meta: "base" }
 #  - { role: "influxdb-telegraf", meta: "base" }
