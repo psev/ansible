@@ -1,9 +1,10 @@
 ---
 
-dependencies:
+  dependencies:
 
-  - { role: "consul", meta: "consul-server" }
-  - { role: "unbound", meta: "consul-server" }
-#  - { role: consul-checks, meta: "consul-checks" }
-#  - { role: consul-alerts, meta: "consul-server" }
-#  - { role: systemd-logentries, meta: consul-server }
+    - { role: "consul", meta: "consul-server" }
+#   - { role: "consul-alerts", meta: "consul-server" }
+#   - { role: "consul-backup", meta: "consul-server" }
+#   - { role: "consul-checks", meta: "consul-server" }
+#   - { role: "consul-template", meta: "consul-server" }
+#   - { role: "consul-ui", meta: "consul-server" }
