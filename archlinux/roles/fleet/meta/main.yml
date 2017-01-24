@@ -2,6 +2,5 @@
 
 dependencies:
 
-  - { role: base, meta: fleet }
   - { role: consul-client, meta: fleet }
   - { role: systemd-logentries, meta: fleet }

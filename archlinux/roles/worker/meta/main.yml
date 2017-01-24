@@ -1,5 +1,0 @@
-dependencies:
-
-  - { role: base, meta: worker }
-  - { role: consul-client, meta: worker }
-  - { role: fleet, meta: worker }
