@@ -13,5 +13,3 @@ ExecStartPre=-/usr/bin/git clone ${ANSIBLE_REPO} /root/ansible
 ExecStartPre=/usr/bin/git -C /root/ansible pull
 
 ExecStart=/usr/bin/ansible-playbook -i /root/ansible/inventory /root/ansible/archlinux/configure.yml -t ${ROLE} -e "ansible_python_interpreter=/usr/bin/python2"
-
-ExecStartPost=/usr/bin/systemctl restart systemd-resolved
