@@ -2,5 +2,5 @@
 
   dependencies:
 
-    - { role: "docker", meta: "consul" }
     - { role: "unbound", meta: "consul" }
+    - { role: "docker", meta: "consul" }
