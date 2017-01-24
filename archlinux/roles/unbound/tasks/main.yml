@@ -1,12 +1,16 @@
 ---
 
   - name: install unbound
-    pacman: name=unbound state=present
+    pacman:
+      name="unbound"
+      state="present"
     notify:
       - start unbound
 
   - name: template config
-    template: src=unbound.conf.j2 dest=/etc/unbound/unbound.conf
+    template:
+      src="unbound.conf.j2"
+      dest="/etc/unbound/unbound.conf"
     notify:
       - reload unbound
 
@@ -20,24 +24,26 @@
       dest="/etc/systemd/system/systemd-resolved.service.d"
       state="directory"
 
-  - name: copy 00-partof-systemd-resolved.conf
+  - name: copy 00-unit.conf
     copy:
-      dest="/etc/systemd/system/unbound.service.d/00-partof-systemd-resolved.conf"
-      src="unbound.service.d/00-partof-systemd-resolved.conf"
+      dest="/etc/systemd/system/unbound.service.d/00-unit.conf"
+      src="unbound.service.d/00-unit.conf"
     notify:
       - daemon-reload
-      - restart unbound
+      - restart consul@{{ meta | replace('consul-', '') }}
 
-  - name: copy 00-partof-unbound.conf
+  - name: copy 00-unit.conf
     copy:
-      dest="/etc/systemd/system/systemd-resolved.service.d/00-partof-unbound.conf"
-      src="systemd-resolved.service.d/00-partof-unbound.conf"
+      dest="/etc/systemd/system/systemd-resolved.service.d/00-unit.conf"
+      src="systemd-resolved.service.d/00-unit.conf"
     notify:
       - daemon-reload
-      - restart systemd-resolved
+      - restart consul@{{ meta | replace('consul-', '') }}
 
   - name: copy consul config
-    copy: src=unbound.check.json dest=/etc/consul/consul.d/{{ meta | replace('consul-', '') }}/unbound.check.json
+    copy:
+      src="unbound.check.json"
+      dest=""/etc/consul/consul.d/{{ meta | replace('consul-', '') }}/unbound.check.json"
     notify:
       - reload consul@client
       - reload consul@server
