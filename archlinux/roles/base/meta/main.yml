@@ -2,4 +2,3 @@ dependencies:
 
 #  - { role: "docker", meta: "base" }
 #  - { role: "influxdb-telegraf", meta: "base" }
-  - { role: "tmpwatch", meta: "base" }
