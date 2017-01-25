@@ -17,6 +17,9 @@
 
 - name: install docker
   pacman: name=/tmp/docker.pkg.tar.xz state=present
+  notify:
+    - enable docker
+    - start docker
 
 - name: remove runc package
   command: rm /tmp/runc.pkg.tar.xz
@@ -50,9 +53,6 @@
   copy: src=docker-prune.timer dest=/etc/systemd/system/docker-prune.timer
   notify:
     - daemon-reload
-
-- name: enable and start docker
-  service: name=docker enabled=yes state=started
 
 - name: enable and start the timer
   service: name=docker-prune.timer enabled=yes state=started

@@ -1,4 +1,10 @@
 ---
 
+  - name: enable docker
+    command: systemctl enable docker
+
+  - name: start docker
+    command: systemctl start docker
+
   - name: restart docker
     command: systemctl restart docker
