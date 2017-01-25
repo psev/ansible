@@ -5,6 +5,3 @@
 
 - name: copy bootstrap.json
   copy: src=bootstrap.json dest=/etc/consul/consul.d/bootstrap/bootstrap.json mode=0740 owner=consul group=root
-
-- name: enable consul@server
-  command: systemctl enable consul@server
