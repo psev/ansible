@@ -5,7 +5,7 @@ After=environment.service
 
 [Service]
 Type=oneshot
-RemainAfterExit=true
+#RemainAfterExit=true
 
 EnvironmentFile=/etc/environment
 EnvironmentFile=/etc/environment.network
