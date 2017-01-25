@@ -11,7 +11,7 @@
 
     roles:
 
-      # include the daemon-reload handler first
+      # include systemd handlers first (i.e. daemon-reload)
       - { role: systemd, tags: [ "systemd" ] }
 
       # meta roles
@@ -31,6 +31,6 @@
         command: systemctl restart unbound
         tags: [ "configure" ]
 
-      - name: restart systemd-networkd
-        command: systemctl restart systemd-networkd
+      - name: restart systemd-resolved
+        command: systemctl restart systemd-resolved
         tags: [ "configure" ]
