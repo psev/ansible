@@ -28,5 +28,7 @@
     post_tasks:
 
       - name: restart systemd-resolved
-        command: systemctl restart systemd-resolved
+        service:
+          name="systemd-resolved"
+          state="restarted"
         tags: [ "configure" ]
