@@ -32,3 +32,9 @@
           name="systemd-resolved"
           state="restarted"
         tags: [ "configure" ]
+
+      - name: stop configure
+        service:
+          name="configure"
+          state="stopped"
+        tags: [ "configure" ]
