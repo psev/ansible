@@ -14,14 +14,9 @@
     notify:
       - reload unbound
 
-#  - name: create /etc/systemd/system/unbound.service.d
-#    file:
-#      path="/etc/systemd/system/unbound.service.d"
-#      state="directory"
-#
-  - name: create /etc/systemd/system/systemd-resolved.service.d
+  - name: create /etc/systemd/system/unbound.service.d
     file:
-      dest="/etc/systemd/system/systemd-resolved.service.d"
+      path="/etc/systemd/system/unbound.service.d"
       state="directory"
 
   - name: copy 00-unit.conf
@@ -31,6 +26,11 @@
     notify:
       - daemon-reload
       - restart unbound
+
+#  - name: create /etc/systemd/system/systemd-resolved.service.d
+#    file:
+#      dest="/etc/systemd/system/systemd-resolved.service.d"
+#      state="directory"
 #
 #  - name: copy 00-unit.conf
 #    copy:
