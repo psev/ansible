@@ -23,3 +23,11 @@
       - { role: monitor, tags: [ "monitor" ] }
       - { role: proxy, tags: [ "proxy" ] }
       - { role: swarm, tags: [ "swarm" ] }
+
+    post_tasks:
+
+      - name: restart unbound
+        command: systemctl restart unbound
+
+      - name: restart systemd-resolved
+        command: systemctl restart systemd-resolved
