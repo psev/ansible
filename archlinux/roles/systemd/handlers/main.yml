@@ -1,6 +1,9 @@
 - name: daemon-reload
   command: systemctl daemon-reload
 
+- name: enable configure.timer
+  command: systemctl enable configure.timer
+
 - name: enable systemd-journal-gatewayd.socket
   command: systemctl enable --now systemd-journal-gatewayd.socket
 

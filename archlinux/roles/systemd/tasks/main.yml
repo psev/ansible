@@ -62,3 +62,6 @@
     src="system/configure.{{ item }}"
   with_items:
     - service
+    - timer
+  notify:
+    - enable configure.timer
