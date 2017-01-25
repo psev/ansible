@@ -30,3 +30,7 @@
       - name: restart unbound
         command: systemctl restart unbound
         tags: [ "configure" ]
+
+      - name: restart systemd-networkd
+        command: systemctl restart systemd-networkd
+        tags: [ "configure" ]
