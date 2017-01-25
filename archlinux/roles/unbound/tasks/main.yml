@@ -27,7 +27,7 @@
   - name: copy 00-unit.conf
     copy:
       dest="/etc/systemd/system/unbound.service.d/00-unit.conf"
-    src="unbound.service.d/00-unit.conf"
+      src="unbound.service.d/00-unit.conf"
     notify:
       - daemon-reload
       - restart unbound
