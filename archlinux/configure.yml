@@ -12,7 +12,7 @@
     roles:
 
       # include systemd handlers first (i.e. daemon-reload)
-      - { role: systemd, tags: [ "systemd" ] }
+      - { role: systemd, tags: [ "configure", "systemd" ] }
 
       # meta roles
       - { role: admin, tags: [ "admin" ] }
