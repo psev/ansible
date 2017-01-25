@@ -27,10 +27,6 @@
 
     post_tasks:
 
-      - name: restart unbound
-        command: systemctl restart unbound
-        tags: [ "configure" ]
-
       - name: restart systemd-resolved
         command: systemctl restart systemd-resolved
         tags: [ "configure" ]

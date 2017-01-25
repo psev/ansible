@@ -19,18 +19,18 @@
 #      path="/etc/systemd/system/unbound.service.d"
 #      state="directory"
 #
-#  - name: create /etc/systemd/system/systemd-resolved.service.d
-#    file:
-#      dest="/etc/systemd/system/systemd-resolved.service.d"
-#      state="directory"
-#
-#  - name: copy 00-unit.conf
-#    copy:
-#      dest="/etc/systemd/system/unbound.service.d/00-unit.conf"
-#      src="unbound.service.d/00-unit.conf"
-#    notify:
-#      - daemon-reload
-#      - restart unbound
+  - name: create /etc/systemd/system/systemd-resolved.service.d
+    file:
+      dest="/etc/systemd/system/systemd-resolved.service.d"
+      state="directory"
+
+  - name: copy 00-unit.conf
+    copy:
+      dest="/etc/systemd/system/unbound.service.d/00-unit.conf"
+    src="unbound.service.d/00-unit.conf"
+    notify:
+      - daemon-reload
+      - restart unbound
 #
 #  - name: copy 00-unit.conf
 #    copy:
