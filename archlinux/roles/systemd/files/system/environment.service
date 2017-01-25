@@ -2,7 +2,6 @@
 Description=Generate Environment files
 After=systemd-resolved.service network-online.target
 Requires=systemd-resolved.service network-online.target
-PartOf=systemd-resolved.service
 
 [Service]
 Type=oneshot
