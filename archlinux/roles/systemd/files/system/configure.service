@@ -4,6 +4,7 @@ Requires=environment.service
 After=environment.service
 
 [Service]
+Type=oneshot
 RemainAfterExit=true
 
 EnvironmentFile=/etc/environment
