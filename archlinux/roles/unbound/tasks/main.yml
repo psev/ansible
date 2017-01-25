@@ -30,7 +30,7 @@
       src="unbound.service.d/00-unit.conf"
     notify:
       - daemon-reload
-      - restart consul@{{ meta | replace('consul-', '') }}
+      - restart unbound
 
   - name: copy 00-unit.conf
     copy:
@@ -38,7 +38,7 @@
       src="systemd-resolved.service.d/00-unit.conf"
     notify:
       - daemon-reload
-      - restart consul@{{ meta | replace('consul-', '') }}
+      - restart unbound
 
   - name: copy consul config
     copy:
