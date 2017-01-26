@@ -33,8 +33,8 @@
           state="restarted"
         tags: [ "configure" ]
 
-#      - name: stop configure
-#        service:
-#          name="configure"
-#          state="stopped"
-#        tags: [ "configure" ]
+      - name: stop configure
+        service:
+          name="configure"
+          state="stopped"
+        tags: [ "configure" ]
