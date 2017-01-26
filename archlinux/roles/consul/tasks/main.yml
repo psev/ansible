@@ -68,5 +68,6 @@
       src="consul.service.tpl"
       dest="/etc/systemd/system/consul.service"
     notify:
+      - daemon-reload
       - enable consul
       - start consul
