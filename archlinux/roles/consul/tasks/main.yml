@@ -33,7 +33,7 @@
       - /run/consul
       - /var/consul
 
-  - name: copy consul@.service
-    copy:
+  - name: template consul@.service
+    template:
       dest="/etc/systemd/system/consul@.service"
-      src="consul@.service"
+      src="consul@.service.tpl"
