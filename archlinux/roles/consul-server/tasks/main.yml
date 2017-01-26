@@ -1,7 +1,7 @@
 ---
 
   - name: set server to true
-    lineinfile: >
+    lineinfile: |
       path="/etc/consul/agent/config.json"
-      regexp="^\s+\"server\"\:.*"
+      regexp="^\s+\\"server\\"*"
       line="  \"server\": true,"
