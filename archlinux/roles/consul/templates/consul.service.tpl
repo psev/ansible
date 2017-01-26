@@ -1,7 +1,6 @@
 [Unit]
 Description=Consul Agent
-After=environment.service
-Requires=environment.service
+Before=systemd-resolved.service
 
 [Service]
 PermissionsStartOnly=true
