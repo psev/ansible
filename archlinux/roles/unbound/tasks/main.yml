@@ -43,7 +43,6 @@
   - name: copy consul config
     copy:
       src="unbound.check.json"
-      dest="/etc/consul/consul.d/{{ meta | replace('consul-', '') }}/unbound.check.json"
+      dest="/etc/consul/agent/unbound.check.json"
     notify:
-      - reload consul@client
-      - reload consul@server
+      - reload consul
