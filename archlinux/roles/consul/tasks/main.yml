@@ -28,8 +28,6 @@
       - /etc/consul
       - /etc/consul/agent
       - /etc/consul/ui
-      - /run/consul
-      - /var/consul
 
   - name: template config.json
     template:
