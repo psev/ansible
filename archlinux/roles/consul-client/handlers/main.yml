@@ -1,5 +1,11 @@
 ---
 
+  - name: enable consul@client
+    command: systemctl enable consul@client
+
+  - name: start consul@client
+    command: systemctl start consul@client
+
   - name: restart consul@client
     command: systemctl restart consul@client
 

@@ -1,7 +1,15 @@
 ---
 
 - name: copy client.json
-  copy: src=client.json dest=/etc/consul/consul.d/client/client.json mode=0740 owner=consul group=root
+  copy:
+    src="client.json"
+    dest="/etc/consul/consul.d/client/client.json"
+    mode="0740"
+    owner="consul"
+    group="root"
+  notify:
+    - enable consul@client
+    - start consul@client
 
 - name: enable consul@client
   service: name=consul@client enabled=yes state=started
