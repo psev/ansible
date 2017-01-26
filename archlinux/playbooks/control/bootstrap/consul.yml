@@ -31,7 +31,7 @@
           name="/etc/consul/agent/config.json"
           regexp="^\s+\\"bootstrap_expect\\"*"
           line="  \"bootstrap_expect\": "3","
-          insertafter="{"
+          insertafter="^\{.*"
 
       - name: bootstrap consul cluster
         service:
