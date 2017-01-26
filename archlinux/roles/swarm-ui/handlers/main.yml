@@ -1,4 +1,11 @@
 ---
 
+  - name: enable swarm-ui
+    service:
+      name="swarm-ui"
+      enabled="yes"
+
   - name: restart swarm-ui
-    command: systemctl restart swarm-ui
+    service:
+      name="swarm-ui"
+      state="restarted"

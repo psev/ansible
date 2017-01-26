@@ -1,20 +1,17 @@
 ---
 
-  - name: copy swarm-ui systemd service file
+  - name: template swarm-ui systemd service file
     template:
       src="swarm-ui.service.tpl"
       dest="/etc/systemd/system/swarm-ui.service"
     notify:
       - daemon-reload
+      - enable swarm-ui
       - restart swarm-ui
-
-  - name: enable and start swarm-ui
-    command: systemctl enable --now swarm-ui
 
   - name: template swarm-ui consul service definition
     template:
       src="swarm-ui.service.json.tpl"
-      dest="/etc/consul/consul.d/client/swarm-ui.service.json"
+      dest="/etc/consul/agent/swarm-ui.service.json"
     notify:
-      - reload consul@client
-      - reload consul@server
+      - reload consul
