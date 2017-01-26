@@ -3,9 +3,9 @@
   - name: copy consul from s3
     s3:
       bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
-      mode="get"
-      dest="/tmp/consul.pkg.tar.xz"
       object="/consul-{{ package_version }}-x86_64.pkg.tar.xz"
+      dest="/tmp/consul.pkg.tar.xz"
+      mode="get"
 
   - name: install consul
     command: pacman --noconfirm -U /tmp/consul.pkg.tar.xz
@@ -35,5 +35,8 @@
 
   - name: template consul@.service
     template:
-      dest="/etc/systemd/system/consul@.service"
       src="consul@.service.tpl"
+      dest="/etc/systemd/system/consul@.service"
+    notify:
+      - daemon-reload
+      - restart consul@client
