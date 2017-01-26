@@ -5,4 +5,5 @@
     - { role: "consul", meta: "consul-client"}
     - { role: "unbound", meta: "consul-client" }
     - { role: "docker", meta: "consul-client" }
-#    - { role: "consul-checks", meta: "consul-client" }
+
+    - { role: "consul-template", meta: "consul-server" }
