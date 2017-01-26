@@ -1,6 +1,6 @@
 ---
 
-  - name: enable consul
+  - name: enable and start consul
     service:
       name="consul"
       enabled="yes"

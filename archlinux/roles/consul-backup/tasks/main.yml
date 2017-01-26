@@ -25,7 +25,7 @@
   - name: copy consul-backup consul check
     copy:
       src="consul-backup.check.json"
-      dest="/etc/consul/consul.d/client/consul-backup.check.json"
+      dest="/etc/consul/agent/consul-backup.check.json"
     notify:
       - reload consul@client
       - reload consul@server

@@ -3,17 +3,23 @@
 - name: copy check_mem
   copy: src=check_mem dest=/usr/local/bin/check_mem mode=755
 
-- name: copy mem-check
-  copy: src=memory.json dest=/etc/consul/consul.d/client/memory.json
+- name: copy consul memory check definition
+  copy:
+    src="memory.check.json"
+    dest="/etc/consul/agent/memory.check.json"
   notify:
-    - reload consul@client
+    - reload consul
 
-- name: copy disk-check
-  copy: src=disk.json dest=/etc/consul/consul.d/client/disk.json
+- name: copy consul disk check definition
+  copy:
+    src="disk.check.json"
+    dest="/etc/consul/agent/disk.check.json"
   notify:
-    - reload consul@client
+    - reload consul
 
-- name: copy load-check
-  copy: src=load.json dest=/etc/consul/consul.d/client/load.json
+- name: copy consul load check defininiot
+  copy:
+    src="load.check.json"
+    dest="/etc/consul/agent/load.check.json"
   notify:
-    - reload consul@client
+    - reload consul
