@@ -51,7 +51,7 @@
   - name: template influxdb-relay http and udp consul service files
     template:
       src="influxdb-relay-{{ item }}.service.json.tpl"
-      dest="/etc/consul/consul.d/client/influxdb-relay-{{ item }}.service.json"
+      dest="/etc/consul/agent/influxdb-relay-{{ item }}.service.json"
     items:
       - http
       # - udp
