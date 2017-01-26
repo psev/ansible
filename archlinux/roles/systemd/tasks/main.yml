@@ -16,6 +16,8 @@
     src="system/environment.service"
   notify:
     - daemon-reload
+    - enable environment.service
+    - restart environment.service
 
 - file:
     dest="/etc/systemd/journald.conf.d"
