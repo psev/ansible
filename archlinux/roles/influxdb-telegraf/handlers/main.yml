@@ -2,10 +2,10 @@
 
   - name: enable influxdb-telegraf
     service:
-      name="influxdb-telegraf"
+      name="telegraf"
       enabled="yes"
 
   - name: restart influxdb-telegraf
     service:
-      name="influxdb-telegraf"
+      name="telegraf"
       state="restarted"
