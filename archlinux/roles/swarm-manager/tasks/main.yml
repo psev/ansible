@@ -8,7 +8,6 @@
   - name: template swarm-manager consul service definition
     template:
       src="swarm-manager.service.json.tpl"
-      dest="/etc/consul/consul.d/client/swarm-manager.service.json"
+      dest="/etc/consul/agent/swarm-manager.service.json"
     notify:
-      - reload consul@client
-      - reload consul@server
+      - reload consul
