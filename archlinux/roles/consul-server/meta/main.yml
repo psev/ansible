@@ -10,4 +10,4 @@
 #   - { role: "consul-backup", meta: "consul-server" }
 #   - { role: "consul-checks", meta: "consul-server" }
 #   - { role: "consul-template", meta: "consul-server" }
-   - { role: "consul-ui", meta: "consul-server" }
+    - { role: "consul-ui", meta: "consul-server" }
