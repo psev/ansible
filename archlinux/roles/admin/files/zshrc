@@ -7,9 +7,14 @@ alias swarm="docker -H tcp://swarm-manager.service.consul:4000"
 # ansible configuration alias
 alias act="ansible-configure-tail"
 
-# ansible execution command
+# ansible command
 acx() {
   ansible-cmd "Name" "${1}" "${2}"
+}
+
+# ansible shell
+ash() {
+  ansibl-shell "Name" "${1}" "${2}"
 }
 
 # run an ansible module across the current deployment
