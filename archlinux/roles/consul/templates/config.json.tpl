@@ -1,7 +1,6 @@
 {
   "server": false,
   "bootstrap": false,
-  "bootstrap_expect": 0,
   "datacenter": "{{ lookup('env', 'REGION') }}",
   "data_dir": "/var/consul",
   "log_level": "INFO",

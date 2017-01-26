@@ -31,6 +31,7 @@
           name="/etc/consul/agent/config.json"
           regexp="^\s+\\"bootstrap_expect\\"*"
           line="  \"bootstrap_expect\": "3","
+          insertafter="{"
 
       - name: bootstrap consul cluster
         service:
@@ -67,11 +68,11 @@
           regexp="^\s+\\"bootstrap\\"*"
           line="  \"bootstrap\": false,"
 
-      - name: set bootstrap_expect to 0
+      - name: remove bootstrap expect
         lineinfile: |
           name="/etc/consul/agent/config.json"
           regexp="^\s+\\"bootstrap_expect\\"*"
-          line="  \"bootstrap_expect\": "0","
+          state="absent"
 
       - name: start consul
         service:
