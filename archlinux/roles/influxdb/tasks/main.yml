@@ -33,7 +33,7 @@
   - name: template influxdb consul service
     template:
       src="influxdb-{{ item }}.service.json.tpl"
-      dest="/etc/consul/consul.d/client/influxdb-{{ item }}.service.json"
+      dest="/etc/consul/agent/influxdb-{{ item }}.service.json"
     items:
       - admin
       - http
