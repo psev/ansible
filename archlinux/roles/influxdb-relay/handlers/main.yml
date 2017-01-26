@@ -13,7 +13,7 @@
   - name: enable influxdb-relay
     service:
       name="influxdb-relay"
-      state="enabled"
+      enabled="yes"
 
   - name: restart influxdb-relay
     service:
