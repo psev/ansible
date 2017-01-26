@@ -3,9 +3,9 @@
   - name: copy influxdb-relay from s3
     s3:
       bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
-      mode="get"
+      object="/influxdb-relay-{{ package_version }}-x86_64.pkg.tar.xz"
       dest="/tmp/influxdb-relay.pkg.tar.xz"
-      object="/influxdb-relay-0.0.1-1-x86_64.pkg.tar.xz"
+      mode="get"
 
   - name: install influxdb-relay
     command: pacman --noconfirm -U /tmp/influxdb-relay.pkg.tar.xz

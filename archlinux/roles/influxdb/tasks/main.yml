@@ -3,9 +3,9 @@
   - name: copy influxdb from s3
     s3:
       bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
-      mode="get"
+      object="/influxdb-{{ package_version }}-x86_64.pkg.tar.xz"
       dest="/tmp/influxdb.pkg.tar.xz"
-      object="/influxdb-1.0.2-2-x86_64.pkg.tar.xz"
+      mode="get"
 
   - name: install influxdb
     command: pacman --noconfirm -U /tmp/influxdb.pkg.tar.xz

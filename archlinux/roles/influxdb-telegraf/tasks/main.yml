@@ -3,9 +3,9 @@
   - name: copy telegraf from s3
     s3:
       bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
-      mode="get"
+      object="/telegraf-{{ package_version }}-x86_64.pkg.tar.xz"
       dest="/tmp/telegraf.pkg.tar.xz"
-      object="/telegraf-1.0.1-1-x86_64.pkg.tar.xz"
+      mode="get"
 
   - name: install telegraf
     command: pacman --noconfirm -U /tmp/telegraf.pkg.tar.xz
@@ -24,6 +24,6 @@
   - name: copy influxdb-telegraf consul check
     copy:
       src="influxdb-telegraf.check.json"
-      dest="/etc/consul/consul.d/client/influxdb-telegraf.check.json"
+      dest="/etc/consul/agent/influxdb-telegraf.check.json"
     notify:
       - reload consul
