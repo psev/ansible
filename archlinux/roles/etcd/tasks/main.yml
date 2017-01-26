@@ -3,7 +3,7 @@
   - name: copy etcd binary
     copy:
       dest="/tmp/etcd.pkg.tar.xz"
-      src="etcd-bin-3.0.4-1-x86_64.pkg.tar.xz"
+      src="etcd-bin-{{ package_version }}-x86_64.pkg.tar.xz"
 
   - name: install etcd binary
     command: pacman --noconfirm -U /tmp/etcd.pkg.tar.xz
@@ -38,6 +38,6 @@
   - name: template etcd consul service file
     template:
       src="etcd-server.service.json.tpl"
-      dest="/etc/consul/consul.d/client/etcd-server.service.json"
+      dest="/etc/consul/agent/etcd-server.service.json"
     notify:
-      - reload consul@client
+      - reload consul
