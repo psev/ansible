@@ -60,7 +60,6 @@
     - daemon-reload
 
 - name: copy consul config
-  copy: src=docker.check.json dest=/etc/consul/consul.d/{{ meta | replace('consul-', '') }}/docker.check.json
+  copy: src=docker.check.json dest=/etc/consul/agent/docker.check.json
   notify:
-    - reload consul@client
-    - reload consul@server
+    - reload consul
