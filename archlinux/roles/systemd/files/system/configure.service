@@ -16,3 +16,6 @@ ExecStartPre=/usr/bin/git -C /root/ansible checkout ${DEPLOY}
 ExecStartPre=/usr/bin/git -C /root/ansible pull
 
 ExecStart=/usr/bin/ansible-playbook -i /root/ansible/inventory /root/ansible/archlinux/configure.yml -t "configure,${ROLE}" -e "ansible_python_interpreter=/usr/bin/python2"
+
+[Install]
+WantedBy=multi-user.target

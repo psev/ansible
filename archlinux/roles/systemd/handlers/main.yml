@@ -1,8 +1,8 @@
 - name: daemon-reload
   command: systemctl daemon-reload
 
-- name: enable configure.timer
-  command: systemctl enable configure.timer
+- name: enable configure
+  command: systemctl enable configure
 
 - name: enable environment.service
   command: systemctl enable environment.service
