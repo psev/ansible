@@ -4,12 +4,15 @@ Requires=environment.service
 After=environment.service
 
 [Service]
+Type=oneshot
 RemainAfterExit=true
 
 EnvironmentFile=/etc/environment
 EnvironmentFile=/etc/environment.network
 
 ExecStartPre=-/usr/bin/git clone ${ANSIBLE_REPO} /root/ansible
+ExecStartPre=/usr/bin/git -C /root/ansible fetch
+ExecStartPre=/usr/bin/git -C /root/ansible checkout ${DEPLOY}
 ExecStartPre=/usr/bin/git -C /root/ansible pull
 
 ExecStart=/usr/bin/ansible-playbook -i /root/ansible/inventory /root/ansible/archlinux/configure.yml -t "configure,${ROLE}" -e "ansible_python_interpreter=/usr/bin/python2"
