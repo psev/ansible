@@ -14,7 +14,6 @@
   - name: template admin consul service definition
     template:
       src="admin.service.json.tpl"
-      dest="/etc/consul/consul.d/client/admin.service.json"
+      dest="/etc/consul/agent/admin.service.json"
     notify:
-      - reload consul@client
-      - reload consul@server
+      - reload consul
