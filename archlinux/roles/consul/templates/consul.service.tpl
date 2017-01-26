@@ -1,6 +1,7 @@
 [Unit]
 Description=Consul Agent
-Before=systemd-resolved.service
+Requires=systemd-resolved.service unbound.service
+Before=systemd-resolved.service unbound.service
 
 [Service]
 PermissionsStartOnly=true
