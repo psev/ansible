@@ -4,5 +4,5 @@ dependencies:
   - { role: "influxdb-chronograf", meta: "admin" }
 #  - { role: "influxdb-kapacitor", meta: "admin" }
   - { role: "influxdb-telegraf", meta: "admin" }
-#  - { role: "swarm-ui", meta: "admin" }
+  - { role: "swarm-ui", meta: "admin" }
 #  - { role: "systemd-logentries", meta: "admin" }
