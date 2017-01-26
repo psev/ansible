@@ -25,18 +25,18 @@
       owner="consul"
       group="consul"
     with_items:
-      - /etc/consul/consul.d
-      - /etc/consul/consul.d/client
-      - /etc/consul/consul.d/server
-      - /etc/consul/consul.d/bootstrap
+      - /etc/consul
+      - /etc/consul/agent
       - /etc/consul/ui
       - /run/consul
       - /var/consul
 
-  - name: template consul@.service
+  - name: template config.json
     template:
-      src="consul@.service.tpl"
-      dest="/etc/systemd/system/consul@.service"
-    notify:
-      - daemon-reload
-      - restart consul@client
+      src="config.json.tpl"
+      dest="/etc/consul/agent/config.json"
+
+  - name: template consul.service
+    template:
+      src="consul.service.tpl"
+      dest="/etc/systemd/system/consul.service"
