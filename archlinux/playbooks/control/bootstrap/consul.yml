@@ -10,7 +10,10 @@
           state="stopped"
 
       - name: clear raft data
-        shell: rm -rf /var/consul/raft/*
+        file:
+          path="/var/consul/raft"
+          state="absent"
+          recurse="yes"
 
       - name: set server to false
         lineinfile: |
