@@ -1,9 +1,9 @@
 ---
 
-  - name: copy consul-alerts service file
-    copy:
+  - name: template consul-alerts service file
+    template:
+      src="consul-alerts.service.tpl"
       dest="/etc/systemd/system/consul-alerts.service"
-      src="consul-alerts.service"
     notify:
       - daemon-reload
       - restart consul-alerts
