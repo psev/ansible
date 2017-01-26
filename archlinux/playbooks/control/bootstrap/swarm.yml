@@ -9,9 +9,6 @@
           name="swarm-manager"
           state="stopped"
 
-      - name: systemctl daemon-reload
-        command: systemctl daemon-reload
-
       - name: enable and start swarm-manager
         service:
           name="swarm-manager"
