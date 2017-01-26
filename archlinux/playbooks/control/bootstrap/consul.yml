@@ -13,7 +13,6 @@
         file:
           path="/var/consul/raft"
           state="absent"
-          recurse="yes"
 
       - name: set server to false
         lineinfile: |
