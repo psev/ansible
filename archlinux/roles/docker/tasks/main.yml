@@ -30,9 +30,6 @@
 - name: remove docker package
   command: rm /tmp/docker.pkg.tar.xz
 
-#- name: install docker
-#  pacman: name=docker state=present
-
 - name: load overlay module
   command: modprobe overlay
 
