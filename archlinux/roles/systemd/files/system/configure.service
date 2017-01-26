@@ -1,7 +1,7 @@
 [Unit]
 Description=Ansible Configure
-Requires=environment.service
-After=environment.service
+Requires=environment.service network-online.target
+After=environment.service network-online.target
 
 [Service]
 Type=oneshot
