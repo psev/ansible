@@ -1,7 +1,7 @@
 {
   "server": false,
   "bootstrap": false,
-  "datacenter": "{{ lookup('env', 'INDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ lookup('env', 'REGION') }}",
+  "datacenter": "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ lookup('env', 'REGION') }}",
   "data_dir": "/var/consul",
   "log_level": "INFO",
   "start_join": [
