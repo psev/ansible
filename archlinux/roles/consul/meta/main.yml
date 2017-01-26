@@ -1,6 +1,0 @@
----
-
-  dependencies:
-
-    - { role: "unbound", meta: "consul" }
-    - { role: "docker", meta: "consul" }
