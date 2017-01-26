@@ -14,12 +14,6 @@
           path="/var/consul/raft"
           state="absent"
 
-      - name: set server to false
-        lineinfile: |
-          name="/etc/consul/agent/config.json"
-          regexp="^\s+\\"server\\"*"
-          line="  \"server\": false,"
-
       - name: set bootstrap to true
         lineinfile: |
           name="/etc/consul/agent/config.json"
@@ -55,12 +49,6 @@
 
       - name: settle...
         pause: seconds=5
-
-      - name: set server to true
-        lineinfile: |
-          name="/etc/consul/agent/config.json"
-          regexp="^\s+\\"server\\"*"
-          line="  \"server\": true,"
 
       - name: set bootstrap to false
         lineinfile: |
