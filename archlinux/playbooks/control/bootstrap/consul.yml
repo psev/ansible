@@ -4,22 +4,19 @@
 
     tasks:
 
-      - name: stop consul@bootstrap
+      - name: stop consul
         service:
-          name="consul@bootstrap"
-          state="stopped"
-
-      - name: stop consul@server
-        service:
-          name="consul@server"
+          name="consul"
           state="stopped"
 
       - name: clear raft data
         shell: rm -rf /var/consul/raft/*
 
+      # TODO: configure /etc/consul/agent/config.json
+
       - name: bootstrap consul cluster
         service:
-          name="consul@bootstrap"
+          name="consul"
           state="started"
 
       - name: settle...
@@ -32,37 +29,21 @@
 
     tasks:
 
-      - name: stop consul@bootstrap
+      - name: stop consul
         service:
-          name="consul@bootstrap"
+          name="consul"
           state="stopped"
-          enabled="no"
 
       - name: settle...
         pause: seconds=5
 
-      - name: start consul@server
+      # TODO: configure /etc/consul/agent/config.json
+
+      - name: start consul
         service:
-          name="consul@server"
+          name="consul"
           state="started"
           enabled="yes"
 
       - name: settle...
         pause: seconds=5
-
-
-#  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
-#
-#    tasks:
-#
-#      - name: restore consul kv
-#        service:
-#          name="consul-restore"
-#          state="started"
-#          enabled="yes"
-#
-#      - name: start consul alerts
-#        service:
-#          name="consul-alerts"
-#          state="started"
-#          enabled="yes"

@@ -1,0 +1,17 @@
+---
+
+  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+
+    tasks:
+
+      - name: restore consul kv
+        service:
+          name="consul-restore"
+          state="started"
+          enabled="yes"
+
+      - name: start consul alerts
+        service:
+          name="consul-alerts"
+          state="started"
+          enabled="yes"
