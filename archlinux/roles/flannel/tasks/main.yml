@@ -3,7 +3,7 @@
   - name: copy flannel binary package
     copy:
       dest="/tmp/flannel.tar.pkg.xz"
-      src="flannel-0.5.5-1-x86_64.pkg.tar.xz"
+      src="flannel-{{ package_version }}-x86_64.pkg.tar.xz"
 
   - name: install flannel
     command: pacman --noconfirm -U /tmp/flannel.tar.pkg.xz
