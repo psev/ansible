@@ -40,3 +40,6 @@
     template:
       src="consul.service.tpl"
       dest="/etc/systemd/system/consul.service"
+    notify:
+      - enable consul
+      - start consul
