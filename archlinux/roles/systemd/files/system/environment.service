@@ -1,13 +1,13 @@
 [Unit]
 Description=Generate Environment files
-After=systemd-networkd.service
-Requires=systemd-networkd.service
+After=network-online.target
+Requires=network-online.target
 
 [Service]
-#Type=oneshot
+Type=oneshot
 RemainAfterExit=true
-Restart=on-failure
-RestartSec=5
+#Restart=on-failure
+#RestartSec=5
 
 ExecStart=/usr/local/bin/environment.py
 
