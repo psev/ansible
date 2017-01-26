@@ -4,10 +4,10 @@ Requires=environment.service
 After=environment.service
 
 [Service]
-#Type=oneshot
 RemainAfterExit=true
 
 EnvironmentFile=/etc/environment
+EnvironmentFile=/etc/environment.network
 
 ExecStartPre=-/usr/bin/git clone ${ANSIBLE_REPO} /root/ansible
 ExecStartPre=/usr/bin/git -C /root/ansible pull
