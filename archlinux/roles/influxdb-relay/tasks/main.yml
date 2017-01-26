@@ -38,7 +38,6 @@
       dest="/etc/systemd/system/influxdb-relay.service"
     notify:
       - daemon-reload
-      - enable influxdb-relay
       - restart influxdb-relay
 
   - name: template influxdb-relay consul-template template
@@ -47,6 +46,12 @@
       dest="/etc/consul-template/template/influxdb-relay.toml"
     notify:
       - reload consul-template@influxdb-relay
+
+  - name: enable and start influxdb-relay
+    service:
+      name="influxdb-relay"
+      state="started"
+      enabled="yes"
 
   - name: template influxdb-relay http and udp consul service files
     template:
