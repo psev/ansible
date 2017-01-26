@@ -11,13 +11,11 @@
     src="environment.py"
     mode="0700"
 
-- command: /usr/local/bin/environment.py
-
-#- copy:
-#    dest="/etc/systemd/system/environment.service"
-#    src="system/environment.service"
-#  notify:
-#    - daemon-reload
+- copy:
+    dest="/etc/systemd/system/environment.service"
+    src="system/environment.service"
+  notify:
+    - daemon-reload
 
 - file:
     dest="/etc/systemd/journald.conf.d"
