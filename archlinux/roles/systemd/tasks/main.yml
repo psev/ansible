@@ -14,6 +14,8 @@
 - copy:
     dest="/etc/systemd/system/environment.service"
     src="system/environment.service"
+  notify:
+    - daemon-reload
 
 - file:
     dest="/etc/systemd/journald.conf.d"
@@ -64,4 +66,5 @@
     - service
     - timer
   notify:
+    - daemon-reload
     - enable configure.timer
