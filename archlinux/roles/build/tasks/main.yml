@@ -26,7 +26,6 @@
   - name: template build consul service definition
     template:
       src="build.service.json.tpl"
-      dest="/etc/consul/consul.d/client/build.service.json"
+      dest="/etc/consul/agent/build.service.json"
     notify:
-      - reload consul@client
-      - reload consul@server
+      - reload consul
