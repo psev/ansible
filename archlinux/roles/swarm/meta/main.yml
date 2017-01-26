@@ -3,6 +3,7 @@
 
     - { role: consul-client, meta: swarm }
 
-    - { role: flannel, meta: swarm }
-    - { role: swarm-agent, meta: swarm }
+    - { role: "influxdb-telegraf", meta: "control" }
+    - { role: "flannel", meta: "control" }
+    - { role: "swarm-agent", meta: "control" }
   #  - { role: systemd-logentries, meta: swarm }
