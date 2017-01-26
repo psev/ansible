@@ -1,7 +1,7 @@
 [Unit]
 Description=Generate Environment files
-After=systemd-resolved.service systemd-networkd-wait-online.service network-online.target
-Requires=systemd-resolved.service systemd-networkd-wait-online.service network-online.target
+After=systemd-resolved.service systemd-networkd-wait-online.service
+Requires=systemd-resolved.service systemd-networkd-wait-online.service
 
 [Service]
 Type=oneshot
