@@ -3,15 +3,7 @@
 - name: copy client ui config
   copy:
     src="ui.json"
-    dest="/etc/consul/consul.d/client/ui.json"
-    mode="0740"
-    owner="consul"
-    group="root"
-
-- name: copy server ui config
-  copy:
-    src="ui.json"
-    dest="/etc/consul/consul.d/server/ui.json"
+    dest="/etc/consul/agent/ui.json"
     mode="0740"
     owner="consul"
     group="root"
@@ -24,7 +16,6 @@
 - name: template consul-ui consul service file
   template:
     src="consul-ui.service.json.tpl"
-    dest="/etc/consul/consul.d/client/consul-ui.service.json"
+    dest="/etc/consul/agent/consul-ui.service.json"
   notify:
-    - reload consul@server
-    - reload consul@client
+    - reload consul
