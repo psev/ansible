@@ -1,0 +1,11 @@
+---
+
+  - name: enable chronograf
+    service:
+      name="chronograf"
+      enabled="yes"
+
+  - name: restart chronograf
+    service:
+      name="chronograf"
+      state="restarted"

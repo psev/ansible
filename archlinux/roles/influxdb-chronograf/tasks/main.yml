@@ -3,9 +3,9 @@
   - name: copy chronograf from s3
     s3:
       bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
-      mode="get"
+      object="/chronograf-{{ package_version }}-x86_64.pkg.tar.xz"
       dest="/tmp/chronograf.pkg.tar.xz"
-      object="/chronograf-1.0.0-1-x86_64.pkg.tar.xz"
+      mode="get"
 
   - name: install chronograf
     command: pacman --noconfirm -U /tmp/chronograf.pkg.tar.xz
@@ -32,14 +32,12 @@
       dest="/etc/systemd/system/chronograf.service"
     notify:
       - daemon-reload
+      - enable chronograf
+      - restart chronograf
 
   - name: template influxdb-chronograf consul service definition
     template:
       src="influxdb-chronograf.service.json.tpl"
-      dest="/etc/consul/consul.d/client/influxdb-chronograf.service.json"
+      dest="/etc/consul/agent/influxdb-chronograf.service.json"
     notify:
-      - reload consul@client
-      - reload consul@server
-
-  - name: start and enable chronograf
-    command: systemctl enable --now chronograf
+      - reload consul
