@@ -1,4 +1,21 @@
 ---
 
+  - name: enable consul-template@influxdb-relay
+    service:
+      name="consul-template@influxdb-relay"
+      enabled="yes"
+
   - name: reload consul-template@influxdb-relay
-    command: systemctl reload consul-template@influxdb-relay
+    service:
+      name="consul-template@influxdb-relay"
+      state="reloaded"
+
+  - name: enable influxdb-relay
+    service:
+      name="influxdb-relay"
+      state="enabled"
+
+  - name: restart influxdb-relay
+    service:
+      name="influxdb-relay"
+      state="restarted"

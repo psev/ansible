@@ -1,4 +1,11 @@
 ---
 
+  - name: enable influxdb-telegraf
+    service:
+      name="influxdb-telegraf"
+      enabled="yes"
+
   - name: restart influxdb-telegraf
-    command: systemctl restart telegraf
+    service:
+      name="influxdb-telegraf"
+      state="restarted"

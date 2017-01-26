@@ -1,4 +1,11 @@
 ---
 
+  - name: enable influxdb
+    service:
+      name="infuxldb"
+      enabled="yes"
+
   - name: restart influxdb
-    command: systemctl restart influxdb
+    service:
+      name="influxdb"
+      state="restarted"

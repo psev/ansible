@@ -16,12 +16,10 @@
       dest="/etc/influxdb/influxdb.conf"
     notify:
       - daemon-reload
+      - enable influxdb
       - restart influxdb
 
-  - name: enable and start influxdb
-    command: systemctl enable --now influxdb
-
-  - name: wait until influxdb has started
+  - name: wait for influxdb to start
     wait_for:
       delay="5"
       port="8085"
@@ -40,5 +38,4 @@
       # - udp
     notify:
       - daemon-reload
-      - reload consul@client
-      - reload consul@server
+      - reload consul
