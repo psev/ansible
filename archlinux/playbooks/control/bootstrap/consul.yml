@@ -12,7 +12,23 @@
       - name: clear raft data
         shell: rm -rf /var/consul/raft/*
 
-      # TODO: configure /etc/consul/agent/config.json
+      - name: set server to false
+        lineinfile: |
+          name="/etc/consul/agent/config.json"
+          regexp="^\s+\\"server\\"*"
+          line="  \"server\": false,"
+
+      - name: set bootstrap to true
+        lineinfile: |
+          name="/etc/consul/agent/config.json"
+          regexp="^\s+\\"bootstrap\\"*"
+          line="  \"bootstrap\": true,"
+
+      - name: set bootstrap_expect to 3
+        lineinfile: |
+          name="/etc/consul/agent/config.json"
+          regexp="^\s+\\"bootstrap_expect\\"*"
+          line="  \"bootstrap_expect\": "3","
 
       - name: bootstrap consul cluster
         service:
@@ -37,7 +53,23 @@
       - name: settle...
         pause: seconds=5
 
-      # TODO: configure /etc/consul/agent/config.json
+      - name: set server to true
+        lineinfile: |
+          name="/etc/consul/agent/config.json"
+          regexp="^\s+\\"server\\"*"
+          line="  \"server\": true,"
+
+      - name: set bootstrap to false
+        lineinfile: |
+          name="/etc/consul/agent/config.json"
+          regexp="^\s+\\"bootstrap\\"*"
+          line="  \"bootstrap\": false,"
+
+      - name: set bootstrap_expect to 0
+        lineinfile: |
+          name="/etc/consul/agent/config.json"
+          regexp="^\s+\\"bootstrap_expect\\"*"
+          line="  \"bootstrap_expect\": "0","
 
       - name: start consul
         service:
