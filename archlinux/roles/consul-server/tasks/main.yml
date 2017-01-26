@@ -5,3 +5,4 @@
       name="/etc/consul/agent/config.json"
       regexp="^\s+\\"server\\"*"
       line="  \"server\": true,"
+      insertafter="^\{.*"
