@@ -3,6 +3,6 @@ dependencies:
   - { role: "consul-client", meta: "admin" }
 #  - { role: influxdb-chronograf, meta: admin }
 #  - { role: influxdb-kapacitor, meta: admin }
-#  - { role: "influxdb-telegraf", meta: "control" }
+  - { role: "influxdb-telegraf", meta: "control" }
 #  - { role: swarm-ui, meta: admin }
 #  - { role: systemd-logentries, meta: admin }
