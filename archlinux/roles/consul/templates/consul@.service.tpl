@@ -1,7 +1,7 @@
 [Unit]
 Description=Consul Agent
-Before=unbound.service
-Requires=unbound.service
+After=network-online.target
+Requires=network-online.target
 
 [Service]
 PermissionsStartOnly=true
