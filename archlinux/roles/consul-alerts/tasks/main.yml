@@ -10,8 +10,7 @@
 
   - name: copy consul config
     copy:
-      dest="/etc/consul/consul.d/client/consul-alerts.check.json"
+      dest="/etc/consul/agent/consul-alerts.check.json"
       src="consul-alerts.check.json"
     notify:
-      - reload consul@client
-      - reload consul@server
+      - reload consul

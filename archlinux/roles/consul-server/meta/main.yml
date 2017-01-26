@@ -6,8 +6,7 @@
     - { role: "unbound", meta: "consul-server" }
     - { role: "docker", meta: "consul-server" }
 
-#   - { role: "consul-alerts", meta: "consul-server" }
-#   - { role: "consul-backup", meta: "consul-server" }
-#   - { role: "consul-checks", meta: "consul-server" }
-#   - { role: "consul-template", meta: "consul-server" }
+    - { role: "consul-alerts", meta: "consul-server" }
+    - { role: "consul-backup", meta: "consul-server" }
+    - { role: "consul-template", meta: "consul-server" }
     - { role: "consul-ui", meta: "consul-server" }

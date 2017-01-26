@@ -27,8 +27,7 @@
       src="consul-backup.check.json"
       dest="/etc/consul/agent/consul-backup.check.json"
     notify:
-      - reload consul@client
-      - reload consul@server
+      - reload consul
 
   - name: enable consul-backup
     command: systemctl enable --now consul-backup.timer
