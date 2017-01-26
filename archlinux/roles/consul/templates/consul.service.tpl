@@ -10,7 +10,7 @@ Group=consul
 Environment=GOMAXPROCS=4
 
 Restart=on-failure
-KillSignal=SIGINT
+#KillSignal=SIGINT
 
 PIDFile=/run/consul/consul.pid
 
