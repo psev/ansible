@@ -31,7 +31,7 @@ ansible-ping() {
 }
 
 # the command to restart the ansible configure systemd service
-RESTART_CONFIGURE_COMMAND="systemctl restart configure"
+RESTART_CONFIGURE_COMMAND="systemctl --no-block restart configure"
 
 # restart the configure systemd service on a subset of nodes
 ansible-configure() {
