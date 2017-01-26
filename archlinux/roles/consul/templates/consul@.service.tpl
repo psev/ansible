@@ -1,7 +1,7 @@
 [Unit]
 Description=Consul Agent
-After=systemd-networkd-wait-online.service
-Requires=systemd-netwokrd-wait-online.service
+After=environment.service
+Requires=environment.service
 
 [Service]
 PermissionsStartOnly=true
