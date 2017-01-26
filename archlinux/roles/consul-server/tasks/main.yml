@@ -1,7 +1,7 @@
 ---
 
-- name: copy server.json
-  copy: src=server.json dest=/etc/consul/consul.d/server/server.json mode=0740 owner=consul group=root
-
-- name: copy bootstrap.json
-  copy: src=bootstrap.json dest=/etc/consul/consul.d/bootstrap/bootstrap.json mode=0740 owner=consul group=root
+  - name: set server to true
+    lineinfile:
+      path="/etc/consul/agent/config.json"
+      regexp="^\s+\\"server\\":.*"
+      line="  \"server\": true,"
