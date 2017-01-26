@@ -3,8 +3,8 @@ dependencies:
   - { role: "consul-server", meta: "control" }
 
   - { role: "etcd", meta: "control" }
-#  - { role: "influxdb", meta: "control" }
-#  - { role: "influxdb-relay", meta: "control" }
+  - { role: "influxdb", meta: "control" }
+  - { role: "influxdb-relay", meta: "control" }
 #  - { role: "influxdb-telegraf", meta: "control" }
   - { role: "swarm-manager", meta: "control" }
 #  - { role: "systemd-logentries", meta: "control" }
