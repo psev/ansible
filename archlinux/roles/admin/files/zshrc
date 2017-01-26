@@ -14,7 +14,7 @@ acx() {
 
 # ansible shell
 ash() {
-  ansibl-shell "Name" "${1}" "${2}"
+  ansible-shell "Name" "${1}" "${2}"
 }
 
 # run an ansible module across the current deployment
