@@ -6,6 +6,8 @@ Requires=systemd-resolved.service network-online.target
 [Service]
 Type=oneshot
 RemainAfterExit=true
+Restart=on-failure
+RestartSec=5
 
 ExecStart=/usr/local/bin/environment.py
 
