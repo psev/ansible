@@ -4,7 +4,7 @@
 
     - { role: "consul-client", meta: "database" }
 
-    - { role: "mongodb, meta": "database" }
+    - { role: "mongodb", meta": "database" }
     - { role: "mongodb-cayley", meta: "database" }
     - { role: "influxdb-telegraf", meta: "database" }
 #    - { role: "systemd-logentries", meta: "database" }
