@@ -20,7 +20,7 @@ ExecStart=/usr/bin/docker run \
   -e LOG_SERVICE=sugarush \
   -e LOG_ENVIRONMENT={{ lookup('env', 'DEPLOY') }} \
   -e S3_REGION={{ lookup('env', 'REGION') }} \
-  -e S3_BUCKET={{ bucket.data.Value }} \
+  -e S3_BUCKET={{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-docker-registry \
   -e S3_ROOTDIRECTORY=/ \
   -e LISTEN_ADDRESS=:5000 \
   psev/s3registry
