@@ -3,26 +3,33 @@
   - name: copy mongodb from s3
     s3:
       bucket="sugarush-us-west-2-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
-      mode="get"
-      dest="/tmp/mongodb.pkg.tar.xz"
       object="/mongodb-{{ mongodb_version }}-x86_64.pkg.tar.xz"
+      dest="/tmp/mongodb.pkg.tar.xz"
+      mode="get"
 
   - name: copy boost from s3
     s3:
       bucket="sugarush-us-west-2-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
-      mode="get"
-      dest="/tmp/boost.pkg.tar.xz"
       object="/boost-{{ boost_version }}-x86_64.pkg.tar.xz"
+      dest="/tmp/boost.pkg.tar.xz"
+      mode="get"
 
   - name: copy boost libs from s3
     s3:
       bucket="sugarush-us-west-2-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
-      mode="get"
-      dest="/tmp/boost-libs.pkg.tar.xz"
       object="/boost-libs-{{ boost_version }}-x86_64.pkg.tar.xz"
+      dest="/tmp/boost-libs.pkg.tar.xz"
+      mode="get"
+
+  - name: copy wiredtiger libs from s3
+    s3:
+      bucket="sugarush-us-west-2-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
+      object="/wiredtiger-{{ wiredtiger_version }}-x86_64.pkg.tar.xz"
+      dest="/tmp/wiredtiger.pkg.tar.xz"
+      mode="get"
 
   - name: install mongodb
-    command: pacman --noconfirm -U /tmp/mongodb.pkg.tar.xz /tmp/boost.pkg.tar.xz /tmp/boost-libs.pkg.tar.xz
+    command: pacman --noconfirm -U /tmp/mongodb.pkg.tar.xz /tmp/boost.pkg.tar.xz /tmp/boost-libs.pkg.tar.xz /tmp/wiredtiger.pkg.tar.xz
 
   - name: create mongodb.service.d
     file:
