@@ -2,7 +2,7 @@
 
   - name: make sure consul client is available
     wait_for:
-      host="{{ lookup('env', 'HOST_IP') }}"
+      host="{{ lookup('env', 'HOSTNAME') }}"
       port="8400"
       timeout="30"
     ignore_errors: yes
