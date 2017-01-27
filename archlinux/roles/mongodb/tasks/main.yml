@@ -5,21 +5,21 @@
       bucket="sugarush-us-west-2-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
       mode="get"
       dest="/tmp/mongodb.pkg.tar.xz"
-      object="/mongodb-3.2.9-2-x86_64.pkg.tar.xz"
+      object="/mongodb-{{ mongodb_version }}-x86_64.pkg.tar.xz"
 
   - name: copy boost from s3
     s3:
       bucket="sugarush-us-west-2-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
       mode="get"
       dest="/tmp/boost.pkg.tar.xz"
-      object="/boost-1.61.0-4-x86_64.pkg.tar.xz"
+      object="/boost-{{ boost_version }}-x86_64.pkg.tar.xz"
 
   - name: copy boost libs from s3
     s3:
       bucket="sugarush-us-west-2-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
       mode="get"
       dest="/tmp/boost-libs.pkg.tar.xz"
-      object="/boost-libs-1.61.0-4-x86_64.pkg.tar.xz"
+      object="/boost-libs-{{ boost_version }}-x86_64.pkg.tar.xz"
 
   - name: install mongodb
     command: pacman --noconfirm -U /tmp/mongodb.pkg.tar.xz /tmp/boost.pkg.tar.xz /tmp/boost-libs.pkg.tar.xz
@@ -47,6 +47,6 @@
   - name: copy mongodb consul service definition
     template:
       src="mongodb.service.json.tpl"
-      dest="/etc/consul/consul.d/client/mongodb.service.json"
+      dest="/etc/consul/agent/mongodb.service.json"
     notify:
-      - reload consul@client
+      - reload consul

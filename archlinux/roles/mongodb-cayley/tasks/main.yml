@@ -11,6 +11,6 @@
   - name: template mongodb-cayley consul service file
     template:
       src="mongodb-cayley.service.json.tpl"
-      dest="/etc/consul/consul.d/client/mongodb-cayley.service.json"
+      dest="/etc/consul/agent/mongodb-cayley.service.json"
     notify:
-      - reload consul@client
+      - reload consul
