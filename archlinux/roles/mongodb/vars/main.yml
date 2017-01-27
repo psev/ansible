@@ -1,5 +1,4 @@
 ---
 
   mongodb_version: "3.2.9-2"
-  boost_version: ""
-  libboost_version: ""
+  boost_version: "1.61.0-4"
