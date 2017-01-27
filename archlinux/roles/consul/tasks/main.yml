@@ -71,3 +71,9 @@
       - daemon-reload
       - enable consul
       - start consul
+
+  - name: enable and start consul.service
+    service:
+      name="consul"
+      enabled="yes"
+      state="started"
