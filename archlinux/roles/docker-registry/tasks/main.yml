@@ -26,9 +26,9 @@
   - name: copy consul config
     copy:
       src="docker-registry.service.json"
-      dest="/etc/consul/consul.d/client/docker-registry.service.json"
+      dest="/etc/consul/agent/docker-registry.service.json"
     notify:
-      - reload consul@client
+      - reload consul
 
   - name: enable docker-registry
     service:

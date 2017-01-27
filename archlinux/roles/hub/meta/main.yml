@@ -3,5 +3,6 @@
   dependencies:
 
     - { role: consul-client, meta: hub }
+
     - { role: docker-registry, meta: hub }
-    - { role: systemd-logentries, meta: hub }
+#    - { role: systemd-logentries, meta: hub }
