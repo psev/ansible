@@ -14,7 +14,7 @@ ExecStart=/usr/bin/docker run \
   sugarush/consul-backup save \
   --host {{ lookup('env', 'HOST_IP') }}:8500 \
   --bucket sugarush-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-consul-backup \
-  --kv-ignore "consul-backup" \
+  --kv-ignore "consul-backup,consul-alerts/checks,consul-alerts/leader" \
   --kv
 
 ExecStop=/usr/bin/docker stop consul-backup
