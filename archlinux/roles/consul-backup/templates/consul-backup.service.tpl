@@ -13,7 +13,7 @@ ExecStart=/usr/bin/docker run \
   --env AWS_REGION={{ lookup('env', 'REGION') }} \
   sugarush/consul-backup save \
   --host {{ lookup('env', 'HOST_IP') }}:8500 \
-  --bucket sugarush-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-consul-backup \
+  --bucket {{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-consul-backup \
   --kv-ignore "consul-backup,consul-alerts/checks,consul-alerts/leader" \
   --kv
 
