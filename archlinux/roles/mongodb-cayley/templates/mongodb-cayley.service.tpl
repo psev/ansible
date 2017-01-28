@@ -11,7 +11,7 @@ ExecStartPre=-/usr/bin/docker pull docker-registry.service.consul/cayley
 ExecStart=/usr/bin/docker run \
   --name cayley \
   -p {{ lookup('env', 'HOST_IP') }}:64210:64210 \
-  docker-registry.service.consul/cayley http \
+  docker-registry.service.consul/cayley http -host 0.0.0.0 \
   -db mongo -dbpath mongodb.service.consul:27017
 
 ExecStop=/usr/bin/docker stop cayley
