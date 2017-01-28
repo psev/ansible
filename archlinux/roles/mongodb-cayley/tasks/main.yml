@@ -6,7 +6,8 @@
       dest="/etc/systemd/system/mongodb-cayley.service"
     notify:
       - daemon-reload
-      - restart mongodb-cayley
+      - enable mongodb-cayley
+      - start mongodb-cayley
 
   - name: template mongodb-cayley consul service file
     template:

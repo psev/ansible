@@ -36,6 +36,9 @@
       name="mongodb"
       state="present"
       update_cache="yes"
+    notify:
+      - enable mongodb
+      - start mongodb
 
   - name: create mongodb.service.d
     file:

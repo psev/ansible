@@ -1,4 +1,11 @@
 ---
 
-  - name: restart mongodb-cayley
-    command: systemctl restart mongodb-cayley
+  - name: enable mongodb-cayley
+    service:
+      name="mongodb-cayley"
+      enabled="yes"
+
+  - name: start mongodb-cayley
+    service:
+      name="mongodb-cayley"
+      state="started"
