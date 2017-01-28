@@ -3,6 +3,6 @@
   dependencies:
 
     - { role: "consul-client", meta: "proxy" }
-    
+
     - { role: "influxdb-telegraf", meta: "proxy" }
-#    - { role: systemd-logentries, meta: proxy }
+    - { role: systemd-logentries, meta: proxy }

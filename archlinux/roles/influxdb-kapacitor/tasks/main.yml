@@ -33,6 +33,7 @@
       group="kapacitor"
       mode="0770"
     notify:
+      - enable kapacitor
       - restart kapacitor
     ignore_errors: "yes"
 

@@ -6,4 +6,4 @@
 
     - { role: "influxdb-telegraf", meta: "build" }
     - { role: "golang", meta: "build" }
-  #  - { role: "systemd-logentries", meta: "build" }
+    - { role: "systemd-logentries", meta: "build" }

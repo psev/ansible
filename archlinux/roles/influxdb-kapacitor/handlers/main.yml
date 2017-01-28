@@ -2,3 +2,13 @@
 
   - name: restart kapacitor
     command: systemctl restart kapacitor
+
+  - name: enable kapacitor
+    service:
+      name="kapacitor"
+      enabled="yes"
+
+  - name: restart kapacitor
+    service:
+      name="kapacitor"
+      state="restarted"

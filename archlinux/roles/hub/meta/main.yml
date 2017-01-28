@@ -2,7 +2,7 @@
 
   dependencies:
 
-    - { role: consul-client, meta: hub }
+    - { role: "consul-client", meta: "hub" }
 
-    - { role: docker-registry, meta: hub }
-#    - { role: systemd-logentries, meta: hub }
+    - { role: "docker-registry", meta: "hub" }
+    - { role: "systemd-logentries", meta: "hub" }
