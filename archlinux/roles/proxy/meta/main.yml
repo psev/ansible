@@ -3,11 +3,5 @@
   dependencies:
 
     - { role: "consul-client", meta: "proxy" }
-<<<<<<< Updated upstream
-
-    - { role: "influxdb-telegraf", meta: "proxy" }
-    - { role: systemd-logentries, meta: proxy }
-=======
     - { role: "nginx", meta: "proxy" }
     - { role: "systemd-logentries", meta: "proxy" }
->>>>>>> Stashed changes
