@@ -1,0 +1,11 @@
+---
+
+  - name: template vulcand service file
+    template:
+      src: vulcand.service.tpl
+      dest: /etc/systemd/system/vulcand.service
+    notify:
+      - daemon-reload
+      - enable vulcand
+      - start vulcand
+      - reload vulcand

@@ -3,5 +3,9 @@
   dependencies:
 
     - { role: "consul-client", meta: "proxy" }
-    - { role: "nginx", meta: "proxy" }
+
+    - { role: "flannel", meta: "proxy" }
+    - { role: "vulcand", meta: "proxy" }
+
+    - { role: "influxdb-telegraf", meta: "proxy" }
     - { role: "systemd-logentries", meta: "proxy" }
