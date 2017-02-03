@@ -1,0 +1,23 @@
+---
+
+  - name: install nginx
+    pacman:
+      name: nginx
+      state: present
+      update_cache: yes
+    notify:
+      - enable nginx
+      - start nginx
+
+  - name: create /etc/nginx/conf.d
+    file:
+      dest: /etc/nginx/conf.d
+      state: directory
+      owner: nginx
+      group: nginx
+      mode: 0755
+
+  - name: template /etc/nginx/nginx.conf
+    template:
+      src: nginx.conf.tpl
+      dest: /etc/nginx/nginx.conf

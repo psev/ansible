@@ -3,4 +3,5 @@
   dependencies:
 
     - { role: "consul-client", meta: "proxy" }
-#    - { role: systemd-logentries, meta: proxy }
+    - { role: "nginx", meta: "proxy" }
+    - { role: "systemd-logentries", meta: "proxy" }
