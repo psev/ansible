@@ -10,7 +10,11 @@ ExecStartPre=-/usr/bin/docker pull docker-registry.service.consul/vulcand
 ExecStartPre=-/usr/bin/docker rm vulcand
 
 ExecStart=/usr/bin/docker run --name vulcand \
-  docker-registry.service.consul/vulcand vulcand
+  -p 8181:8181 \
+  -p 8182:8182 \
+  docker-registry.service.consul/vulcand vulcand \
+  -apiInterface={{ lookup('env', 'HOST_IP') }} \
+  -etcd=http://etcd.service.consul:2379
 
 ExecStop=/usr/bin/docker stop vulcand
 
