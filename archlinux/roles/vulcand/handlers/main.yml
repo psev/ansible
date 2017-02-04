@@ -1,0 +1,11 @@
+---
+
+  - name: enable vulcand
+    service:
+      name: vulcand
+      enabled: yes
+
+  - name: start vulcand
+    service:
+      name: vulcand
+      state: started
