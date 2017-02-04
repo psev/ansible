@@ -4,6 +4,9 @@ alias members="consul members --rpc-addr $HOSTNAME:8400 | grep -v Node | sort -h
 # run docker commands agains swarm managers
 alias swarm="docker -H tcp://swarm-manager.service.consul:4000"
 
+# run vctl from the vulcand container
+alias vctl="docker run -it --rm docker-registry.service.consul/vulcand vctl --vulcan http://vulcand.service.consul:8182"
+
 # ansible configuration alias
 alias act="ansible-configure-tail"
 
