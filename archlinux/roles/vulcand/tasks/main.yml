@@ -8,3 +8,10 @@
       - daemon-reload
       - enable vulcand
       - start vulcand
+
+  - name: template vulcand consul service definition
+    template:
+      src: vulcand.service.json.tpl
+      dest: /etc/consul/agent/vulcand.service.json
+    notify:
+      - reload consul
