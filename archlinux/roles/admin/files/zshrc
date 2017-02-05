@@ -1,5 +1,8 @@
 # display a sorted list of consul nodes
-alias members="consul members --rpc-addr $HOSTNAME:8400 | grep -v Node | sort -h"
+alias consul-members="consul members --rpc-addr $HOSTNAME:8400 | grep -v Node | sort -h"
+
+# forcefully remove a consul node
+alias consul-force-leave="consul force-leave --rpc-addr $HOSTNAME:8400"
 
 # run docker commands agains swarm managers
 alias swarm="docker -H tcp://swarm-manager.service.consul:4000"
