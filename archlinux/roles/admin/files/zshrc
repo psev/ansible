@@ -15,12 +15,12 @@ alias act="ansible-configure-tail"
 
 # ansible command
 acx() {
-  ansible-cmd "Name" "${1}" "${@:2}"
+  ansible-cmd "Name" "${1}" "${${@:2}}"
 }
 
 # ansible shell
 ash() {
-  ansible-shell "Name" "${1}" "${@:2}"
+  ansible-shell "Name" "${1}" "${${@:2}}"
 }
 
 # ansible ping
