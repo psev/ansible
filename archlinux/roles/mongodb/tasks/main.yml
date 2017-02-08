@@ -67,6 +67,8 @@
     file:
       path: "{{ data }}/{{ item }}"
       state: directory
+      owner: mongodb
+      mode: 0700
     with_items: "{{ data_dirs }}"
 
   - name: template service files
