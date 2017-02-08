@@ -1,11 +1,11 @@
 ---
 
-  - name: enable mongodb-cayley
+  - name: enable mongo-cayley
     service:
-      name="mongodb-cayley"
+      name="mongo-cayley"
       enabled="yes"
 
-  - name: start mongodb-cayley
+  - name: start mongo-cayley
     service:
-      name="mongodb-cayley"
+      name="mongo-cayley"
       state="started"

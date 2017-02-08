@@ -1,17 +1,17 @@
 ---
 
-  - name: template mongodb-cayley systemd service file
+  - name: template mongo-cayley systemd service file
     template:
-      src="mongodb-cayley.service.tpl"
-      dest="/etc/systemd/system/mongodb-cayley.service"
+      src="mongo-cayley.service.tpl"
+      dest="/etc/systemd/system/mongo-cayley.service"
     notify:
       - daemon-reload
-      - enable mongodb-cayley
-      - start mongodb-cayley
+      - enable mongo-cayley
+      - start mongo-cayley
 
   - name: template mongodb-cayley consul service file
     template:
-      src="mongodb-cayley.service.json.tpl"
-      dest="/etc/consul/agent/mongodb-cayley.service.json"
+      src="mongo-cayley.service.json.tpl"
+      dest="/etc/consul/agent/mongo-cayley.service.json"
     notify:
       - reload consul
