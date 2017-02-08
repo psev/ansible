@@ -74,12 +74,16 @@
       src: mongo-{{ item }}.service.tpl
       dest: "{{ system }}/mongo-{{ item }}.service"
     with_items: "{{ templates }}"
+    notify:
+      - daemon-reload
 
   - name: create drop-in directories
     file:
       path: "{{ system }}/mongo-{{ item }}.service.d"
       state: directory
     with_items: "{{ templates }}"
+    notify:
+      - daemon-reload
 
   - name: copy limits drop-in
     copy:
