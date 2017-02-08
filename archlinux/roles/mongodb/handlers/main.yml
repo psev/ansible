@@ -10,6 +10,11 @@
       name: mongo-shardsvr
       enabled: yes
 
+  - name: enable mongo-mongos
+    service:
+      name: mongo-mongos
+      enabled: yes
+
   - name: start mongo-configsvr
     service:
       name: mongo-configsvr
@@ -18,4 +23,9 @@
   - name: start mongo-shardsvr
     service:
       name: mongo-shardsvr
+      state: started
+
+  - name: start mongo-mongos
+    service:
+      name: mongo-mongos
       state: started

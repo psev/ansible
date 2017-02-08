@@ -103,12 +103,14 @@
       - daemon-reload
       - enable mongo-configsvr
       - enable mongo-shardsvr
+      - enable mongo-mongos
       - start mongo-configsvr
       - start mongo-shardsvr
+      - start mongo-mongos
 
-#  - name: copy mongodb consul service definition
-#    template:
-#      src="mongodb.service.json.tpl"
-#      dest="/etc/consul/agent/mongodb.service.json"
-#    notify:
-#      - reload consul
+  - name: copy mongodb consul service definition
+    template:
+      src="mongodb.service.json.tpl"
+      dest="/etc/consul/agent/mongodb.service.json"
+    notify:
+      - reload consul

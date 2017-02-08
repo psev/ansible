@@ -1,13 +1,14 @@
 [Unit]
 Description=MongoDB Configuration Server
-Requires=systemd-networkd-wait-online.service
-After=systemd-networkd-wait-online.service
+Requires=environment.service
+After=environment.service
 
 [Service]
 User=mongodb
 
 ExecStart=/usr/bin/mongod --configsvr \
-  --replSet {{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-config
+  --replSet {{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-config \
+  --bind_ip {{ lookup('env', 'HOST_IP') }}
 
 [Install]
 WantedBy=multi-user.target
