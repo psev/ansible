@@ -1060,9 +1060,9 @@
 #   ##   mongodb://10.10.3.33:18832,
 #   ##   10.0.0.1:10000, etc.
   servers = [
-    "{{ looukup('env', 'HOST_IP') }}:27017",
-    "{{ looukup('env', 'HOST_IP') }}:27018",
-    "{{ looukup('env', 'HOST_IP') }}:27019"
+    "{{ lookup('env', 'HOST_IP') }}:27017",
+    "{{ lookup('env', 'HOST_IP') }}:27018",
+    "{{ lookup('env', 'HOST_IP') }}:27019"
   ]
   gather_perdb_stats = false
 
