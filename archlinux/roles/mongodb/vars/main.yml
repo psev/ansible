@@ -6,8 +6,8 @@
 
   tmpfiles: /etc/tmpfiles.d
   systemd: /etc/systemd
-  system: {{ systemd }}/system
-  journal: {{ systemd }}/journal.conf.d
+  system: "{{ systemd }}/system"
+  journal: "{{ systemd }}/journal.conf.d"
 
   tmp: /tmp
 
