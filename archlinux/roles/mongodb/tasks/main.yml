@@ -61,6 +61,7 @@
 
   - name: mount data volume (/dev/xvdb) to /data
     command: /usr/bin/mount LABEL=data
+    ignore_errors: yes
 
   - name: template service files
     template:
