@@ -1053,14 +1053,18 @@
 
 
 # # Read metrics from one or many MongoDB servers
-# [[inputs.mongodb]]
+[[inputs.mongodb]]
 #   ## An array of URI to gather stats about. Specify an ip or hostname
 #   ## with optional port add password. ie,
 #   ##   mongodb://user:auth_key@10.10.3.30:27017,
 #   ##   mongodb://10.10.3.33:18832,
 #   ##   10.0.0.1:10000, etc.
-#   servers = ["127.0.0.1:27017"]
-#   gather_perdb_stats = false
+  servers = [
+    "{{ looukup('env', 'HOST_IP') }}:27017",
+    "{{ looukup('env', 'HOST_IP') }}:27018",
+    "{{ looukup('env', 'HOST_IP') }}:27019"
+  ]
+  gather_perdb_stats = false
 
 
 # # Read metrics from one or many mysql servers
