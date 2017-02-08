@@ -11,6 +11,11 @@
 
   tmp: /tmp
 
+  data: /data
+  data_dirs:
+    - db
+    - configdb
+
   templates:
     - configsvr
     - shardsvr
