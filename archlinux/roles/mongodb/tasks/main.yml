@@ -60,10 +60,7 @@
       line: "LABEL=data /data xfs nobarrier,noatime 0 0"
 
   - name: mount data volume (/dev/xvdb) to /data
-    mount:
-      src: LABEL=data
-      path: /data
-      fstype: xfs
+    command: /usr/bin/mount LABEL=data
 
   - name: template service files
     template:
