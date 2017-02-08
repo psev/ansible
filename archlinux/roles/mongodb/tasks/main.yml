@@ -55,7 +55,7 @@
 
   - name: create fstab entry for /dev/xvdb
     lineinfile:
-      path: /etc/fstab
+      dest: /etc/fstab
       regexp: "^LABEL=data.*"
       line: "LABEL=data /data xfs nobarrier,noatime 0 0"
     when: file_system.stdout != "xfs"
