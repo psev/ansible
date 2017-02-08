@@ -3,3 +3,14 @@
   mongodb_version: "3.2.9-2"
   boost_version: "1.61.0-4"
   wiredtiger_version: "2.8.1-1"
+
+  tmpfiles: /etc/tmpfiles.d
+  systemd: /etc/systemd
+  system: {{ systemd }}/system
+  journal: {{ systemd }}/journal.conf.d
+
+  tmp: /tmp
+
+  templates:
+    - configsvr
+    - shardsvr

@@ -36,33 +36,64 @@
       name="mongodb"
       state="present"
       update_cache="yes"
-    notify:
-      - enable mongodb
-      - start mongodb
 
-  - name: create mongodb.service.d
+  - name: create /data directory
     file:
-      state="directory"
-      path="/etc/systemd/system/mongodb.service.d"
+      path: /data
+      state: directory
+      owner: mongodb
+      group: mongodb
+      mode: 0770
 
-  - name: copy 00-limits.conf to mongodb.service.d
+  - name: check for /dev/xvdb xfs file system
+    command: /usr/bin/blkid /dev/xvdb -s TYPE -o value
+    register: file_system
+
+  - name: create xfs file system for /dev/xvdb
+    command: /usr/bin/mkfs.xfs -L data /dev/xvdb
+    when: file_system.stdout != "xfs"
+
+  - name: create fstab entry for /dev/xvdb
+    lineinfile:
+      path: /etc/fstab
+      regexp: "^LABEL=data.*"
+      line: "LABEL=data /data xfs nobarrier,noatime 0 0"
+    when: file_system.stdout != "xfs"
+
+  - name: mount data volume (/dev/xvdb) to /data
+    command: /usr/bin/mount LABEL=data
+    when: file_system.stdout != "xfs"
+
+  - name: template service files
+    template:
+      src: mongo-{{ item }}.service.tpl
+      dest: {{ system }}/mongo-{{ item }}.service
+    with_items: {{ templates }}
+
+  - name: create drop-in directories
+    file:
+      path: {{ system }}/mongo-{{ item }}.service.d
+      state: directory
+    with_items: {{ templates }}
+
+  - name: copy limits drop-in
     copy:
-      src="00-limits.conf"
-      dest="/etc/systemd/system/mongodb.service.d/00-limits.conf"
+      src: 00-limits.conf
+      dest: {{ system }}/mongo-{{ item }}.service.d/00-limits.conf
+    with_items: {{ templates }}
+    notify:
+      - daemon-reload
 
-  - name: copy 00-hugepage.conf to tmpfiles.d
+  - name: copy hugepage drop-in
     copy:
       src="00-hugepage.conf"
-      dest="/etc/tmpfiles.d/00-hugepage.conf"
-
-  - name: template mongodb.conf
-    template:
-      src="mongodb.conf.tpl"
-      dest="/etc/mongodb.conf"
-
-  - name: copy mongodb consul service definition
-    template:
-      src="mongodb.service.json.tpl"
-      dest="/etc/consul/agent/mongodb.service.json"
+      dest="{{ tmpfiles }}/00-hugepage.conf"
     notify:
-      - reload consul
+      - daemon-reload
+
+#  - name: copy mongodb consul service definition
+#    template:
+#      src="mongodb.service.json.tpl"
+#      dest="/etc/consul/agent/mongodb.service.json"
+#    notify:
+#      - reload consul
