@@ -9,7 +9,7 @@
       - enable mongo-cayley
       - start mongo-cayley
 
-  - name: template mongodb-cayley consul service file
+  - name: template mongo-cayley consul service file
     template:
       src="mongo-cayley.service.json.tpl"
       dest="/etc/consul/agent/mongo-cayley.service.json"
