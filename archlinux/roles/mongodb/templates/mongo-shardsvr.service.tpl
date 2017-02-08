@@ -4,6 +4,8 @@ Requires=systemd-networkd-wait-online.service
 After=systemd-networkd-wait-online.service
 
 [Service]
+User=mongodb
+
 ExecStart=/usr/bin/mongod --shardsvr \
   --replSet {{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-shard
 
