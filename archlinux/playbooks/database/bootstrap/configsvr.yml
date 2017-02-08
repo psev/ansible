@@ -1,0 +1,28 @@
+---
+
+    - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+
+      limit: 1
+
+      vars:
+
+        name: config
+        port: 27019
+
+        config: >
+          rs.initiate(
+            {
+              _id: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ name }}",
+              configsvr: {% if name == 'config' %}true{% else %}false{% endif %},
+              members: [
+              {% for i in range(ansible_play_hosts|count) %}
+                { _id : {{ i }}, host : "database-{{ i }}:{{ port }}" },
+              {% endfor %}
+              ]
+            }
+          )
+
+      tasks:
+
+        - name: initialize mongo-configsvr
+          command: mongo mongo-{{ name }}svr.service.consul:{{ port }} --eval '{{ config }}'
