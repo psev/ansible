@@ -5,7 +5,7 @@ After=systemd-networkd-wait-online.service
 
 [Service]
 ExecStart=/usr/bin/mongod --configsvr \
-  --replSet {{ lookup('env', 'IDENTIFIER') }}-config
+  --replSet {{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-config
 
 [Install]
 WantedBy=multi-user.target

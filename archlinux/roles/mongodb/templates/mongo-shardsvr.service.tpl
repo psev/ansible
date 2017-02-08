@@ -5,7 +5,7 @@ After=systemd-networkd-wait-online.service
 
 [Service]
 ExecStart=/usr/bin/mongod --shardsvr \
-  --replSet {{ lookup('env', 'IDENTIFIER') }}-shard
+  --replSet {{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-shard
 
 [Install]
 WantedBy=multi-user.target
