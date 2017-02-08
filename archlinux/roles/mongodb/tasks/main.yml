@@ -62,7 +62,7 @@
   - name: mount data volume (/dev/xvdb) to /data
     mount:
       src: LABEL=data
-      dest: /data
+      path: /data
       fstype: xfs
 
   - name: template service files
