@@ -47,6 +47,7 @@
   - name: check for /dev/xvdb xfs file system
     command: /usr/bin/blkid /dev/xvdb -s TYPE -o value
     register: file_system
+    ignore_errors: yes
 
   - name: create xfs file system for /dev/xvdb
     command: /usr/bin/mkfs.xfs -L data /dev/xvdb
