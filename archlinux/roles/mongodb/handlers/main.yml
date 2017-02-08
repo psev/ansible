@@ -1,11 +1,21 @@
 ---
 
-  - name: enable mongodb
+  - name: enable mongo-configsvr
     service:
-      name="mongodb"
-      enabled="yes"
+      name: mongo-configsvr
+      enabled: yes
 
-  - name: start mongodb
+  - name: enable mongo-shardsvr
     service:
-      name="mongodb"
-      state="started"
+      name: mongo-shardsvr
+      enabled: yes
+
+  - name: start mongo-configsvr
+    service:
+      name: mongo-configsvr
+      state: started
+
+  - name: start mongo-shardsvr
+    service:
+      name: mongo-shardsvr
+      state: started

@@ -71,6 +71,13 @@
       mode: 0700
     with_items: "{{ data_dirs }}"
 
+  - name: copy hugepage drop-in
+    copy:
+      src="00-hugepage.conf"
+      dest="{{ tmpfiles }}/00-hugepage.conf"
+    notify:
+      - daemon-reload
+
   - name: template service files
     template:
       src: mongo-{{ item }}.service.tpl
@@ -79,7 +86,7 @@
     notify:
       - daemon-reload
 
-  - name: create drop-in directories
+  - name: create service drop-in directories
     file:
       path: "{{ system }}/mongo-{{ item }}.service.d"
       state: directory
@@ -94,13 +101,10 @@
     with_items: "{{ templates }}"
     notify:
       - daemon-reload
-
-  - name: copy hugepage drop-in
-    copy:
-      src="00-hugepage.conf"
-      dest="{{ tmpfiles }}/00-hugepage.conf"
-    notify:
-      - daemon-reload
+      - enable mongo-configsvr
+      - enable mongo-shardsvr
+      - start mongo-configsvr
+      - start mongo-shardsvr
 
 #  - name: copy mongodb consul service definition
 #    template:
