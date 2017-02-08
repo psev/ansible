@@ -42,8 +42,7 @@
       path: /data
       state: directory
       owner: mongodb
-      group: mongodb
-      mode: 0770
+      mode: 0700
 
   - name: check for /dev/xvdb xfs file system
     command: /usr/bin/blkid /dev/xvdb -s TYPE -o value
