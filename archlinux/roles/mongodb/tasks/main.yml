@@ -58,11 +58,9 @@
       dest: /etc/fstab
       regexp: "^LABEL=data.*"
       line: "LABEL=data /data xfs nobarrier,noatime 0 0"
-    when: file_system.stdout != "xfs"
 
   - name: mount data volume (/dev/xvdb) to /data
     command: /usr/bin/mount LABEL=data
-    when: file_system.stdout != "xfs"
 
   - name: template service files
     template:
