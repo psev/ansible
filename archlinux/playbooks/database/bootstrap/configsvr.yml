@@ -37,4 +37,4 @@
 
       - name: print output
         debug:
-          msg: {{ output }}
+          msg: "{{ output }}"
