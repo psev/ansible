@@ -6,15 +6,16 @@
 
       name: shard
       port: 27018
+      uri: mongo-{{ name }}.service.consul:{{ port }}
 
       config: >
         rs.initiate(
           {
-            _id: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ name }}",
-            configsvr: {% if name == 'config' %}true{% else %}false{% endif %},
-            members: [
+            "_id": "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ name }}",
+            "configsvr": false,
+            "members": [
             {%- for i in range(ansible_play_hosts|count) %}
-              { _id : {{ i }}, host : "database-{{ i + 1 }}:{{ port }}" }
+              { "_id" : {{ i }}, host : "database-{{ i + 1 }}:{{ port }}" }
               {%- if loop.index != ansible_play_hosts|count %},{% endif -%}
             {% endfor -%}
             ]
@@ -24,5 +25,5 @@
     tasks:
 
       - name: initialize mongo-shardsvr
-        command: mongo mongo-{{ name }}svr.service.consul:{{ port }} --eval '{{ config | replace("\n", "") }}'
+        command: mongo {{ uri }} --eval '{{ config | replace("\n", "") }}'
         run_once: yes
