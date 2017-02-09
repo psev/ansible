@@ -30,6 +30,18 @@
           state: started
           enabled: yes
 
+      - name: wait for mongo consul service
+        wait_for:
+          host: "{{ uri }}"
+          port: "{{ port }}"
+          delay: 5
+
       - name: initialize mongo-shardsvr
         command: mongo {{ uri }} --eval '{{ config | replace("\n", "") }}'
+        register: mongo
+        run_once: yes
+
+      - name: print output
+        debug:
+          msg: "{{ mongo.stdout }}"
         run_once: yes

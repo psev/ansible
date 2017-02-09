@@ -30,12 +30,18 @@
           state: started
           enabled: yes
 
+      - name: wait for mongo consul service
+        wait_for:
+          host: "{{ uri }}"
+          port: "{{ port }}"
+          delay: 5
+
       - name: initialize mongo-configsvr
         command: mongo {{ uri }} --eval '{{ config | replace("\n", "") }}'
-        register: output
+        register: mongo
         run_once: yes
 
       - name: print output
         debug:
-          msg: "{{ output.stdout }}"
+          msg: "{{ mongo.stdout }}"
         run_once: yes
