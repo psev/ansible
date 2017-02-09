@@ -27,7 +27,7 @@
         command: >
           {% set database = item.split(".")[0] %}
           {% set collection = item.split(".")[-1] %}
-          mongo {{ uri }} --eval 'use {{ database }}; db.{{ collection }}.createIndex({{ shard_key }})'
+          mongo {{ uri }}/{{ database }} --eval 'db.{{ collection }}.createIndex({{ shard_key }})'
         with_items: "{{ collections }}"
         run_once: yes
 

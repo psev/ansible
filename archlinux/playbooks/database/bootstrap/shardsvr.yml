@@ -4,7 +4,7 @@
 
     vars:
 
-      name: shard
+      name: shardsvr
       port: 27018
       uri: mongo-{{ name }}.service.consul:{{ port }}
 

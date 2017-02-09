@@ -4,7 +4,7 @@
 
     vars:
 
-      name: config
+      name: configsvr
       port: 27019
       uri: mongo-{{ name }}.service.consul:{{ port }}
 
