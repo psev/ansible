@@ -32,4 +32,9 @@
 
       - name: initialize mongo-configsvr
         command: mongo {{ uri }} --eval '{{ config | replace("\n", "") }}'
+        register: output
         run_once: yes
+
+      - name: print output
+        debug:
+          msg: {{ output }}
