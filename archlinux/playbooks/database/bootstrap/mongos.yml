@@ -1,12 +1,12 @@
 ---
 
-  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+  - hosts: tag_Name_database_{{ lookup('env', 'DEPLOY') }}
 
     vars:
 
       name: mongos
       port: 27017
-      uri: mongo-{{ name }}.service.consul:{{ port }}
+      uri: mongo-{{ name }}.service.consul
 
       shard_key: "{ _id: 1 }"
       shardsvr_uri: mongo-shardsvr.service.consul:27018
@@ -33,22 +33,22 @@
         command: >
           {% set database = item.split(".")[0] %}
           {% set collection = item.split(".")[-1] %}
-          mongo {{ uri }}/{{ database }} --eval 'db.{{ collection }}.createIndex({{ shard_key }})'
+          mongo {{ uri }}:{{ port }}/{{ database }} --eval 'db.{{ collection }}.createIndex({{ shard_key }})'
         with_items: "{{ collections }}"
         run_once: yes
 
       - name: add shards
         command: >
-          mongo {{ uri }} --eval 'sh.addShard("{{ shard }}/{{ shardsvr_uri }}")'
+          mongo {{ uri }}:{{ port }} --eval 'sh.addShard("{{ shard }}/{{ shardsvr_uri }}")'
         run_once: yes
 
       - name: enable sharding for selected databases
-        command: mongo {{ uri }} --eval 'sh.enableSharding("{{ item }}")'
+        command: mongo {{ uri }}:{{ port }} --eval 'sh.enableSharding("{{ item }}")'
         with_items: "{{ databases }}"
         run_once: yes
 
       - name: enable sharding for selected collections
         command: >
-          mongo {{ uri }} --eval 'sh.shardCollection("{{ item }}", {{ shard_key }})'
+          mongo {{ uri }}:{{ port }} --eval 'sh.shardCollection("{{ item }}", {{ shard_key }})'
         with_items: "{{ collections }}"
         run_once: yes

@@ -6,7 +6,7 @@
 
       name: shardsvr
       port: 27018
-      uri: mongo-{{ name }}.service.consul:{{ port }}
+      uri: mongo-{{ name }}.service.consul
 
       config: |
         rs.initiate(
@@ -24,9 +24,9 @@
 
     tasks:
 
-      - name: enable and start mongo-shardsvr
+      - name: enable and start mongo service
         service:
-          name: mongo-shardsvr
+          name: mongo-{{ name }}
           state: started
           enabled: yes
 
@@ -34,10 +34,9 @@
         wait_for:
           host: "{{ uri }}"
           port: "{{ port }}"
-          delay: 5
 
       - name: initialize mongo-shardsvr
-        command: mongo {{ uri }} --eval '{{ config | replace("\n", "") }}'
+        command: mongo {{ uri }}:{{ port }} --eval '{{ config | replace("\n", "") }}'
         register: mongo
         run_once: yes
 
