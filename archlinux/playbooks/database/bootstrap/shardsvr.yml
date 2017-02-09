@@ -23,6 +23,6 @@
 
     tasks:
 
-      - name: initialize mongo-configsvr
+      - name: initialize mongo-shardsvr
         command: mongo mongo-{{ name }}svr.service.consul:{{ port }} --eval '{{ config | replace("\n", "") }}'
         run_once: yes

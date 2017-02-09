@@ -1,30 +1,38 @@
 ---
 
-    config: >
-      rs.initiate(
-        {
-          _id: "sugarush-alpha-config",
-          configsvr: true,
-          members: [
-            { _id : 0, host : "database-1:27019" },
-            { _id : 1, host : "database-2:27019" },
-            { _id : 2, host : "database-3:27019" }
-          ]
-        }
-      )
+  - hosts: tag_Name_database_{{ lookup('env', 'DEPLOY') }}
 
-    shard: >
-      rs.initiate(
-        {
-          _id: "sugarush-alpha-shard",
-          members: [
-            { _id : 0, host : "database-1:27018" },
-            { _id : 1, host : "database-2:27018" },
-            { _id : 2, host : "database-3:27018" }
-          ]
-        }
-      )
+    vars:
 
-    - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+      databases:
 
-      limit: 1
+        - federal
+
+      collections:
+
+        - federal.bill
+        - federal.billstatus
+
+    tasks:
+
+      - name: add shards
+        command: mongo mongo-mongos.service.consul:27017 --eval 'sh.addShard("{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-shard/mongo-shardsvr.service.consul:27018")'
+        run_once: yes
+
+      - name: enable sharding for selected databases
+        command: mongo mongo-mongos.service.consul:27017 --eval 'sh.enableSharding("{{ item }}")'
+        with_items: "{{ databases }}"
+        run_once: yes
+
+      - name: create _id index for selected collections
+        command: >
+          {% set database = last(item.split(".")) %}
+          {% set collection = first(item.split(".")) %}
+          mongo mongo-mongos.service.consul:27017 --eval 'use {{ database }}; db.{{ collection }}.createIndex({ _id: 1 });'
+        with_items: "{{ collections }}"
+        run_once: yes
+
+      - name: enable sharding for selected collections
+        command: mongo mongo-mongos.service.consul:27017 --eval 'sh.shardCollection("{{ item }}", { _id: 1 })'
+        with_items: "{{ collections }}"
+        run_once: yes
