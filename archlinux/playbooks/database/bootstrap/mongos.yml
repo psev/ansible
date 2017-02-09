@@ -28,11 +28,12 @@
         command: >
           {% set database = last(item.split(".")) %}
           {% set collection = first(item.split(".")) %}
-          mongo mongo-mongos.service.consul:27017 --eval 'use {{ database }}; db.{{ collection }}.createIndex({ _id: 1 });'
+          mongo mongo-mongos.service.consul:27017 --eval 'use {{ database }}; db.{{ collection }}.createIndex({ _id: 1 })'
         with_items: "{{ collections }}"
         run_once: yes
 
       - name: enable sharding for selected collections
-        command: mongo mongo-mongos.service.consul:27017 --eval 'sh.shardCollection("{{ item }}", { _id: 1 })'
+        command: >
+          mongo mongo-mongos.service.consul:27017 --eval 'sh.shardCollection("{{ item }}", { _id: 1 })'
         with_items: "{{ collections }}"
         run_once: yes
