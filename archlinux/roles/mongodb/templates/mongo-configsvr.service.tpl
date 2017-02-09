@@ -7,7 +7,7 @@ After=environment.service
 User=mongodb
 
 ExecStart=/usr/bin/mongod --configsvr \
-  --replSet {{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-config \
+  --replSet {{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-configsvr \
   --bind_ip {{ lookup('env', 'HOST_IP') }}
 
 [Install]
