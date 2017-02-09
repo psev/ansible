@@ -26,8 +26,8 @@
 
       - name: create _id index for selected collections
         command: >
-          {% set database = last(item.split(".")) %}
-          {% set collection = first(item.split(".")) %}
+          {% set database = item.split(".")[0] %}
+          {% set collection = item.split(".")[-1] %}
           mongo mongo-mongos.service.consul:27017 --eval 'use {{ database }}; db.{{ collection }}.createIndex({ _id: 1 })'
         with_items: "{{ collections }}"
         run_once: yes
