@@ -101,12 +101,12 @@
     with_items: "{{ templates }}"
     notify:
       - daemon-reload
-      - enable mongo-configsvr
-      - enable mongo-shardsvr
-      - enable mongo-mongos
-      - start mongo-configsvr
-      - start mongo-shardsvr
-      - start mongo-mongos
+      #- enable mongo-configsvr
+      #- enable mongo-shardsvr
+      #- enable mongo-mongos
+      #- start mongo-configsvr
+      #- start mongo-shardsvr
+      #- start mongo-mongos
 
   - name: copy mongodb consul service definition
     template:
