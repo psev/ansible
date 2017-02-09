@@ -13,20 +13,16 @@
             _id: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ name }}",
             configsvr: {% if name == 'config' %}true{% else %}false{% endif %},
             members: [
-            {% for i in range(ansible_play_hosts|count) %}
-              { _id : {{ i }}, host : "database-{{ i }}:{{ port }}" }
+            {%- for i in range(ansible_play_hosts|count) %}
+              { _id : {{ i }}, host : "database-{{ i + 1 }}:{{ port }}" }
               {%- if loop.index != ansible_play_hosts|count %},{% endif -%}
-            {% endfor %}
+            {% endfor -%}
             ]
           }
         )
 
     tasks:
 
-      - name: display config
-        debug: msg={{ config | replace('\\n', '') }}
-        run_once: yes
-
       - name: initialize mongo-configsvr
-        command: mongo mongo-{{ name }}svr.service.consul:{{ port }} --eval '{{ config }}'
+        command: mongo mongo-{{ name }}svr.service.consul:{{ port }} --eval '{{ config | replace("\n", "") }}'
         run_once: yes
