@@ -15,7 +15,7 @@
             "configsvr": true,
             "members": [
             {%- for i in range(ansible_play_hosts|count) %}
-              { "_id" : {{ i }}, "host" : "database-{{ i + 1 }}:{{ port }}" }
+              { "_id" : {{ i }}, "host" : "control-{{ i + 1 }}:{{ port }}" }
               {%- if loop.index != ansible_play_hosts|count %},{% endif -%}
             {% endfor -%}
             ]
