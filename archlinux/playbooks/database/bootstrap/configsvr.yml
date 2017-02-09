@@ -23,6 +23,9 @@
 
     tasks:
 
+      - name: display config
+        debug: msg={{ config }}
+
       - name: initialize mongo-configsvr
         command: mongo mongo-{{ name }}svr.service.consul:{{ port }} --eval '{{ config }}'
         run_once: yes
