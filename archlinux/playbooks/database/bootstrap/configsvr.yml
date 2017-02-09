@@ -24,7 +24,8 @@
     tasks:
 
       - name: display config
-        debug: msg={{ config }}
+        debug: msg={{ config | replace('\\n', '') }}
+        run_once: yes
 
       - name: initialize mongo-configsvr
         command: mongo mongo-{{ name }}svr.service.consul:{{ port }} --eval '{{ config }}'
