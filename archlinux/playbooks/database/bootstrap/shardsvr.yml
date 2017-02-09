@@ -8,7 +8,7 @@
       port: 27018
       uri: mongo-{{ name }}.service.consul:{{ port }}
 
-      config: >
+      config: |
         rs.initiate(
           {
             "_id": "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ name }}",
@@ -23,6 +23,12 @@
         )
 
     tasks:
+
+      - name: enable and start mongo-shardsvr
+        service:
+          name: mongo-shardsvr
+          state: started
+          enabled: yes
 
       - name: initialize mongo-shardsvr
         command: mongo {{ uri }} --eval '{{ config | replace("\n", "") }}'

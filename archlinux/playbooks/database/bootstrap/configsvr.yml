@@ -1,6 +1,6 @@
 ---
 
-  - hosts: tag_Name_database_{{ lookup('env', 'DEPLOY') }}
+  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
 
     vars:
 
@@ -8,7 +8,7 @@
       port: 27019
       uri: mongo-{{ name }}.service.consul:{{ port }}
 
-      config: >
+      config: |
         rs.initiate(
           {
             "_id": "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ name }}",
@@ -23,6 +23,12 @@
         )
 
     tasks:
+
+      - name: enable and start mongo-configsvr
+        service:
+          name: mongo-configsvr
+          state: started
+          enabled: yes
 
       - name: initialize mongo-configsvr
         command: mongo {{ uri }} --eval '{{ config | replace("\n", "") }}'

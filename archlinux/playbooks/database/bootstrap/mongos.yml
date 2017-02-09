@@ -1,6 +1,6 @@
 ---
 
-  - hosts: tag_Name_database_{{ lookup('env', 'DEPLOY') }}
+  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
 
     vars:
 
@@ -22,6 +22,12 @@
         - federal.billstatus
 
     tasks:
+
+      - name: enable and start mongo-mongos
+        service:
+          name: mongo-mongos
+          state: started
+          enabled: yes
 
       - name: create shard index for selected collections
         command: >
