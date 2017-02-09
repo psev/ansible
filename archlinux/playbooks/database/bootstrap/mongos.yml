@@ -8,7 +8,7 @@
       port: 27017
       uri: mongo-{{ name }}.service.consul:{{ port }}
 
-      shard_key: { "_id": 1 }
+      shard_key: { _id: 1 }
       shardsvr_uri: mongo-shardsvr.service.consul:27018
       shard: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-shard"
 
