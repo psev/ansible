@@ -1,6 +1,6 @@
 ---
 
-  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+  - hosts: tag_Name_database_{{ lookup('env', 'DEPLOY') }}
 
     vars:
 
@@ -10,12 +10,12 @@
       config: >
         rs.initiate(
           {
-            _id: \"{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ name }}\",
+            _id: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ name }}",
             configsvr: {% if name == 'config' %}true{% else %}false{% endif %},
             members: [
             {% for i in range(ansible_play_hosts|count) %}
-              { _id : {{ i }}, host : \"database-{{ i }}:{{ port }}\" }
-              {% if loop.index != ansible_play_hosts|count %},{% endif %}
+              { _id : {{ i }}, host : "database-{{ i }}:{{ port }}" }
+              {%- if loop.index != ansible_play_hosts|count %},{% endif -%}
             {% endfor %}
             ]
           }
@@ -24,5 +24,5 @@
     tasks:
 
       - name: initialize mongo-configsvr
-        command: mongo mongo-{{ name }}svr.service.consul:{{ port }} --eval "{{ config }}"
+        command: mongo mongo-{{ name }}svr.service.consul:{{ port }} --eval '{{ config }}'
         run_once: yes
