@@ -2,8 +2,6 @@
 
   - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
 
-    limit: 1
-
     vars:
 
       name: config
@@ -26,3 +24,4 @@
 
       - name: initialize mongo-configsvr
         command: mongo mongo-{{ name }}svr.service.consul:{{ port }} --eval '{{ config }}'
+        run_once: yes
