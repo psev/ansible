@@ -1,0 +1,11 @@
+---
+
+  port: 27018
+
+  templates:
+
+    - shardsvr
+
+  data_dirs:
+
+    - db

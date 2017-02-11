@@ -7,8 +7,9 @@ After=environment.service
 User=mongodb
 
 ExecStart=/usr/bin/mongod --shardsvr \
-  --replSet {{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-shardsvr \
-  --bind_ip {{ lookup('env', 'HOST_IP') }}
+  --replSet {{ replset }} \
+  --bind_ip {{ lookup('env', 'HOST_IP') }} \
+  --port {{ port }}
 
 
 [Install]

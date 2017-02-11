@@ -7,8 +7,9 @@ After=environment.service
 User=mongodb
 
 ExecStart=/usr/bin/mongod --configsvr \
-  --replSet {{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-configsvr \
-  --bind_ip {{ lookup('env', 'HOST_IP') }}
+  --replSet {{ replset }} \
+  --bind_ip {{ lookup('env', 'HOST_IP') }} \
+  --port {{ port }}
 
 [Install]
 WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+---
+
+  dependencies:
+
+    - { role: consul-client, meta: mongodb }
+
+    - { role: influxdb-telegraf, meta: mongodb }
+    - { role: systemd-logentries, meta: mongodb }

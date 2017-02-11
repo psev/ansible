@@ -1,0 +1,11 @@
+---
+
+  port: 27019
+
+  templates:
+
+    - configsvr
+
+  data_dirs:
+
+    - configdb

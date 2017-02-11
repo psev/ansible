@@ -1,0 +1,21 @@
+---
+
+  - name: template service file
+    template:
+      src: mongodb-{{ item }}.service.tpl
+      dest: "{{ system }}/mongodb-{{ item }}.service"
+    with_items: "{{ templates }}"
+    notify:
+      - daemon-reload
+
+  - name: create service drop-in
+    file:
+      path: "{{ system }}/mongodb-{{ item }}.service.d"
+      state: directory
+    with_items: "{{ templates }}"
+
+  - name: write limits drop-in
+    shell: echo "{{ limits }}" > {{ system }}/mongodb-{{ item }}.service.d/00-limits.conf
+    with_items: "{{ templates }}"
+    notify:
+      - daemon-reload

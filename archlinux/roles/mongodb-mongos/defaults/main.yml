@@ -1,0 +1,7 @@
+---
+
+  port: 27017
+
+  templates:
+
+    - mongos
