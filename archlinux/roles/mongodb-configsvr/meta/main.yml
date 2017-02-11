@@ -1,4 +1,6 @@
 ---
 
-  - { role: mongodb, meta: mongodb-configsvr }
-  - { role: mongodb-mongos, meta: mongodb-configsvr, configsvr_port: "{{ port }}" }
+  dependencies:
+
+    - { role: mongodb, meta: mongodb-configsvr }
+    - { role: mongodb-mongos, meta: mongodb-configsvr, configsvr_port: "{{ port }}" }

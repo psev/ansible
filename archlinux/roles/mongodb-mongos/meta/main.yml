@@ -1,3 +1,5 @@
 ---
 
-  - { role: mongodb, meta: mongodb-configsvr }
+  dependencies:
+
+    - { role: mongodb, meta: mongodb-configsvr }

@@ -1,3 +1,5 @@
 ---
 
-  - { role: mongodb, meta: mongodb-shardsvr }
+  dependencies:
+
+    - { role: mongodb, meta: mongodb-shardsvr }
