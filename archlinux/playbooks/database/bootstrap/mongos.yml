@@ -34,13 +34,6 @@
           {% set collection = item.split(".")[-1] %}
           mongo {{ uri }}:{{ port }}/{{ database }} --eval 'db.{{ collection }}.createIndex({{ shard_key }})'
         with_items: "{{ collections }}"
-        register: mongo
-        run_once: yes
-
-      - name: print output
-        debug:
-          msg: "{{ item.stdout }}"
-        with_dict: "{{ mongo }}"
         run_once: yes
 
       - name: add shards
@@ -57,24 +50,10 @@
       - name: enable sharding for selected databases
         command: mongo {{ uri }}:{{ port }} --eval 'sh.enableSharding("{{ item }}")'
         with_items: "{{ databases }}"
-        register: mongo
-        run_once: yes
-
-      - name: print output
-        debug:
-          msg: "{{ item.stdout }}"
-        with_dict: "{{ mongo }}"
         run_once: yes
 
       - name: enable sharding for selected collections
         command: >
           mongo {{ uri }}:{{ port }} --eval 'sh.shardCollection("{{ item }}", {{ shard_key }})'
         with_items: "{{ collections }}"
-        register: mongo
-        run_once: yes
-
-      - name: print output
-        debug:
-          msg: "{{ item.stdout }}"
-        with_dict: "{{ mongo }}"
         run_once: yes
