@@ -6,7 +6,7 @@
 
   data_dir: /data
 
-  replset: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ lookup('env', 'TAG') }}"
+  replset: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ lookup('env', 'CLUSTER') }}"
 
   limits: >
     [Service]

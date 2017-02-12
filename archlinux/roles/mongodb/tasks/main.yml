@@ -39,7 +39,7 @@
 
   - name: create /data directory
     file:
-      path: {{ data_dir }}
+      path: "{{ data_dir }}"
       state: directory
       owner: mongodb
       mode: 0700
@@ -63,47 +63,9 @@
     command: /usr/bin/mount LABEL=data
     ignore_errors: yes
 
-
   - name: copy hugepage drop-in
     copy:
       src="00-hugepage.conf"
       dest="{{ tmpfiles }}/00-hugepage.conf"
     notify:
       - daemon-reload
-
-  - name: template service files
-    template:
-      src: mongo-{{ item }}.service.tpl
-      dest: "{{ system }}/mongo-{{ item }}.service"
-    with_items: "{{ templates }}"
-    notify:
-      - daemon-reload
-
-  - name: create service drop-in directories
-    file:
-      path: "{{ system }}/mongo-{{ item }}.service.d"
-      state: directory
-    with_items: "{{ templates }}"
-    notify:
-      - daemon-reload
-
-  - name: copy limits drop-in
-    copy:
-      src: 00-limits.conf
-      dest: "{{ system }}/mongo-{{ item }}.service.d/00-limits.conf"
-    with_items: "{{ templates }}"
-    notify:
-      - daemon-reload
-      #- enable mongo-configsvr
-      #- enable mongo-shardsvr
-      #- enable mongo-mongos
-      #- start mongo-configsvr
-      #- start mongo-shardsvr
-      #- start mongo-mongos
-
-  - name: copy mongodb consul service definition
-    template:
-      src="mongodb.service.json.tpl"
-      dest="/etc/consul/agent/mongodb.service.json"
-    notify:
-      - reload consul

@@ -2,10 +2,11 @@
   "services": [
     {% for name in templates %}
     {
-      "id": "mongo-{{ lookup('env', 'TAG') }}",
-      "name": "mongo-{{ lookup('env', 'TAG') }}",
+      "id": "mongo-{{ name }}-{{ lookup('env', 'CLUSTER') }}",
+      "name": "mongo-{{ name }}-{{ lookup('env', 'CLUSTER') }}",
       "tags": [
-        "{{ lookup('env', 'DEPLOY') }}"
+        "{{ lookup('env', 'DEPLOY') }}",
+        "{{ lookup('env', 'CLUSTER') }}"
       ],
       "address": "{{ lookup('env', 'HOST_IP') }}",
       "port": {{ port }},

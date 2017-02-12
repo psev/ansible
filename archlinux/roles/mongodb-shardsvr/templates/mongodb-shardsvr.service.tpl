@@ -7,7 +7,7 @@ After=environment.service
 User=mongodb
 
 ExecStart=/usr/bin/mongod --shardsvr \
-  --replSet {{ replset }} \
+  --replSet {{ replset }}-{{ lookup('env', 'SHARD') }} \
   --bind_ip {{ lookup('env', 'HOST_IP') }} \
   --port {{ port }}
 

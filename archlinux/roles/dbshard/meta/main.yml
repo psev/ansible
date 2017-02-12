@@ -1,0 +1,9 @@
+---
+
+  dependencies:
+
+    - { role: consul-client, meta: dbshard }
+
+    - { role: "mongodb-shardsvr", meta": "dbshard" }
+    - { role: "influxdb-telegraf", meta: "dbshard" }
+  #  - { role: "systemd-logentries", meta: "dbshard" }

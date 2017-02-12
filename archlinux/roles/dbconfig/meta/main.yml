@@ -1,0 +1,10 @@
+---
+
+  dependencies:
+
+    - { role: consul-client, meta: dbconfig }
+
+    - { role: "mongodb-configsvr", meta: "dbconfig" }
+    - { role: "mongodb-mongos", meta": "dbconfig" }
+    - { role: "influxdb-telegraf", meta: "dbconfig" }
+#    - { role: "systemd-logentries", meta: "dbconfig" }
