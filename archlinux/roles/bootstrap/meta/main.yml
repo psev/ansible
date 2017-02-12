@@ -3,6 +3,7 @@
   dependencies:
 
     - role: ansible-modules
+    - role: ec2-metadata
     - role: hostname
     - role: ssh
     - role: sudo
