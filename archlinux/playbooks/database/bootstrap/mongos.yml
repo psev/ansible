@@ -8,8 +8,15 @@
       uri: mongodb-mongos-{{ cluster }}.service.consul
 
       shard_key: "{ _id: 1 }"
-      shard_replset: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}-{{ shard }}"
-      shardsvr_uri: mongodb-shardsvr-{{ cluster }}-{{ shard }}.service.consul:27018
+      shardsvr_replset: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}-{{ shard }}"
+      shardsvr_port: 27018
+      shardsvr_list: >
+        {% set key = 'dbshard_{{ cluster }}_{{ shard }}_{{ lookup('env', 'DEPLOY') }}' %}
+        {% set hosts = hostvars[key] %}
+        {% for i in range(hosts|count) %}
+          dbshard-{{ cluster }}-{{ shard }}-{{ i + 1 }}:{{ shardsvr_port }}
+          {%- if loop.index != ansible_play_hosts|count %},{% endif -%}
+        {% endfor %}
 
       databases:
 
@@ -47,9 +54,14 @@
         with_items: "{{ collections }}"
         run_once: yes
 
+      - name: print shardsvr_list
+        debug:
+          msg: "{{ shardsvr_list }}"
+        run_once: yes
+
       - name: add shards
         command: >
-          mongo {{ uri }}:{{ port }} --eval 'sh.addShard("{{ shard_replset }}/{{ shardsvr_uri }}")'
+          mongo {{ uri }}:{{ port }} --eval 'sh.addShard("{{ shardsvr_replset }}/{{ shardsvr_list }}")'
         register: mongo
         run_once: yes
 
