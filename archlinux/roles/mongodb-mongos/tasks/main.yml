@@ -19,3 +19,11 @@
     with_items: "{{ templates }}"
     notify:
       - daemon-reload
+      
+  - name: template mongodb consul service definition
+    template:
+      src: mongodb-{{ item }}.service.json.tpl
+      dest: /etc/consul/agent/mongodb-{{ item }}.service.json
+    with_items: "{{ templates }}"
+    notify:
+      - reload consul
