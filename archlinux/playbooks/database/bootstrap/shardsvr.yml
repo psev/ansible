@@ -10,7 +10,7 @@
       config: >
         rs.initiate(
           {
-            "_id": "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}-{{shard }}",
+            "_id": "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}-{{ shard }}",
             "configsvr": false,
             "members": [
             {%- for i in range(ansible_play_hosts|count) %}
