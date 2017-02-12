@@ -39,6 +39,12 @@
       - name: add shards
         command: >
           mongo {{ uri }}:{{ port }} --eval 'sh.addShard("{{ shard }}/{{ shardsvr_uri }}")'
+        register: mongo
+        run_once: yes
+
+      - name: print output
+        debug:
+          msg: "{{ mongo.stdout }}"
         run_once: yes
 
       - name: enable sharding for selected databases
