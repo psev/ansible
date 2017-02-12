@@ -11,7 +11,7 @@
       shardsvr_replset: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}-{{ shard }}"
       shardsvr_port: 27018
       shardsvr_list: >
-        {% set key = 'dbshard_{{ cluster }}_{{ shard }}_{{ lookup('env', 'DEPLOY') }}' %}
+        {% set key = "dbshard_{{ cluster }}_{{ shard }}_{{ lookup('env', 'DEPLOY') }}" %}
         {% set hosts = hostvars[key] %}
         {% for i in range(hosts|count) %}
           dbshard-{{ cluster }}-{{ shard }}-{{ i + 1 }}:{{ shardsvr_port }}
