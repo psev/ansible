@@ -8,7 +8,7 @@
 
   replset: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ lookup('env', 'CLUSTER') }}"
 
-  limits: >
+  limits: |
     [Service]
     # Other directives omitted
     # (file size)
@@ -22,6 +22,6 @@
     # (processes/threads)
     LimitNPROC=64000
 
-  hugepage: >
+  hugepage: |
     w /sys/kernel/mm/transparent_hugepage/enabled - - - - never
     w /sys/kernel/mm/transparent_hugepage/defrag - - - - never

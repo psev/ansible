@@ -2,8 +2,8 @@
   "services": [
     {% for name in templates %}
     {
-      "id": "mongo-{{ name }}-{{ lookup('env', 'CLUSTER') }}",
-      "name": "mongo-{{ name }}-{{ lookup('env', 'CLUSTER') }}",
+      "id": "mongodb-{{ name }}-{{ lookup('env', 'CLUSTER') }}",
+      "name": "mongodb-{{ name }}-{{ lookup('env', 'CLUSTER') }}",
       "tags": [
         "{{ lookup('env', 'DEPLOY') }}",
         "{{ lookup('env', 'CLUSTER') }}"
@@ -12,7 +12,7 @@
       "port": {{ port }},
       "checks": [
         {
-          "script": "systemctl is-active mongo-{{ name }}",
+          "script": "systemctl is-active mongodb-{{ name }}",
           "interval": "20s"
         },
         {
