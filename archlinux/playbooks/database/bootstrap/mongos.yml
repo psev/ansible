@@ -24,7 +24,7 @@
 
       - name: enable and start mongo-mongos
         service:
-          name: mongo-mongos
+          name: mongodb-mongos
           state: started
           enabled: yes
 
