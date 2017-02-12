@@ -13,7 +13,7 @@
       "port": {{ port }},
       "checks": [
         {
-          "script": "systemctl is-active mongo-{{ name }}",
+          "script": "systemctl is-active mongodb-{{ name }}",
           "interval": "20s"
         },
         {
