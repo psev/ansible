@@ -12,10 +12,10 @@
       shardsvr_port: 27018
       shardsvr_group: tag_Name_dbshard_{{ cluster }}_{{ shard }}_{{ lookup('env', 'DEPLOY') }}
       shardsvr_list: >
-        {%- for i in range(groups[shardsvr_group]|count) %}
+        {%- for i in range(groups[shardsvr_group]|count) -%}
           dbshard-{{ cluster }}-{{ shard }}-{{ i + 1 }}:{{ shardsvr_port }}
           {%- if loop.index != groups[shardsvr_group]|count %},{% endif -%}
-        {% endfor -%}
+        {%- endfor -%}
 
       databases:
 
