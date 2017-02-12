@@ -3,4 +3,4 @@
   dependencies:
 
     - { role: mongodb, meta: mongodb-configsvr }
-    - { role: mongodb-mongos, meta: mongodb-configsvr, configsvr_port: "{{ port }}" }
+    - { role: mongodb-mongos, meta: mongodb-configsvr, configsvr_port: 27019 }
