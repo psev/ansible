@@ -1,6 +1,7 @@
 ---
 
   port: 27017
+  configsvr_port: 27019
 
   templates:
 
