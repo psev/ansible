@@ -40,6 +40,22 @@
           state: started
           enabled: yes
 
+      - name: print shardsvr_list
+        debug:
+          msg: "{{ shardsvr_list }}"
+        run_once: yes
+
+      - name: add shards
+        command: >
+          mongo {{ uri }}:{{ port }} --eval 'sh.addShard("{{ shardsvr_replset }}/{{ shardsvr_list }}")'
+        register: mongo
+        run_once: yes
+
+      - name: print output
+        debug:
+          msg: "{{ mongo.stdout }}"
+        run_once: yes
+
       - name: enable sharding for selected databases
         command: mongo {{ uri }}:{{ port }} --eval 'sh.enableSharding("{{ item }}")'
         with_items: "{{ databases }}"
@@ -57,20 +73,4 @@
         command: >
           mongo {{ uri }}:{{ port }} --eval 'sh.shardCollection("{{ item }}", {{ shard_key }})'
         with_items: "{{ collections }}"
-        run_once: yes
-
-      - name: print shardsvr_list
-        debug:
-          msg: "{{ shardsvr_list }}"
-        run_once: yes
-
-      - name: add shards
-        command: >
-          mongo {{ uri }}:{{ port }} --eval 'sh.addShard("{{ shardsvr_replset }}/{{ shardsvr_list }}")'
-        register: mongo
-        run_once: yes
-
-      - name: print output
-        debug:
-          msg: "{{ mongo.stdout }}"
         run_once: yes
