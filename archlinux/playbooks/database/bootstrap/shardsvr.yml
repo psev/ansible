@@ -5,7 +5,7 @@
     vars:
 
       port: 27018
-      uri: mongo-shardsvr-{{ cluster }}.service.consul
+      uri: mongo-shardsvr-{{ cluster }}-{{ shard }}.service.consul
 
       config: >
         rs.initiate(
