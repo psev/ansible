@@ -40,17 +40,17 @@
           state: started
           enabled: yes
 
+      - name: enable sharding for selected databases
+        command: mongo {{ uri }}:{{ port }} --eval 'sh.enableSharding("{{ item }}")'
+        with_items: "{{ databases }}"
+        run_once: yes
+
       - name: create shard index for selected collections
         command: >
           {% set database = item.split(".")[0] %}
           {% set collection = item.split(".")[-1] %}
           mongo {{ uri }}:{{ port }}/{{ database }} --eval 'db.{{ collection }}.createIndex({{ shard_key }})'
         with_items: "{{ collections }}"
-        run_once: yes
-
-      - name: enable sharding for selected databases
-        command: mongo {{ uri }}:{{ port }} --eval 'sh.enableSharding("{{ item }}")'
-        with_items: "{{ databases }}"
         run_once: yes
 
       - name: enable sharding for selected collections
