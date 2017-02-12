@@ -1,21 +1,20 @@
 ---
 
-  - hosts: tag_Name_database_{{ lookup('env', 'DEPLOY') }}
+  - hosts: tag_Name_dbshard_{{ cluster }}_{{ lookup('env', 'DEPLOY') }}
 
     vars:
 
-      name: shardsvr
       port: 27018
-      uri: mongo-{{ name }}.service.consul
+      uri: mongo-shardsvr-{{ cluster }}.service.consul
 
-      config: |
+      config: >
         rs.initiate(
           {
-            "_id": "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ name }}",
+            "_id": "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}",
             "configsvr": false,
             "members": [
             {%- for i in range(ansible_play_hosts|count) %}
-              { "_id" : {{ i }}, "host" : "database-{{ i + 1 }}:{{ port }}" }
+              { "_id" : {{ i }}, "host" : "shardsvr-{{ cluster }}-{{ i + 1 }}:{{ port }}" }
               {%- if loop.index != ansible_play_hosts|count %},{% endif -%}
             {% endfor -%}
             ]
@@ -24,19 +23,19 @@
 
     tasks:
 
-      - name: enable and start mongo service
+      - name: enable and start mongodb-shardsvr service
         service:
-          name: mongo-{{ name }}
+          name: mongodb-shardsvr
           state: started
           enabled: yes
 
-      - name: wait for mongo consul service
+      - name: wait for mongodb-shardsvr consul service
         wait_for:
           host: "{{ uri }}"
           port: "{{ port }}"
 
-      - name: initialize mongo-shardsvr
-        command: mongo {{ uri }}:{{ port }} --eval '{{ config | replace("\n", "") }}'
+      - name: initialize mongodb-shardsvr
+        command: mongo {{ uri }}:{{ port }} --eval '{{ config }}'
         register: mongo
         run_once: yes
 
