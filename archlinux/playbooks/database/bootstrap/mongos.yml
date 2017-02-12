@@ -9,7 +9,7 @@
 
       shard_key: "{ _id: 1 }"
       shard_replset: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}-{{ shard }}"
-      shardsvr_uri: mongodb-shardsvr--{{ cluster }}-{{ shard }}.service.consul:27018
+      shardsvr_uri: mongodb-shardsvr-{{ cluster }}-{{ shard }}.service.consul:27018
 
       databases:
 
