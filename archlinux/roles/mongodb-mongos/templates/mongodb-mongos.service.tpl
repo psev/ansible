@@ -6,7 +6,7 @@ After=consul.service
 [Service]
 User=mongodb
 
-ExecStart=/usr/bin/mongos --configdb {{ replset }}/mongo-configsvr-{{ lookup('env', 'CLUSTER') }}.service.consul:{{ configsvr_port }} \
+ExecStart=/usr/bin/mongos --configdb {{ replset }}/mongo-configsvr-{{ lookup('env', 'CLUSTER') }}.service.consul:{{ configsvr }} \
   --bind_ip {{ lookup('env', 'HOST_IP') }} \
   --port {{ port }}
 
