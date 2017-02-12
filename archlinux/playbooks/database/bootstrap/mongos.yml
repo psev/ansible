@@ -10,12 +10,11 @@
       shard_key: "{ _id: 1 }"
       shardsvr_replset: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}-{{ shard }}"
       shardsvr_port: 27018
+      shardsvr_group: dbshard_{{ cluster }}_{{ shard }}_{{ lookup('env', 'DEPLOY') }}
       shardsvr_list: >
-        {% set key = "dbshard_{{ cluster }}_{{ shard }}_{{ lookup('env', 'DEPLOY') }}" %}
-        {% set hosts = groups[key] %}
-        {% for i in range(hosts|count) %}
+        {% for i in range(groups[shardsvr_group]|count) %}
           dbshard-{{ cluster }}-{{ shard }}-{{ i + 1 }}:{{ shardsvr_port }}
-          {%- if loop.index != hosts|count %},{% endif -%}
+          {%- if loop.index != groups[shardsvr_group]|count %},{% endif -%}
         {% endfor %}
 
       databases:
