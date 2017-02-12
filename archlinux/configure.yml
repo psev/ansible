@@ -18,7 +18,8 @@
       - { role: admin, tags: [ "admin" ] }
       - { role: build, tags: [ "build" ] }
       - { role: control, tags: [ "control" ] }
-      - { role: database, tags: [ "database" ] }
+      - { role: dbconfig, tags: [ "dbconfig" ] }
+      - { role: dbshard, tags: [ "dbshard" ] }
       - { role: fleet, tags: [ "fleet" ] }
       - { role: hub, tags: [ "hub" ] }
       - { role: monitor, tags: [ "monitor" ] }
