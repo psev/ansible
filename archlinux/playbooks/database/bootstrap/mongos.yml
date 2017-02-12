@@ -15,11 +15,13 @@
 
       shardsvr_port: 27018
 
-      shardsvr_list: >
+      shardsvr_hosts: >
         {%- for i in range(groups[shardsvr_group]|count) -%}
           dbshard-{{ cluster }}-{{ shard }}-{{ i + 1 }}:{{ shardsvr_port }}
           {%- if loop.index != groups[shardsvr_group]|count -%},{%- endif -%}
         {%- endfor -%}
+
+      shardsvr_list: "{{ shardsvr_hosts | replace('\n', '') }}"
 
       databases:
 
@@ -64,7 +66,7 @@
 
       - name: add shards
         command: >
-          mongo {{ uri }}:{{ port }} --eval 'sh.addShard("{{ shardsvr_replset }}/{{ shardsvr_list | replace(\'\n\', \'\') }}")'
+          mongo {{ uri }}:{{ port }} --eval 'sh.addShard("{{ shardsvr_replset }}/{{ shardsvr_list }}")'
         register: mongo
         run_once: yes
 
