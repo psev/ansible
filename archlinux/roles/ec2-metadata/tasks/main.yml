@@ -10,6 +10,12 @@
       state: list
     register: ec2_tags
 
+  - name: touch /etc/environment.tags
+    file:
+      path: /etc/environment.tags
+      mode: 0755
+      state: touch
+
   - name: populate /etc/environment.tags
     lineinfile:
       dest: /etc/environment.tags
