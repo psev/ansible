@@ -15,7 +15,7 @@
         {% set hosts = hostvars[key] %}
         {% for i in range(hosts|count) %}
           dbshard-{{ cluster }}-{{ shard }}-{{ i + 1 }}:{{ shardsvr_port }}
-          {%- if loop.index != ansible_play_hosts|count %},{% endif -%}
+          {%- if loop.index != hosts|count %},{% endif -%}
         {% endfor %}
 
       databases:
