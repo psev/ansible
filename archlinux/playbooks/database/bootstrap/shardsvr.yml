@@ -1,6 +1,6 @@
 ---
 
-  - hosts: tag_Name_dbshard_{{ cluster }}_{{ lookup('env', 'DEPLOY') }}
+  - hosts: tag_Name_dbshard_{{ cluster }}_{{ shard }}_{{ lookup('env', 'DEPLOY') }}
 
     vars:
 
@@ -10,11 +10,11 @@
       config: >
         rs.initiate(
           {
-            "_id": "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}",
+            "_id": "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}-{{shard }}",
             "configsvr": false,
             "members": [
             {%- for i in range(ansible_play_hosts|count) %}
-              { "_id" : {{ i }}, "host" : "shardsvr-{{ cluster }}-{{ i + 1 }}:{{ port }}" }
+              { "_id" : {{ i }}, "host" : "shardsvr-{{ cluster }}-{{ shard }}-{{ i + 1 }}:{{ port }}" }
               {%- if loop.index != ansible_play_hosts|count %},{% endif -%}
             {% endfor -%}
             ]
