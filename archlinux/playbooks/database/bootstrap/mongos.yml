@@ -39,7 +39,8 @@
 
       - name: print output
         debug:
-          msg: "{{ mongo.stdout }}"
+          msg: "{{ item.stdout }}"
+        with_dict: "{{ mongo }}"
         run_once: yes
 
       - name: add shards
@@ -61,7 +62,8 @@
 
       - name: print output
         debug:
-          msg: "{{ mongo.stdout }}"
+          msg: "{{ item.stdout }}"
+        with_dict: "{{ mongo }}"
         run_once: yes
 
       - name: enable sharding for selected collections
@@ -73,5 +75,6 @@
 
       - name: print output
         debug:
-          msg: "{{ mongo.stdout }}"
+          msg: "{{ item.stdout }}"
+        with_dict: "{{ mongo }}"
         run_once: yes
