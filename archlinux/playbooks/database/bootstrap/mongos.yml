@@ -64,7 +64,7 @@
 
       - name: add shards
         command: >
-          mongo {{ uri }}:{{ port }} --eval 'sh.addShard("{{ shardsvr_replset }}/{{ shardsvr_list }}")'
+          mongo {{ uri }}:{{ port }} --eval 'sh.addShard("{{ shardsvr_replset }}/{{ shardsvr_list | replace(\'\n\', \'\') }}")'
         register: mongo
         run_once: yes
 
