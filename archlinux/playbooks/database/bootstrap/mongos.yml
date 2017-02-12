@@ -36,17 +36,6 @@
         with_items: "{{ collections }}"
         run_once: yes
 
-      - name: add shards
-        command: >
-          mongo {{ uri }}:{{ port }} --eval 'sh.addShard("{{ shard_replset }}/{{ shardsvr_uri }}")'
-        register: mongo
-        run_once: yes
-
-      - name: print output
-        debug:
-          msg: "{{ mongo.stdout }}"
-        run_once: yes
-
       - name: enable sharding for selected databases
         command: mongo {{ uri }}:{{ port }} --eval 'sh.enableSharding("{{ item }}")'
         with_items: "{{ databases }}"
@@ -56,4 +45,15 @@
         command: >
           mongo {{ uri }}:{{ port }} --eval 'sh.shardCollection("{{ item }}", {{ shard_key }})'
         with_items: "{{ collections }}"
+        run_once: yes
+
+      - name: add shards
+        command: >
+          mongo {{ uri }}:{{ port }} --eval 'sh.addShard("{{ shard_replset }}/{{ shardsvr_uri }}")'
+        register: mongo
+        run_once: yes
+
+      - name: print output
+        debug:
+          msg: "{{ mongo.stdout }}"
         run_once: yes
