@@ -12,7 +12,7 @@
       shardsvr_port: 27018
       shardsvr_list: >
         {% set key = "dbshard_{{ cluster }}_{{ shard }}_{{ lookup('env', 'DEPLOY') }}" %}
-        {% set hosts = hostvars[key] %}
+        {% set hosts = groups[key] %}
         {% for i in range(hosts|count) %}
           dbshard-{{ cluster }}-{{ shard }}-{{ i + 1 }}:{{ shardsvr_port }}
           {%- if loop.index != hosts|count %},{% endif -%}
