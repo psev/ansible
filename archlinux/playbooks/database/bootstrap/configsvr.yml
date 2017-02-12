@@ -1,17 +1,16 @@
 ---
 
-  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+  - hosts: tag_Name_dbconfig_{{ cluster }}_{{ lookup('env', 'DEPLOY') }}
 
     vars:
 
-      name: configsvr
       port: 27019
-      uri: mongo-{{ name }}.service.consul
+      uri: mongodb-configsvr-{{ cluster }}.service.consul
 
-      config: |
+      config: >
         rs.initiate(
           {
-            "_id": "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ name }}",
+            "_id": "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}",
             "configsvr": true,
             "members": [
             {%- for i in range(ansible_play_hosts|count) %}
@@ -24,20 +23,20 @@
 
     tasks:
 
-      - name: enable and start mongo service
+      - name: enable and start mongodb-configsvr service
         service:
-          name: mongo-{{ name }}
+          name: mongodb-configsvr
           state: started
           enabled: yes
 
-      - name: wait for mongo consul service
+      - name: wait for mongodb-configsvr consul service
         wait_for:
           host: "{{ uri }}"
           port: "{{ port }}"
           delay: 5
 
-      - name: initialize mongo-configsvr
-        command: mongo {{ uri }}:{{ port }} --eval '{{ config | replace("\n", "") }}'
+      - name: initialize mongodb-configsvr
+        command: mongo {{ uri }}:{{ port }} --eval '{{ config }}'
         register: mongo
         run_once: yes
 
