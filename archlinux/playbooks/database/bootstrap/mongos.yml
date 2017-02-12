@@ -7,8 +7,6 @@
       port: 27017
       uri: mongodb-mongos-{{ cluster }}.service.consul
 
-      shard_key: "{ _id: 1 }"
-
       shardsvr_replset: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}-{{ shard }}"
 
       shardsvr_group: tag_Name_dbshard_{{ cluster }}_{{ shard }}_{{ lookup('env', 'DEPLOY') }}
