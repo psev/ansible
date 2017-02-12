@@ -63,9 +63,7 @@
     command: /usr/bin/mount LABEL=data
     ignore_errors: yes
 
-  - name: copy hugepage drop-in
-    copy:
-      src="00-hugepage.conf"
-      dest="{{ tmpfiles }}/00-hugepage.conf"
+  - name: write hugepage drop-in
+    shell: echo "{{ limits }}" > {{ tmpfiles }}/00-hugepage.conf
     notify:
       - daemon-reload
