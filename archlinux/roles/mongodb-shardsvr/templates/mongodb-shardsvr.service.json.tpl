@@ -2,8 +2,8 @@
   "services": [
     {% for name in templates %}
     {
-      "id": "mongo-{{ name }}-{{ lookup('env', 'CLUSTER') }}-{{ lookup('env', 'SHARD') }}",
-      "name": "mongo-{{ name }}-{{ lookup('env', 'CLUSTER') }}-{{ lookup('env', 'SHARD') }}",
+      "id": "mongodb-{{ name }}-{{ lookup('env', 'CLUSTER') }}-{{ lookup('env', 'SHARD') }}",
+      "name": "mongodb-{{ name }}-{{ lookup('env', 'CLUSTER') }}-{{ lookup('env', 'SHARD') }}",
       "tags": [
         "{{ lookup('env', 'DEPLOY') }}",
         "{{ lookup('env', 'CLUSTER') }}",
