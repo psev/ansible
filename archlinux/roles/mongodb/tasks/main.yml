@@ -64,6 +64,6 @@
     ignore_errors: yes
 
   - name: write hugepage drop-in
-    shell: echo "{{ limits }}" > {{ tmpfiles }}/00-hugepage.conf
+    shell: echo "{{ hugepage }}" > {{ tmpfiles }}/00-hugepage.conf
     notify:
       - daemon-reload
