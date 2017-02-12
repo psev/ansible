@@ -1,5 +1,0 @@
----
-
-  - include: bootstrap/configsvr.yml
-  - include: bootstrap/shardsvr.yml
-  - include: bootstrap/mongos.yml

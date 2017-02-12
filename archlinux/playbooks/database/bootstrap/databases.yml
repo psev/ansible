@@ -1,0 +1,38 @@
+---
+
+  - hosts: tag_Name_dbconfig_{{ cluster }}_{{ lookup('env', 'DEPLOY') }}
+
+    vars:
+
+      port: 27017
+      uri: mongodb-mongos-{{ cluster }}.service.consul
+
+      databases:
+
+        - federal
+
+      collections:
+
+        - federal.bill
+        - federal.billstatus
+
+    tasks:
+
+      - name: enable sharding for selected databases
+        command: mongo {{ uri }}:{{ port }} --eval 'sh.enableSharding("{{ item }}")'
+        with_items: "{{ databases }}"
+        run_once: yes
+
+      - name: create shard index for selected collections
+        command: >
+          {% set database = item.split(".")[0] %}
+          {% set collection = item.split(".")[-1] %}
+          mongo {{ uri }}:{{ port }}/{{ database }} --eval 'db.{{ collection }}.createIndex({{ shard_key }})'
+        with_items: "{{ collections }}"
+        run_once: yes
+
+      - name: enable sharding for selected collections
+        command: >
+          mongo {{ uri }}:{{ port }} --eval 'sh.shardCollection("{{ item }}", {{ shard_key }})'
+        with_items: "{{ collections }}"
+        run_once: yes
