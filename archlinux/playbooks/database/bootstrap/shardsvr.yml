@@ -14,7 +14,7 @@
             "configsvr": false,
             "members": [
             {%- for i in range(ansible_play_hosts|count) %}
-              { "_id" : {{ i }}, "host" : "shardsvr-{{ cluster }}-{{ shard }}-{{ i + 1 }}:{{ port }}" }
+              { "_id" : {{ i }}, "host" : "dbshard-{{ cluster }}-{{ shard }}-{{ i + 1 }}:{{ port }}" }
               {%- if loop.index != ansible_play_hosts|count %},{% endif -%}
             {% endfor -%}
             ]
