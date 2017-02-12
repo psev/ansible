@@ -1,16 +1,15 @@
 ---
 
-  - hosts: tag_Name_database_{{ lookup('env', 'DEPLOY') }}
+  - hosts: tag_Name_dbconfig_{{ cluster }}_{{ lookup('env', 'DEPLOY') }}
 
     vars:
 
-      name: mongos
       port: 27017
-      uri: mongo-{{ name }}.service.consul
+      uri: mongodb-mongos-{{ cluster }}.service.consul
 
       shard_key: "{ _id: 1 }"
-      shardsvr_uri: mongo-shardsvr.service.consul:27018
-      shard: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-shard"
+      shardsvr_uri: mongodb-shardsvr-{{ shard }}.service.consul:27018
+      shard: "{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY') }}-{{ cluster }}"
 
       databases:
 
