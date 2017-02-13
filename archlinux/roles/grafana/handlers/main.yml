@@ -1,0 +1,11 @@
+---
+
+  - name: enable grafana
+    service:
+      name: grafana
+      enabled: yes
+
+  - name: restart grafana
+    service:
+      name: grafana
+      state: started

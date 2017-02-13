@@ -9,3 +9,15 @@
 
   - name: install grafana
     command: pacman --noconfirm -U /tmp/grafana.pkg.tar.xz
+
+  - name: template grafana configuration
+    template:
+      src: grafana.ini.tpl
+      dest: /etc/grafana/grafana.ini
+      owner: grafana
+      group: grafana
+      mode: 0755
+    notify:
+      - daemon-reload
+      - enable grafana
+      - restart grafana
