@@ -7,3 +7,4 @@ dependencies:
   - { role: "influxdb-telegraf", meta: "admin" }
   - { role: "swarm-ui", meta: "admin" }
   - { role: "systemd-logentries", meta: "admin" }
+  - { role: grafana, meta: admin }

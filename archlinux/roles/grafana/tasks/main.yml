@@ -1,0 +1,11 @@
+---
+
+  - name: copy grafana from s3
+    s3:
+      bucket="{{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'REGION') }}-{{ lookup('env', 'DEPLOY') }}-archlinux-repository"
+      object="/grafana-bin-{{ package_version }}-x86_64.pkg.tar.xz"
+      dest="/tmp/grafana.pkg.tar.xz"
+      mode="get"
+
+  - name: install grafana
+    command: pacman --noconfirm -U /tmp/grafana.pkg.tar.xz
