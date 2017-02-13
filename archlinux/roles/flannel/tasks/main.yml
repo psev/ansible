@@ -28,10 +28,12 @@
       path="/etc/environment.flannel"
       state="present"
 
+
   - name: copy docker flannel config
     copy:
       src="10-flannel.conf"
       dest="/etc/systemd/system/docker.service.d/10-flannel.conf"
+      timeout="30"
 
   - name: systemctl daemon-reload
     command: systemctl daemon-reload
