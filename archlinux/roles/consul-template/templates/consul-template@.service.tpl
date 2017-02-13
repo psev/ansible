@@ -1,5 +1,7 @@
 [Unit]
 Description=Consul Template %i
+Requires=consul.service
+After=consul.service
 
 [Service]
 PermissionsStartOnly=true
