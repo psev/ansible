@@ -1,6 +1,8 @@
 ---
 
-    - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+
+    tasks:
 
       - name: set flannel config
         command: >
