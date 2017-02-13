@@ -49,7 +49,7 @@
     notify:
       - reload consul
 
-  - name: copy consul load check defininiot
+  - name: copy consul load check definition
     copy:
       src="load.check.json"
       dest="/etc/consul/agent/load.check.json"
