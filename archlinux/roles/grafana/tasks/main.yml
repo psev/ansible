@@ -21,3 +21,10 @@
       - daemon-reload
       - enable grafana
       - restart grafana
+
+  - name: template grafana consul service definition
+    template:
+      src: grafana.service.json.tpl
+      dest: /etc/consul/agent/grafana.service.json
+    notify:
+      - reload consul
