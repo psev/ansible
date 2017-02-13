@@ -30,9 +30,9 @@
     state="started"
   ignore_errors: "yes"
 
-- name: copy consul config
-  copy:
-    src="systemd-logentries.json"
-    dest="/etc/consul/agent/systemd-logentries.json"
-  notify:
-    - reload consul
+#- name: copy consul config
+#  copy:
+#    src="systemd-logentries.json"
+#    dest="/etc/consul/agent/systemd-logentries.json"
+#  notify:
+#    - reload consul
