@@ -15,4 +15,6 @@
                 "Type": "vxlan"
               }
             }
+          content_type: json
+          return_content: yes
         run_once: yes
