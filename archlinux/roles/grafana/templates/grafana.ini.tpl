@@ -186,10 +186,11 @@ http_port = 11000
 enabled = true
 
 # specify organization name that should be used for unauthenticated users
-;org_name = Main Org.
+org_name = {{ lookup('env', 'IDENTIFIER') }}-{{ lookup('env', 'DEPLOY')}}
 
 # specify role for unauthenticated users
 ;org_role = Viewer
+org_role = Admin
 
 #################################### Github Auth ##########################
 [auth.github]
