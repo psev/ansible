@@ -71,6 +71,11 @@
       - name: settle...
         pause: seconds=5
 
+      - name: restart systemd-resolved
+        service:
+          name: systemd-resolved
+          state: restarted
+          
   - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
 
     tasks:
