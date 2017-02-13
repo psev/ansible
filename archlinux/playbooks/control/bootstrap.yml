@@ -3,4 +3,6 @@
   - include: bootstrap/consul.yml
   - include: bootstrap/consul-restore.yml
   - include: bootstrap/etcd.yml
+  - include: bootstrap/flannel.yml
   - include: bootstrap/swarm.yml
+  - include: bootstrap/vulcand.yml

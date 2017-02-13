@@ -1,0 +1,10 @@
+---
+
+  - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+
+    limit: 1
+
+    tasks:
+
+      - name: create /vulcand directory in etcd
+        command: curl http://etcd.service.consul:2379/v2/keys/vulcand -XPUT -d dir=true
