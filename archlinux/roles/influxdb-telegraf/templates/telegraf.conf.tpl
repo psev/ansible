@@ -16,11 +16,9 @@
 
 # Global tags can be specified here in key="value" format.
 [global_tags]
-  dc = "{{ lookup('env', 'REGION') }}" # will tag all metrics with dc=us-east-1
-  rack = "{{ lookup('env', 'DEPLOY') }}"
-  ## Environment variables can be used as tags, and throughout the config file
-  # user = "$USER"
-
+  region = "{{ lookup('env', 'REGION') }}"
+  deploy = "{{ lookup('env', 'DEPLOY') }}"
+  role = "{{ lookup('env', 'ROLE') }}"
 
 # Configuration for telegraf agent
 [agent]
@@ -1060,9 +1058,9 @@
 #   ##   mongodb://10.10.3.33:18832,
 #   ##   10.0.0.1:10000, etc.
   servers = [
-    "{{ lookup('env', 'HOST_IP') }}:27017",
-    "{{ lookup('env', 'HOST_IP') }}:27018",
-    "{{ lookup('env', 'HOST_IP') }}:27019"
+    "{{ lookup('env', 'HOSTNAME') }}:27017",
+    "{{ lookup('env', 'HOSTNAME') }}:27018",
+    "{{ lookup('env', 'HOSTNAME') }}:27019"
   ]
   gather_perdb_stats = false
 
