@@ -28,6 +28,7 @@
       path="/etc/environment.flannel"
       state="present"
       timeout="30"
+    ignore_errors: yes
 
   - name: copy docker flannel config
     copy:
