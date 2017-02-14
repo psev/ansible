@@ -25,6 +25,7 @@
         - name: settle...
           pause: seconds=15
 
+
     - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
 
       serial: 1
@@ -47,3 +48,14 @@
 
         - name: settle...
           pause: seconds=5
+
+$
+    - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
+
+      tasks:
+
+        - name: wait for etcd.service.consul
+          wait_for:
+            host: "{{ ansible_host }}"
+            port: 2379
+            delay: 10

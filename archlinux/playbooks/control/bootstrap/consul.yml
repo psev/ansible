@@ -52,16 +52,9 @@
       - name: start consul
         service:
           name="consul"
-          state="started"
+          state="restarted"
           enabled="yes"
 
-      - name: settle...
-        pause: seconds=5
-
-      - name: restart systemd-resolved
-        service:
-          name: systemd-resolved
-          state: restarted
 
   - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
 
@@ -79,4 +72,3 @@
           name="consul-alerts"
           state="started"
           enabled="yes"
-        run_once: yes
