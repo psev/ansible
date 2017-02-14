@@ -49,7 +49,7 @@
         - name: settle...
           pause: seconds=5
 
-$
+
     - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
 
       tasks:
