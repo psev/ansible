@@ -16,7 +16,7 @@
 
       - name: print config
         debug:
-          msg: "{{ config | tojson }}"
+          msg: "{{ config | tojson | safe }}"
         run_once: yes
 
       - name: set flannel config
