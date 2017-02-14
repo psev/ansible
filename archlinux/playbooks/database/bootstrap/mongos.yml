@@ -29,6 +29,13 @@
           state: started
           enabled: yes
 
+      - name: wait for mongodb-mongos-primary.service.consul
+        wait_for:
+          host: "{{ anbile_host }}"
+          port: "{{ port }}"
+          delay: 10
+          timeout: 30
+
       - name: print shardsvr_list
         debug:
           msg: "{{ shardsvr_list }}"
