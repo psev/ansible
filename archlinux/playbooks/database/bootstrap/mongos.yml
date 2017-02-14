@@ -31,7 +31,7 @@
 
       - name: wait for mongodb-mongos-primary.service.consul
         wait_for:
-          host: "{{ anbile_host }}"
+          host: "{{ ansible_host }}"
           port: "{{ port }}"
           delay: 10
           timeout: 30
