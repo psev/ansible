@@ -8,5 +8,5 @@
         uri:
           url: http://etcd.service.consul:2379/v2/keys/vulcand
           method: PUT
-          body: dir=true
+          body: "dir=true"
         run_once: yes

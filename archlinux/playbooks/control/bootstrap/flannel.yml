@@ -4,7 +4,7 @@
 
     vars:
 
-      config: >-
+      config: >
         {
           "Network": "192.168.0.0/16",
           "Backend": {
@@ -13,11 +13,6 @@
         }
 
     tasks:
-
-      - name: print config
-        debug:
-          msg: "{{ config }}"
-        run_once: yes
 
       - name: set flannel config
         uri:

@@ -20,13 +20,6 @@
           regexp="^\s+\\"bootstrap\\"*"
           line="  \"bootstrap\": true,"
 
-      #- name: set bootstrap_expect to 3
-      #  lineinfile: |
-      #    name="/etc/consul/agent/config.json"
-      #    regexp="^\s+\\"bootstrap_expect\\"*"
-      #    line="  \"bootstrap_expect\": 3,"
-      #    insertafter="^\{.*"
-
       - name: bootstrap consul cluster
         service:
           name="consul"
@@ -56,12 +49,6 @@
           regexp="^\s+\\"bootstrap\\"*"
           line="  \"bootstrap\": false,"
 
-      #- name: remove bootstrap expect
-      #  lineinfile: |
-      #    name="/etc/consul/agent/config.json"
-      #    regexp="^\s+\\"bootstrap_expect\\"*"
-      #    state="absent"
-
       - name: start consul
         service:
           name="consul"
@@ -75,7 +62,7 @@
         service:
           name: systemd-resolved
           state: restarted
-          
+
   - hosts: tag_Name_control_{{ lookup('env', 'DEPLOY') }}
 
     tasks:
