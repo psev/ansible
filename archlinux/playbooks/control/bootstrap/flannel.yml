@@ -22,6 +22,6 @@
         uri:
           url: http://etcd.service.consul:2379/v2/keys/flannel/network/config
           method: PUT
-          body: "{{ config | to_json }}"
+          body: "value={{ config | to_json }}"
           body_format: json
         run_once: yes
