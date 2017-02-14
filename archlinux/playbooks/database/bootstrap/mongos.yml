@@ -33,7 +33,6 @@
         wait_for:
           host: "{{ ansible_host }}"
           port: "{{ port }}"
-          delay: 10
           timeout: 30
 
       - name: print shardsvr_list
