@@ -72,6 +72,9 @@
       - enable consul
       - start consul
 
+  - name: systemctl daemon-reload
+    command: systemctl daemon-reload
+
   - name: enable and start consul.service
     service:
       name="consul"
