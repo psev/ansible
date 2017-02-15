@@ -1,0 +1,9 @@
+---
+
+  dependencies:
+
+    - { role: consul-client, meta: sakai }
+
+    - { role: sakai-java, meta: sakai }
+    - { role: sakai-tomcat, meta: sakai }
+    - { role: sakai-maven, meta: sakai }
