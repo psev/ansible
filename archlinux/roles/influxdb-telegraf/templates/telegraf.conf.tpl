@@ -20,6 +20,14 @@
   deploy = "{{ lookup('env', 'DEPLOY') }}"
   role = "{{ lookup('env', 'ROLE') }}"
 
+  {% if lookup('env', 'CLUSTER') %}
+  cluster = "{{ lookup('env', 'CLUSTER') }}"
+  {% endif %}
+
+  {% if lookup('env', 'SHARD') %}
+  shard = "{{ lookup('env', 'SHARD') }}"
+  {% endif %}
+
 # Configuration for telegraf agent
 [agent]
   ## Default data collection interval for all inputs
