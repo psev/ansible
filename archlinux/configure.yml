@@ -26,6 +26,8 @@
       - { role: proxy, tags: [ "proxy" ] }
       - { role: swarm, tags: [ "swarm" ] }
 
+      - { role: sakai, tags: [ "sakai" ] }
+
     post_tasks:
 
       - name: restart systemd-resolved
