@@ -1,4 +1,4 @@
 ---
 
   - name: install openjdk8
-    command: pacman --no-confirm -S jdk8-openjdk
+    command: pacman --noconfirm -S jdk8-openjdk
