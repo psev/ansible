@@ -1,1 +1,4 @@
 ---
+
+  - name: install maven
+    command: pacman --no-confirm -S maven

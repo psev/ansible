@@ -1,1 +1,4 @@
 ---
+
+  - name: install tomcat8
+    command: pacman --no-confirm -S tomcat8
