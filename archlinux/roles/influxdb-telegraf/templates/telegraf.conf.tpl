@@ -1058,9 +1058,9 @@
 #   ##   mongodb://10.10.3.33:18832,
 #   ##   10.0.0.1:10000, etc.
   servers = [
-    "{{ lookup('env', 'HOSTNAME') }}.node.consul:27017",
-    "{{ lookup('env', 'HOSTNAME') }}.node.consul:27018",
-    "{{ lookup('env', 'HOSTNAME') }}.node.consul:27019"
+    "mongodb://{{ lookup('env', 'HOSTNAME') }}.node.consul:27017",
+    "mongodb://{{ lookup('env', 'HOSTNAME') }}.node.consul:27018",
+    "mongodb://{{ lookup('env', 'HOSTNAME') }}.node.consul:27019"
   ]
   gather_perdb_stats = false
 
