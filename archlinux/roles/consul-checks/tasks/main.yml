@@ -1,19 +1,28 @@
 ---
 
 - name: copy check_mem
-  copy: src=check_mem dest=/usr/local/bin/check_mem mode=755
+  copy:
+    src: check_mem
+    dest: /usr/local/bin/check_mem
+    mode: 755
 
 - name: copy mem-check
-  copy: src=memory.json dest=/etc/consul/consul.d/client/memory.json
+  copy:
+    src: memory.json
+    dest: /etc/consul/checks/memory.json
   notify:
     - reload consul@client
 
 - name: copy disk-check
-  copy: src=disk.json dest=/etc/consul/consul.d/client/disk.json
+  copy:
+    src: disk.json
+    dest: /etc/consul/checks/disk.json
   notify:
     - reload consul@client
 
 - name: copy load-check
-  copy: src=load.json dest=/etc/consul/consul.d/client/load.json
+  copy:
+    src: load.json
+    dest: /etc/consul/checks/load.json
   notify:
     - reload consul@client
